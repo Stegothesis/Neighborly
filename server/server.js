@@ -13,7 +13,7 @@ app.get('/testing', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(rootPath + '/index.html'));
+  res.sendFile(path.resolve(rootPath + '/public/index.html'));
 });
 
 app.listen(port, () => {
