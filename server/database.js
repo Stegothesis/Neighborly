@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const databasepath = 'mongodb://localhost/community';
+
 mongoose.connect(databasepath);
 const db = mongoose.connection;
 
