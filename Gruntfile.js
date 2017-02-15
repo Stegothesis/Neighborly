@@ -44,7 +44,7 @@ module.exports = function(grunt) {
             });
             nodemon.on('config:update', function () {
             setTimeout(function() {
-              require('open')('http://localhost:1337');
+              require('open')('http://localhost:8080');
             }, 1000);
             });
           }
