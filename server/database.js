@@ -1,13 +1,23 @@
-const mongoose = require('mongoose');
-const databasepath = 'mongodb://localhost/community';
+const Sequelize = require('sequelize');
 
-mongoose.connect(databasepath);
-const db = mongoose.connection;
+const db = new Sequelize('community', 'root, '', {
+  define: {
+    charset: 'utf8mb4'
+  }
+});
 
-let userSchema = mongoose.Schema({
+var Users = db.define('User', {
 
-})
+});
 
-var User = mongoose.model("User", userSchema)
+var Comments = db.define('Comments', {
 
-module.exports = User;
+});
+
+var Locations = db.define('Locations', {
+
+});
+
+db.sync();
+
+exports.sequelize = db;
