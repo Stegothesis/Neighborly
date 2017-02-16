@@ -11,12 +11,12 @@
 > Plug in a district, town, city, or zip code and view statistics and community reviews about the area.
 
 ## Requirements
-  - React/React Native
+  - React
   - Redux
   - Node v6.9.4
-  - Express
-  - MongoDB v.3.4.1
-  - Mongoose
+  - Express v4.14.0
+  - MySQL v2.12.0
+  - Sequelize v3.27.0
 
 ## Development
 
