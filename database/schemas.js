@@ -6,6 +6,13 @@ const db = new Sequelize('community', 'root',
   }
 );
 
+db.authenticate()
+  .then((err) => {
+    console.log('Database connected');
+  }, (err) => {
+    console.log('Error: cannot connect to database: ', err);
+  });
+
  var Users = db.define('users', {
     id: {
       type: Sequelize.INTEGER,
@@ -67,7 +74,7 @@ const db = new Sequelize('community', 'root',
     city: Sequelize.STRING,
     state: Sequelize.STRING
   });
-  
+
  var Votes = db.define('Votes', {
   id: {
     type: Sequelize.INTEGER,
@@ -80,7 +87,7 @@ Users.belongToMany(Reviews, {through: 'Votes'});
 Reviews.belongToMany(Users, {through: 'Votes'});
 
 //Create teables in sql if does not exist
-db.sync(); 
+db.sync();
 
 exports.sequelize = db;
 exports.Users = Users;
