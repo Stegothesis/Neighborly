@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('community', 'root, '', {
+const db = new Sequelize('community', 'root',
   define: {
     charset: 'utf8mb4'
   }
-});
+);
 
 var Users = db.define('User', {
 
