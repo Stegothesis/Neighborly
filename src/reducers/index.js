@@ -1,10 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import addReview from './reviews.js'
 
-/*
 const app = combineReducers ({
-  reducer function,
-  reducer function
+  addReview
 })
 
 export default app;
-*/
+
