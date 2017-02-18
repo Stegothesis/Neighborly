@@ -1,23 +1,26 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+'use strict';
 
-const port = process.env.PORT || 8080;
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var app = express();
 
-const rootPath = path.join(__dirname, '/..');
 
-app.use(express.static(rootPath));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-app.get('/testing', (req, res) => {
-  res.send(200, 'testing');
+app.use(express.static(path.join(__dirname, '../public')));
+
+var port = process.env.PORT || 8080;
+
+app.listen(port, function() {
+    console.log('Listening on port:' + port);
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(rootPath + '/public/index.html'));
-});
-
-app.listen(port, () => {
-  console.log('Listening on port', port);
-});
+app.get('/', function(req,res){
+  console.log("get happened")
+})
 
 module.exports = app;
