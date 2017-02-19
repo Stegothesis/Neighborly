@@ -1,10 +1,16 @@
 const Sequelize = require('sequelize');
+const pg = require('pg');
+let DB_URL = "";
 
-const db = new Sequelize('community', 'root',
-  define: {
-    charset: 'utf8mb4'
-  }
-);
+if (process.env.NODE_ENV === 'production') {
+  DB_URL = process.env.DATABASE_URL;
+} else {
+
+}
+
+pg.defaults.ssl = true;
+
+const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 
 db.authenticate()
   .then((err) => {
