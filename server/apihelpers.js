@@ -2,7 +2,7 @@
 var parseString = require('xml2js').parseString;
 var request = require('request');
 
-var zillowApiKey = 'X1-ZWz1fnqmwi7h8r_2qbsp'//process.env.ZILLOW_API_KEY;
+var zillowApiKey = process.env.ZILLOW_API_KEY;
 
 exports.getZillowHoods = function(city, state, callback) {
   var options = {
