@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link href="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/react/dist/react-with-addons.js"></script>
+    <script src="../node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon-server-1.17.3.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon-1.17.3.js"></script>
+    <script>
+      mocha.setup('bdd');
+      var expect = chai.expect;
+      $(function() {
+        window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run()
+      });
+    </script>
+
+    <!-- compiled source files here-->
+    <script src='../compiled/src/components/App.js'></script>
+    <script src='../compiled/src/components/City.js'></script>
+    <script src='../compiled/src/components/Landing.js'></script>
+    <script src='../compiled/src/components/Neighborhood.js'></script>
+    <script src='../compiled/src/components/Rate.js'></script>
+    <script src='../compiled/src/components/User.js'></script>
+
+    <!-- spec files here -->
+    <script src='../compiled/spec/components/AppSpec.js'></script>
+    <script src='../compiled/spec/components/CitySpec.js'></script>
+    <script src='../compiled/spec/components/LandingSpec.js'></script>
+    <script src='../compiled/spec/components/NeighborhoodSpec.js'></script>
+    <script src='../compiled/spec/components/RateSpec.js'></script>
+    <script src='../compiled/spec/components/UserSpec.js'></script>
+  </head>
+
+  <body>
+    <div id='mocha'></div>
+  </body>
+</html>
