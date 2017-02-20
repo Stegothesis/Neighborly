@@ -21,25 +21,9 @@ preloadedState - the intial state
 enhancer - store enhancer/action
 Returns an object that holds complete state of app
 */
-const store = () => {
+const makeStore = () => {
   const logger = createLogger();
   return createStore(app, applyMiddleware(logger));
 }
 
-//console.log(store.getState());
-
-store.dispatch(addReview(text));
-
-console.log(store.getState())
-
-/*
-Provider component makes props available to every component in app
-*/
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
-
-export default store;
+export default makeSstore;
