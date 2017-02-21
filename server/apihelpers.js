@@ -8,7 +8,6 @@ exports.getZillowHoods = function(city, state, callback) {
   var options = {
     url: 'http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=' + zillowApiKey + '&state=' + state + '&city=' + city + '&childtype=neighborhood'
   }
-  console.log(options);
   request(options, function(err, res, body) {
     if(err) {
       callback(err, null);

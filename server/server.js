@@ -7,6 +7,7 @@ var pg = require('pg');
 var app = express();
 var request = require('request');
 var apiHelpers = require('./apihelpers.js');
+var db = require('../database/schemas.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -30,10 +31,26 @@ app.listen(port, function() {
     console.log('Listening on port:' + port);
 });
 
-app.get('/', function(req,res){
-  console.log("get happened")
+// app.get('/', function(req,res){
+//   console.log("get happened")
+// })
+
+//create a new user
+app.post('/api/users', function(req, res) {
+  var user = {};
+  user.username = req.body.username;
+  user.hash = req.body.hash;
+
+  dbHelpers.createUser(user, function(created) {
+    if(created) {
+      res.send('User created');
+    } else {
+      res.send('User already exists');
+    }
+  })
 })
 
+//get neighorhoods for a given city
 app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
   var city = req.params.city;
   var state = req.params.state;
@@ -41,9 +58,18 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
     if(err) {
       res.sendStatus(404);
     } else {
+      //could add our own data here
       res.json(hoods);
     }
   });
 });
+
+
+// app.post('/api/neighborhoods/reviews/:city/:state', function(req, res) {
+//   var city = req.params.city;
+//   var state = req.params.state;
+//   var username = req.body.username;
+
+// })
 
 module.exports = app;
