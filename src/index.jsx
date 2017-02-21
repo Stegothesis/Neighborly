@@ -13,8 +13,8 @@ import { Provider } from 'react-redux'
 import reducers from './reducers/index.jsx'
 import { createStore, applyMiddleware } from 'redux';
 
-// const store = makeStore(reducers);
-// const history = syncHistoryWithStore(browserHistory, store);
+const store = makeStore(reducers);
+const history = syncHistoryWithStore(browserHistory, store);
 
 //console.log(store.getState());
 
@@ -22,8 +22,10 @@ import { createStore, applyMiddleware } from 'redux';
 const app = document.getElementById('app');
 
 ReactDOM.render(
-  <Provider store={makeStore(reducers)}>
-    <App />
+  <Provider store={store}>
+    <Router history = {history}>
+      <Route path="/" component={ App } />
+    </Router>
   </Provider>
   , document.getElementById('app'));
 
@@ -40,45 +42,4 @@ ReactDOM.render(
 // //   </Provider>
 // //   , document.getElementById('app'));
 
-
-// const Routes = () =>
-// <Provider store={store}>
-//   <App />
-//   <Router history={history}>
-//     <Route
-//       path="/"
-//       component={ App } />
-
-//     <Route
-//       path="/city"
-//       component={ City }/>
-
-//     <Route
-//       path="/neighborhood"
-//       component={ Neighborhood }/>
-
-//     <Route
-//       path="/rate"
-//       component={ Rate  }/>
-
-//     <Route
-//       path="/user"
-//       component={ User }/>
-
-//     </Router>
-//   </Provider>;
-
-
-// export default Routes;
-
-
-
-
-// const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-// ReactDOM.render(
-//   <Provider store={createStoreWithMiddleware(reducers)}>
-//     <App />
-//   </Provider>
-//   , document.querySelector('.app'));
 
