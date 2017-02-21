@@ -2,15 +2,20 @@ const Sequelize = require('sequelize');
 const pg = require('pg');
 let DB_URL = "";
 
-if (process.env.NODE_ENV === 'production') {
-  DB_URL = process.env.DATABASE_URL;
-} else {
+// if (process.env.NODE_ENV === 'production') {
+//   DB_URL = process.env.DATABASE_URL;
+//   const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
+// } else {
+// }
 
-}
+// pg.defaults.ssl = true;
 
-pg.defaults.ssl = true;
+// const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 
-const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
+// use for local dev
+var db = new Sequelize("postgres://localhost:5432/community", {
+  dialect: "postgres"
+});
 
 db.authenticate()
   .then((err) => {
@@ -19,7 +24,7 @@ db.authenticate()
     console.log('Error: cannot connect to database: ', err);
   });
 
- var Users = db.define('users', {
+ var User = db.define('user', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -29,7 +34,7 @@ db.authenticate()
     hash: Sequelize.STRING,
   });
 
- var Reviews = db.define('reviews', {
+ var Review = db.define('review', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -37,8 +42,6 @@ db.authenticate()
     },
     text: Sequelize.STRING,
     stars_overall: Sequelize.INTEGER,
-    id_locations: Sequelize.INTEGER,
-    id_users: Sequelize.INTEGER,
     kid_friendly: Sequelize.INTEGER,
     singles_friendly: Sequelize.INTEGER,
     retirees: Sequelize.INTEGER,
@@ -55,33 +58,78 @@ db.authenticate()
     vote_count: Sequelize.INTEGER
   });
 
- var Neighborhoods = db.define('neighborhoods', {
+ var Neighborhood = db.define('neighborhood', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
     neighborhood_name: Sequelize.STRING,
-    avg_star_rating: Sequelize.INTEGER,
-    total_num_ratings: Sequelize.INTEGER,
-    average_kid_friendly: Sequelize.INTEGER,
-    avg_singles_friendly: Sequelize.INTEGER,
-    avg_retirees: Sequelize.INTEGER,
-    avg_sense_of_community: Sequelize.INTEGER,
-    avg_nightlife: Sequelize.INTEGER,
-    avg_entertainment: Sequelize.INTEGER,
-    avg_affordability: Sequelize.INTEGER,
-    avg_ameneties: Sequelize.INTEGER,
-    avg_safety: Sequelize.INTEGER,
-    avg_culture_arts: Sequelize.INTEGER,
-    avg_schools: Sequelize.INTEGER,
-    avg_crime: Sequelize.INTEGER,
-    avg_hipster_rating: Sequelize.INTEGER,
+    avg_star_rating: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    total_num_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
+    avg_kid_friendly: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_singles_friendly: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_retirees: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_sense_of_community: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_nightlife: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_entertainment: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_affordability: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_ameneties: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_safety: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_culture_arts: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_schools: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_crime: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    avg_hipster_rating: {
+      type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
     city: Sequelize.STRING,
     state: Sequelize.STRING
   });
 
- var Votes = db.define('Votes', {
+ var Vote = db.define('vote', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -89,16 +137,23 @@ db.authenticate()
    }
  });
 
-Users.belongToMany(Reviews, {through: 'Votes'});
-Reviews.belongToMany(Users, {through: 'Votes'});
-Neighborhoods.hasMany(Reviews);
-Reviews.hasOne(Neighborhoods);
+Review.belongsTo(Neighborhood);
+Neighborhood.hasMany(Review);
+
+Review.belongsTo(User);
+User.hasMany(Review);
+
+Vote.belongsTo(User);
+User.hasMany(Vote);
+
+Vote.belongsTo(Review);
+Review.hasMany(Vote);
 
 //Create teables in sql if does not exist
 db.sync();
 
 exports.sequelize = db;
-exports.Users = Users;
-exports.Reviews = Reviews;
-exports.Neighborhoods = Neighborhoods;
-exports.Votes = Votes;
+exports.User = User;
+exports.Review = Review;
+exports.Neighborhood = Neighborhood;
+exports.Vote = Vote;
