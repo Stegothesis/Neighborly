@@ -12,8 +12,15 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-      <City />
-      <NeighborhoodDetail />
+      <div>
+        <Landing />
+      </div>
+      <div>
+        <City />
+      </div>
+      <div>
+        <NeighborhoodDetail />
+      </div>
       </div>
     );
   }
