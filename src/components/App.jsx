@@ -6,13 +6,14 @@ import City from '../containers/City.jsx'
 import Rate from './Rate.jsx'
 import User from './User.jsx'
 import Landing from '../containers/Landing.jsx'
+import NeighborhoodDetail from '../containers/neighborhood-detail.jsx'
 
 export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-      <Landing />
       <City />
+      <NeighborhoodDetail />
       </div>
     );
   }
