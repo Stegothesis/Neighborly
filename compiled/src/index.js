@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -38,50 +34,61 @@ var _User = require('./components/User.jsx');
 
 var _User2 = _interopRequireDefault(_User);
 
-var _store = require('./store.js');
+var _store = require('./store.jsx');
 
 var _store2 = _interopRequireDefault(_store);
 
 var _reactRedux = require('react-redux');
 
+var _index = require('./reducers/index.jsx');
+
+var _index2 = _interopRequireDefault(_index);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _store2.default)();
-var history = (0, _reactRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
+//const history = syncHistoryWithStore(browserHistory, store);
 
-store.dispatch(addReview('customer review'));
-
-console.log(store.getState());
+//console.log(store.getState());
 
 //Get app id from static html page
 var app = document.getElementById('app');
 
 //Provider sends props to all components in the app
-var Routes = function Routes() {
-  return _react2.default.createElement(
-    Provider,
-    { store: store },
-    _react2.default.createElement(
-      _reactRouter.Router,
-      { history: history },
-      _react2.default.createElement(_reactRouter.Route, {
-        path: '/',
-        component: _App2.default }),
-      _react2.default.createElement(_reactRouter.Route, {
-        path: '/city',
-        component: _City2.default }),
-      _react2.default.createElement(_reactRouter.Route, {
-        path: '/neighborhood',
-        component: _Neighborhood2.default }),
-      _react2.default.createElement(_reactRouter.Route, {
-        path: '/rate',
-        component: _Rate2.default }),
-      _react2.default.createElement(_reactRouter.Route, {
-        path: '/user',
-        component: _User2.default })
-    )
-  );
-};
+_reactDom2.default.render(_react2.default.createElement(
+  _reactRedux.Provider,
+  { store: (0, _store2.default)(_index2.default) },
+  _react2.default.createElement(_App2.default, null)
+), document.getElementById('app'));
 
-exports.default = Routes;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9pbmRleC5qcyJdLCJuYW1lcyI6WyJzdG9yZSIsImhpc3RvcnkiLCJkaXNwYXRjaCIsImFkZFJldmlldyIsImNvbnNvbGUiLCJsb2ciLCJnZXRTdGF0ZSIsImFwcCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJSb3V0ZXMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBOzs7O0FBQ0E7Ozs7QUFDQTs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBRUEsSUFBTUEsUUFBUSxzQkFBZDtBQUNBLElBQU1DLFVBQVUsbUVBQXFDRCxLQUFyQyxDQUFoQjs7QUFFQUEsTUFBTUUsUUFBTixDQUFlQyxVQUFVLGlCQUFWLENBQWY7O0FBRUFDLFFBQVFDLEdBQVIsQ0FBWUwsTUFBTU0sUUFBTixFQUFaOztBQUVBO0FBQ0EsSUFBTUMsTUFBTUMsU0FBU0MsY0FBVCxDQUF3QixLQUF4QixDQUFaOztBQUVBO0FBQ0EsSUFBTUMsU0FBUyxTQUFUQSxNQUFTO0FBQUEsU0FDZjtBQUFDLFlBQUQ7QUFBQSxNQUFVLE9BQU9WLEtBQWpCO0FBQ0U7QUFBQTtBQUFBLFFBQVEsU0FBU0MsT0FBakI7QUFDRTtBQUNFLGNBQUssR0FEUDtBQUVFLGdDQUZGLEdBREY7QUFLRTtBQUNFLGNBQUssT0FEUDtBQUVFLGlDQUZGLEdBTEY7QUFTRTtBQUNFLGNBQUssZUFEUDtBQUVFLHlDQUZGLEdBVEY7QUFhRTtBQUNFLGNBQUssT0FEUDtBQUVFLGlDQUZGLEdBYkY7QUFpQkU7QUFDRSxjQUFLLE9BRFA7QUFFRSxpQ0FGRjtBQWpCRjtBQURGLEdBRGU7QUFBQSxDQUFmOztrQkEwQmVTLE0iLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFJlYWN0RE9NIGZyb20gJ3JlYWN0LWRvbSc7XG5pbXBvcnQgeyBJbmRleFJvdXRlLCBMaW5rLCBSb3V0ZXIsIFJvdXRlLCBicm93c2VySGlzdG9yeSB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XG5pbXBvcnQgQXBwIGZyb20gJy4vY29tcG9uZW50cy9BcHAuanN4J1xuaW1wb3J0IExhbmRpbmcgZnJvbSAnLi9jb21wb25lbnRzL0xhbmRpbmcuanN4J1xuaW1wb3J0IENpdHkgZnJvbSAnLi9jb21wb25lbnRzL0NpdHkuanN4J1xuaW1wb3J0IE5laWdoYm9yaG9vZCBmcm9tICcuL2NvbXBvbmVudHMvTmVpZ2hib3Job29kLmpzeCdcbmltcG9ydCBSYXRlIGZyb20gJy4vY29tcG9uZW50cy9SYXRlLmpzeCdcbmltcG9ydCBVc2VyIGZyb20gJy4vY29tcG9uZW50cy9Vc2VyLmpzeCdcbmltcG9ydCBtYWtlU3RvcmUgZnJvbSAnLi9zdG9yZS5qcydcbmltcG9ydCB7IHN5bmNIaXN0b3J5V2l0aFN0b3JlIH0gZnJvbSAncmVhY3QtcmVkdXgnXG5cbmNvbnN0IHN0b3JlID0gbWFrZVN0b3JlKCk7XG5jb25zdCBoaXN0b3J5ID0gc3luY0hpc3RvcnlXaXRoU3RvcmUoYnJvd3Nlckhpc3RvcnksIHN0b3JlKTtcblxuc3RvcmUuZGlzcGF0Y2goYWRkUmV2aWV3KCdjdXN0b21lciByZXZpZXcnKSk7XG5cbmNvbnNvbGUubG9nKHN0b3JlLmdldFN0YXRlKCkpO1xuXG4vL0dldCBhcHAgaWQgZnJvbSBzdGF0aWMgaHRtbCBwYWdlXG5jb25zdCBhcHAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXBwJyk7XG5cbi8vUHJvdmlkZXIgc2VuZHMgcHJvcHMgdG8gYWxsIGNvbXBvbmVudHMgaW4gdGhlIGFwcFxuY29uc3QgUm91dGVzID0gKCkgPT5cbjxQcm92aWRlciBzdG9yZT17c3RvcmV9PlxuICA8Um91dGVyIGhpc3Rvcnk9e2hpc3Rvcnl9PlxuICAgIDxSb3V0ZVxuICAgICAgcGF0aD1cIi9cIlxuICAgICAgY29tcG9uZW50PXsgQXBwIH0gLz5cblxuICAgIDxSb3V0ZVxuICAgICAgcGF0aD1cIi9jaXR5XCJcbiAgICAgIGNvbXBvbmVudD17IENpdHkgfS8+XG5cbiAgICA8Um91dGVcbiAgICAgIHBhdGg9XCIvbmVpZ2hib3Job29kXCJcbiAgICAgIGNvbXBvbmVudD17IE5laWdoYm9yaG9vZCB9Lz5cblxuICAgIDxSb3V0ZVxuICAgICAgcGF0aD1cIi9yYXRlXCJcbiAgICAgIGNvbXBvbmVudD17IFJhdGUgIH0vPlxuXG4gICAgPFJvdXRlXG4gICAgICBwYXRoPVwiL3VzZXJcIlxuICAgICAgY29tcG9uZW50PXsgVXNlciB9Lz5cblxuICAgIDwvUm91dGVyPlxuICA8L1Byb3ZpZGVyPjtcblxuZXhwb3J0IGRlZmF1bHQgUm91dGVzOyJdfQ==
+/*
+const Routes = () =>
+<Provider store={store}>
+  <App />
+  <Router history={history}>
+    <Route
+      path="/"
+      component={ App } />
+
+    <Route
+      path="/city"
+      component={ City }/>
+
+    <Route
+      path="/neighborhood"
+      component={ Neighborhood }/>
+
+    <Route
+      path="/rate"
+      component={ Rate  }/>
+
+    <Route
+      path="/user"
+      component={ User }/>
+
+    </Router>
+  </Provider>;
+
+
+export default Routes;
+*/
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9pbmRleC5qc3giXSwibmFtZXMiOlsiYXBwIiwiZG9jdW1lbnQiLCJnZXRFbGVtZW50QnlJZCIsInJlbmRlciJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7OztBQUNBOzs7O0FBQ0E7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7OztBQUNBOzs7O0FBQ0E7Ozs7QUFDQTs7QUFFQTs7Ozs7O0FBRUE7O0FBRUE7O0FBRUE7QUFDQSxJQUFNQSxNQUFNQyxTQUFTQyxjQUFULENBQXdCLEtBQXhCLENBQVo7O0FBRUE7QUFDQSxtQkFBU0MsTUFBVCxDQUNFO0FBQUE7QUFBQSxJQUFVLE9BQU8scUNBQWpCO0FBQ0U7QUFERixDQURGLEVBSUlGLFNBQVNDLGNBQVQsQ0FBd0IsS0FBeEIsQ0FKSjs7QUFNQSIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tJztcbmltcG9ydCB7IEluZGV4Um91dGUsIExpbmssIFJvdXRlciwgUm91dGUsIGJyb3dzZXJIaXN0b3J5IH0gZnJvbSAncmVhY3Qtcm91dGVyJztcbmltcG9ydCBBcHAgZnJvbSAnLi9jb21wb25lbnRzL0FwcC5qc3gnXG5pbXBvcnQgTGFuZGluZyBmcm9tICcuL2NvbXBvbmVudHMvTGFuZGluZy5qc3gnXG5pbXBvcnQgQ2l0eSBmcm9tICcuL2NvbXBvbmVudHMvQ2l0eS5qc3gnXG5pbXBvcnQgTmVpZ2hib3Job29kIGZyb20gJy4vY29tcG9uZW50cy9OZWlnaGJvcmhvb2QuanN4J1xuaW1wb3J0IFJhdGUgZnJvbSAnLi9jb21wb25lbnRzL1JhdGUuanN4J1xuaW1wb3J0IFVzZXIgZnJvbSAnLi9jb21wb25lbnRzL1VzZXIuanN4J1xuaW1wb3J0IG1ha2VTdG9yZSBmcm9tICcuL3N0b3JlLmpzeCdcbmltcG9ydCB7IHN5bmNIaXN0b3J5V2l0aFN0b3JlIH0gZnJvbSAncmVhY3QtcmVkdXgnXG5pbXBvcnQgeyBQcm92aWRlciB9IGZyb20gJ3JlYWN0LXJlZHV4J1xuaW1wb3J0IHJlZHVjZXJzIGZyb20gJy4vcmVkdWNlcnMvaW5kZXguanN4J1xuXG4vL2NvbnN0IGhpc3RvcnkgPSBzeW5jSGlzdG9yeVdpdGhTdG9yZShicm93c2VySGlzdG9yeSwgc3RvcmUpO1xuXG4vL2NvbnNvbGUubG9nKHN0b3JlLmdldFN0YXRlKCkpO1xuXG4vL0dldCBhcHAgaWQgZnJvbSBzdGF0aWMgaHRtbCBwYWdlXG5jb25zdCBhcHAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXBwJyk7XG5cbi8vUHJvdmlkZXIgc2VuZHMgcHJvcHMgdG8gYWxsIGNvbXBvbmVudHMgaW4gdGhlIGFwcFxuUmVhY3RET00ucmVuZGVyKFxuICA8UHJvdmlkZXIgc3RvcmU9e21ha2VTdG9yZShyZWR1Y2Vycyl9PlxuICAgIDxBcHAgLz5cbiAgPC9Qcm92aWRlcj5cbiAgLCBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXBwJykpO1xuXG4vKlxuY29uc3QgUm91dGVzID0gKCkgPT5cbjxQcm92aWRlciBzdG9yZT17c3RvcmV9PlxuICA8QXBwIC8+XG4gIDxSb3V0ZXIgaGlzdG9yeT17aGlzdG9yeX0+XG4gICAgPFJvdXRlXG4gICAgICBwYXRoPVwiL1wiXG4gICAgICBjb21wb25lbnQ9eyBBcHAgfSAvPlxuXG4gICAgPFJvdXRlXG4gICAgICBwYXRoPVwiL2NpdHlcIlxuICAgICAgY29tcG9uZW50PXsgQ2l0eSB9Lz5cblxuICAgIDxSb3V0ZVxuICAgICAgcGF0aD1cIi9uZWlnaGJvcmhvb2RcIlxuICAgICAgY29tcG9uZW50PXsgTmVpZ2hib3Job29kIH0vPlxuXG4gICAgPFJvdXRlXG4gICAgICBwYXRoPVwiL3JhdGVcIlxuICAgICAgY29tcG9uZW50PXsgUmF0ZSAgfS8+XG5cbiAgICA8Um91dGVcbiAgICAgIHBhdGg9XCIvdXNlclwiXG4gICAgICBjb21wb25lbnQ9eyBVc2VyIH0vPlxuXG4gICAgPC9Sb3V0ZXI+XG4gIDwvUHJvdmlkZXI+O1xuXG5cbmV4cG9ydCBkZWZhdWx0IFJvdXRlcztcbiovIl19

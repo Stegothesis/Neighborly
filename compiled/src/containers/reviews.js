@@ -5,17 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Review = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
-
-var _actions = require('../actions');
-
-var actions = _interopRequireWildcard(_actions);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,14 +32,38 @@ var Review = exports.Review = function (_Component) {
     return _possibleConstructorReturn(this, (Review.__proto__ || Object.getPrototypeOf(Review)).apply(this, arguments));
   }
 
+  _createClass(Review, [{
+    key: 'renderList',
+    value: function renderList() {
+      return this.props.reviews.map(function (review) {
+        return _react2.default.createElement(
+          'li',
+          { key: review.review, className: 'review-list-item' },
+          ' ',
+          review.review,
+          ' '
+        );
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'ul',
+        { className: 'list-item col-sm-4' },
+        this.renderList()
+      );
+    }
+  }]);
+
   return Review;
 }(_react.Component);
 
-/*
-function mapStateToProps(state, ownProps) {
-  return state[ownProps.id]
+function mapStateToProps(state) {
+  return {
+    reviews: state.reviews
+  };
 }
-*/
 
 /*
 connect() is a function that injecst Redux-related props into your component
@@ -53,6 +73,5 @@ and instead specify hwo to get props based on Redux store state
 Given redux state, return props.
 Given redux dispatch, return callback props
 */
-//const connectReview = connect(mapStateToProps, actions)(Review)
-//export default connectReview;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb250YWluZXJzL3Jldmlld3MuanMiXSwibmFtZXMiOlsiYWN0aW9ucyIsIlJldmlldyJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBOzs7O0FBRUE7O0FBQ0E7O0lBQVlBLE87Ozs7Ozs7Ozs7OztBQUVaOztJQUVhQyxNLFdBQUFBLE07Ozs7Ozs7Ozs7OztBQUliOzs7Ozs7QUFNQTs7Ozs7Ozs7QUFRQTtBQUNBIiwiZmlsZSI6InJldmlld3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBDb21wb25lbnQgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGNvbm5lY3QgfSBmcm9tICdyZWFjdC1yZWR1eCdcbmltcG9ydCAqIGFzIGFjdGlvbnMgZnJvbSAnLi4vYWN0aW9ucydcblxuLyogQ29udGFpbmVyIGNvbXBvbmVudCBoYW5kbGluZyBzdGF0ZXMsIGV2ZW50IGhhbmRsZXJzLCBhbmQgcGFzc2luZyBkb3duIHByb3BzICovXG5cbmV4cG9ydCBjbGFzcyBSZXZpZXcgZXh0ZW5kcyBDb21wb25lbnQge1xuXG59XG5cbi8qXG5mdW5jdGlvbiBtYXBTdGF0ZVRvUHJvcHMoc3RhdGUsIG93blByb3BzKSB7XG4gIHJldHVybiBzdGF0ZVtvd25Qcm9wcy5pZF1cbn1cbiovXG5cbi8qXG5jb25uZWN0KCkgaXMgYSBmdW5jdGlvbiB0aGF0IGluamVjc3QgUmVkdXgtcmVsYXRlZCBwcm9wcyBpbnRvIHlvdXIgY29tcG9uZW50XG5JbmplY3QgZGF0YSBhbmQgY2FsbGJhY2tzIHRoYXQgY2hhbmdlIHRoYXQgZGF0YSBieSBkaXNwYXRjaGluZyBhY3Rpb25zXG5UaGUgcHVycG9zZSBvZiBjb25uZWN0KCkgaXMgdGhhdCB5b3UgZG9uJ3QgaGF2ZSB0byB0aGluayBhYm91dCBzdWJzY3JpYmluZyB0byB0aGUgc3RvcmVcbmFuZCBpbnN0ZWFkIHNwZWNpZnkgaHdvIHRvIGdldCBwcm9wcyBiYXNlZCBvbiBSZWR1eCBzdG9yZSBzdGF0ZVxuR2l2ZW4gcmVkdXggc3RhdGUsIHJldHVybiBwcm9wcy5cbkdpdmVuIHJlZHV4IGRpc3BhdGNoLCByZXR1cm4gY2FsbGJhY2sgcHJvcHNcbiovXG4vL2NvbnN0IGNvbm5lY3RSZXZpZXcgPSBjb25uZWN0KG1hcFN0YXRlVG9Qcm9wcywgYWN0aW9ucykoUmV2aWV3KVxuLy9leHBvcnQgZGVmYXVsdCBjb25uZWN0UmV2aWV3OyJdfQ==
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Review);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb250YWluZXJzL3Jldmlld3MuanN4Il0sIm5hbWVzIjpbIlJldmlldyIsInByb3BzIiwicmV2aWV3cyIsIm1hcCIsInJldmlldyIsInJlbmRlckxpc3QiLCJtYXBTdGF0ZVRvUHJvcHMiLCJzdGF0ZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBQUE7Ozs7QUFFQTs7Ozs7Ozs7OztBQUVBOztJQUVhQSxNLFdBQUFBLE07Ozs7Ozs7Ozs7O2lDQUNFO0FBQ1gsYUFBTyxLQUFLQyxLQUFMLENBQVdDLE9BQVgsQ0FBbUJDLEdBQW5CLENBQXVCLFVBQUNDLE1BQUQsRUFBWTtBQUN4QyxlQUNFO0FBQUE7QUFBQSxZQUFJLEtBQUtBLE9BQU9BLE1BQWhCLEVBQXdCLFdBQVUsa0JBQWxDO0FBQUE7QUFBdURBLGlCQUFPQSxNQUE5RDtBQUFBO0FBQUEsU0FERjtBQUdELE9BSk0sQ0FBUDtBQUtEOzs7NkJBRVE7QUFDUCxhQUNJO0FBQUE7QUFBQSxVQUFJLFdBQVUsb0JBQWQ7QUFDRyxhQUFLQyxVQUFMO0FBREgsT0FESjtBQUtEOzs7Ozs7QUFJSCxTQUFTQyxlQUFULENBQXlCQyxLQUF6QixFQUFnQztBQUM5QixTQUFPO0FBQ0xMLGFBQVNLLE1BQU1MO0FBRFYsR0FBUDtBQUdEOztBQUdEOzs7Ozs7OztrQkFRZSx5QkFBUUksZUFBUixFQUF5Qk4sTUFBekIsQyIsImZpbGUiOiJyZXZpZXdzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgQ29tcG9uZW50IH0gZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBjb25uZWN0IH0gZnJvbSAncmVhY3QtcmVkdXgnXG5cbi8qIENvbnRhaW5lciBjb21wb25lbnQgaGFuZGxpbmcgc3RhdGVzLCBldmVudCBoYW5kbGVycywgYW5kIHBhc3NpbmcgZG93biBwcm9wcyAqL1xuXG5leHBvcnQgY2xhc3MgUmV2aWV3IGV4dGVuZHMgQ29tcG9uZW50IHtcbiAgcmVuZGVyTGlzdCgpIHtcbiAgICByZXR1cm4gdGhpcy5wcm9wcy5yZXZpZXdzLm1hcCgocmV2aWV3KSA9PiB7XG4gICAgICByZXR1cm4gKFxuICAgICAgICA8bGkga2V5PXtyZXZpZXcucmV2aWV3fSBjbGFzc05hbWU9XCJyZXZpZXctbGlzdC1pdGVtXCI+IHtyZXZpZXcucmV2aWV3fSA8L2xpPlxuICAgICAgKTtcbiAgICB9KTtcbiAgfVxuXG4gIHJlbmRlcigpIHtcbiAgICByZXR1cm4gKFxuICAgICAgICA8dWwgY2xhc3NOYW1lPVwibGlzdC1pdGVtIGNvbC1zbS00XCI+XG4gICAgICAgICAge3RoaXMucmVuZGVyTGlzdCgpfVxuICAgICAgICA8L3VsPlxuICAgICAgKTtcbiAgfVxufVxuXG5cbmZ1bmN0aW9uIG1hcFN0YXRlVG9Qcm9wcyhzdGF0ZSkge1xuICByZXR1cm4ge1xuICAgIHJldmlld3M6IHN0YXRlLnJldmlld3NcbiAgfTtcbn1cblxuXG4vKlxuY29ubmVjdCgpIGlzIGEgZnVuY3Rpb24gdGhhdCBpbmplY3N0IFJlZHV4LXJlbGF0ZWQgcHJvcHMgaW50byB5b3VyIGNvbXBvbmVudFxuSW5qZWN0IGRhdGEgYW5kIGNhbGxiYWNrcyB0aGF0IGNoYW5nZSB0aGF0IGRhdGEgYnkgZGlzcGF0Y2hpbmcgYWN0aW9uc1xuVGhlIHB1cnBvc2Ugb2YgY29ubmVjdCgpIGlzIHRoYXQgeW91IGRvbid0IGhhdmUgdG8gdGhpbmsgYWJvdXQgc3Vic2NyaWJpbmcgdG8gdGhlIHN0b3JlXG5hbmQgaW5zdGVhZCBzcGVjaWZ5IGh3byB0byBnZXQgcHJvcHMgYmFzZWQgb24gUmVkdXggc3RvcmUgc3RhdGVcbkdpdmVuIHJlZHV4IHN0YXRlLCByZXR1cm4gcHJvcHMuXG5HaXZlbiByZWR1eCBkaXNwYXRjaCwgcmV0dXJuIGNhbGxiYWNrIHByb3BzXG4qL1xuZXhwb3J0IGRlZmF1bHQgY29ubmVjdChtYXBTdGF0ZVRvUHJvcHMpKFJldmlldyk7XG4iXX0=
