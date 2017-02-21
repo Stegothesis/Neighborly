@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 const pg = require('pg');
 let DB_URL = "";
 
+// if (process.env.NODE_ENV === 'production') {
 //   DB_URL = process.env.DATABASE_URL;
 //   const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 // } else {
-//   DB_URL = "postgres://localhost:5432/community";
 // }
 
 // pg.defaults.ssl = true;

@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// var connectionString = 'postgres://vroyfinw:vAH0MYCLUZppwZIGRi1bGZ1TbxIAsfP-@babar.elephantsql.com:5432/vroyfinw';
+// var connectionString = '';
 
 // pg.connect(connectionString, onConnect);
 
@@ -73,6 +73,17 @@ app.post('/api/neighborhoods/reviews', function(req, res) {
     } else {
       res.send('You have already reviewed this neighborhood');
     }
+  })
+})
+
+app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, res) {
+  var query = {
+    city: req.params.city,
+    state: req.params.state,
+    neighborhood_name: req.params.neighborhood
+  }
+  dbHelpers.getReviews(query, function(data) {
+    res.json(data);
   })
 })
 

@@ -82,3 +82,16 @@ exports.addReview = function(review, callback) {
     });
 };
 
+exports.getReviews = function(query, callback) {
+  db.Neighborhood.findOne({where: query})
+  .then(function(hood) {
+    if(!hood) {
+      callback("Not Found");
+    } else {
+      hood.getReviews().then(function(reviews) {
+        callback(reviews);
+      })
+    }
+  })
+}
+
