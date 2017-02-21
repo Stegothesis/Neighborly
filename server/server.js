@@ -7,21 +7,22 @@ var pg = require('pg');
 var app = express();
 var request = require('request');
 var apiHelpers = require('./apihelpers.js');
-var db = require('../database/schemas.js')
+var db = require('../database/schemas.js');
+var dbHelpers = require('./dbHelpers.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var connectionString = 'postgres://vroyfinw:vAH0MYCLUZppwZIGRi1bGZ1TbxIAsfP-@babar.elephantsql.com:5432/vroyfinw';
+// var connectionString = 'postgres://vroyfinw:vAH0MYCLUZppwZIGRi1bGZ1TbxIAsfP-@babar.elephantsql.com:5432/vroyfinw';
 
-pg.connect(connectionString, onConnect);
+// pg.connect(connectionString, onConnect);
 
-function onConnect(err, client, done) {
-  if (err) { console.error(err); }
-  console.log('Connected to the DATABASE');
-}
+// function onConnect(err, client, done) {
+//   if (err) { console.error(err); }
+//   console.log('Connected to the DATABASE');
+// }
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -65,11 +66,14 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
 });
 
 
-// app.post('/api/neighborhoods/reviews/:city/:state', function(req, res) {
-//   var city = req.params.city;
-//   var state = req.params.state;
-//   var username = req.body.username;
-
-// })
+app.post('/api/neighborhoods/reviews', function(req, res) {
+  dbHelpers.addReview(req.body, function(created) {
+    if (created) {
+      res.send('Review added');
+    } else {
+      res.send('You have already reviewed this neighborhood');
+    }
+  })
+})
 
 module.exports = app;

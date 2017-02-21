@@ -2,20 +2,20 @@ const Sequelize = require('sequelize');
 const pg = require('pg');
 let DB_URL = "";
 
-// if (process.env.NODE_ENV === 'production') {
 //   DB_URL = process.env.DATABASE_URL;
+//   const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 // } else {
-
+//   DB_URL = "postgres://localhost:5432/community";
 // }
 
 // pg.defaults.ssl = true;
 
 // const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 
+// use for local dev
 var db = new Sequelize("postgres://localhost:5432/community", {
   dialect: "postgres"
 });
-
 
 db.authenticate()
   .then((err) => {
@@ -42,8 +42,6 @@ db.authenticate()
     },
     text: Sequelize.STRING,
     stars_overall: Sequelize.INTEGER,
-    id_locations: Sequelize.INTEGER,
-    id_users: Sequelize.INTEGER,
     kid_friendly: Sequelize.INTEGER,
     singles_friendly: Sequelize.INTEGER,
     retirees: Sequelize.INTEGER,
@@ -72,10 +70,10 @@ db.authenticate()
       defaultValue: 0
     },
     total_num_ratings: {
-      type: Sequelize.DECIMAL,
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
-    average_kid_friendly: {
+    avg_kid_friendly: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
