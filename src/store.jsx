@@ -1,11 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
 import { render } from 'react-dom'
 import React from 'react'
-import app from './reducers/index.js'
-import { addReview } from './actions/index.js'
+import rootReducer from './reducers/index.jsx'
+import { addReview } from './actions/index.jsx'
 
 //redux-logger creates a logger in the console
 //applyMiddleware function from redux that applies npm modules
@@ -23,7 +21,7 @@ Returns an object that holds complete state of app
 */
 const makeStore = () => {
   const logger = createLogger();
-  return createStore(app, applyMiddleware(logger));
+  return createStore(rootReducer, applyMiddleware(logger));
 }
 
-export default makeSstore;
+export default makeStore;

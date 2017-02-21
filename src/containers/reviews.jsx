@@ -1,19 +1,34 @@
 import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
 
 /* Container component handling states, event handlers, and passing down props */
 
 export class Review extends Component {
+  renderList() {
+    return this.props.reviews.map((review) => {
+      return (
+        <li key={review.review} className="review-list-item"> {review.review} </li>
+      );
+    });
+  }
 
+  render() {
+    return (
+        <ul className="list-item col-sm-4">
+          {this.renderList()}
+        </ul>
+      );
+  }
 }
 
-/*
-function mapStateToProps(state, ownProps) {
-  return state[ownProps.id]
+
+function mapStateToProps(state) {
+  return {
+    reviews: state.reviews
+  };
 }
-*/
+
 
 /*
 connect() is a function that injecst Redux-related props into your component
@@ -23,5 +38,4 @@ and instead specify hwo to get props based on Redux store state
 Given redux state, return props.
 Given redux dispatch, return callback props
 */
-//const connectReview = connect(mapStateToProps, actions)(Review)
-//export default connectReview;
+export default connect(mapStateToProps)(Review);

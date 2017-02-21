@@ -5,10 +5,10 @@ import { EventEmitter } from 'events'
 export default class Auth {
   constructor(clientId, domain) {
     //Auth0
-    let HOST_URL = process.env.NODE_ENV === 'production'? 'http://localhost:8080/#/';
+    //let HOST_URL = process.env.NODE_ENV | 'http://localhost:8080';
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: HOST_URL,
+        //redirectUrl: HOST_URL,
         responseType: 'token'
       }
     });

@@ -1,24 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Review from '../containers/reviews.jsx'
+import Rate from './Rate.jsx'
+import User from './User.jsx'
+import Landing from './Landing.jsx'
+import Neighborhood from './Neighborhood.jsx'
+import City from './City.jsx'
 
-var Rate = require('./Rate.jsx');
-var User = require('./User.jsx');
-var Landing = require('./Landing.jsx');
-var Neighborhood = require('./Neighborhood.jsx');
-var City = require('./City.jsx');
-
-class App extends React.Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-
-    }
-  }
-
+export default class App extends React.Component {
   render() {
     return (
       <div>
+      <Review />
       <Landing />
       <Neighborhood />
       <City />
@@ -27,8 +20,5 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
-
-export default App

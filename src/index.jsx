@@ -7,22 +7,29 @@ import City from './components/City.jsx'
 import Neighborhood from './components/Neighborhood.jsx'
 import Rate from './components/Rate.jsx'
 import User from './components/User.jsx'
-import makeStore from './store.js'
+import makeStore from './store.jsx'
 import { syncHistoryWithStore } from 'react-redux'
+import { Provider } from 'react-redux'
+import reducers from './reducers/index.jsx'
 
-const store = makeStore();
-const history = syncHistoryWithStore(browserHistory, store);
+//const history = syncHistoryWithStore(browserHistory, store);
 
-store.dispatch(addReview('customer review'));
-
-console.log(store.getState());
+//console.log(store.getState());
 
 //Get app id from static html page
 const app = document.getElementById('app');
 
 //Provider sends props to all components in the app
+ReactDOM.render(
+  <Provider store={makeStore(reducers)}>
+    <App />
+  </Provider>
+  , document.getElementById('app'));
+
+/*
 const Routes = () =>
 <Provider store={store}>
+  <App />
   <Router history={history}>
     <Route
       path="/"
@@ -47,4 +54,6 @@ const Routes = () =>
     </Router>
   </Provider>;
 
+
 export default Routes;
+*/
