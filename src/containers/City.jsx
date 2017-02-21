@@ -9,6 +9,7 @@ export class City extends Component {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
         <li key={neighborhood.name}
+        onClick={ () => this.props.selectNeighborhood(neighborhood) }
         className="list-group-item">{neighborhood.name}</li>
         );
     });
@@ -30,4 +31,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(City);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectNeighborhood: selectNeighborhood }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(City);
