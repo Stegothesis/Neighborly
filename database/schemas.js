@@ -91,7 +91,8 @@ db.authenticate()
 
 Users.belongToMany(Reviews, {through: 'Votes'});
 Reviews.belongToMany(Users, {through: 'Votes'});
-Neighborhoods.belongToMany(Reviews);
+Neighborhoods.hasMany(Reviews);
+Reviews.hasOne(Neighborhoods);
 
 //Create teables in sql if does not exist
 db.sync();
