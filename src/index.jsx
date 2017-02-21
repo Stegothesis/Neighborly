@@ -11,56 +11,74 @@ import makeStore from './store.jsx'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers/index.jsx'
+import { createStore, applyMiddleware } from 'redux';
 
-const store = makeStore(reducers);
-const history = syncHistoryWithStore(browserHistory, store);
+// const store = makeStore(reducers);
+// const history = syncHistoryWithStore(browserHistory, store);
 
 //console.log(store.getState());
 
 //Get app id from static html page
 const app = document.getElementById('app');
 
-//Provider sends props to all components in the app
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-    <Route path="/" component={ App } />
-      <Route path="/city" component={ City }/>
-      <Route path="/neighborhood" component={ Neighborhood }/>
-      <Route path="/rate" component={ Rate  }/>
-      <Route path="/user" component={ User }/>
-    </Router>
+  <Provider store={makeStore(reducers)}>
+    <App />
   </Provider>
   , document.getElementById('app'));
 
-/*
-const Routes = () =>
-<Provider store={store}>
-  <App />
-  <Router history={history}>
-    <Route
-      path="/"
-      component={ App } />
-
-    <Route
-      path="/city"
-      component={ City }/>
-
-    <Route
-      path="/neighborhood"
-      component={ Neighborhood }/>
-
-    <Route
-      path="/rate"
-      component={ Rate  }/>
-
-    <Route
-      path="/user"
-      component={ User }/>
-
-    </Router>
-  </Provider>;
+//Provider sends props to all components in the app
+//  ReactDOM.render(
+//    <Provider store={store}>
+// //     <Router history={history}>
+// //     <Route path="/" component={ App } />
+// //       <Route path="/city" component={ City }/>
+// //       <Route path="/neighborhood" component={ Neighborhood }/>
+// //       <Route path="/rate" component={ Rate  }/>
+// //       <Route path="/user" component={ User }/>
+// //     </Router>
+// //   </Provider>
+// //   , document.getElementById('app'));
 
 
-export default Routes;
-*/
+// const Routes = () =>
+// <Provider store={store}>
+//   <App />
+//   <Router history={history}>
+//     <Route
+//       path="/"
+//       component={ App } />
+
+//     <Route
+//       path="/city"
+//       component={ City }/>
+
+//     <Route
+//       path="/neighborhood"
+//       component={ Neighborhood }/>
+
+//     <Route
+//       path="/rate"
+//       component={ Rate  }/>
+
+//     <Route
+//       path="/user"
+//       component={ User }/>
+
+//     </Router>
+//   </Provider>;
+
+
+// export default Routes;
+
+
+
+
+// const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+// ReactDOM.render(
+//   <Provider store={createStoreWithMiddleware(reducers)}>
+//     <App />
+//   </Provider>
+//   , document.querySelector('.app'));
+

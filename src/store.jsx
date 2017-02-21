@@ -19,9 +19,11 @@ preloadedState - the intial state
 enhancer - store enhancer/action
 Returns an object that holds complete state of app
 */
+
+
 const makeStore = () => {
-  const logger = createLogger();
-  return createStore(rootReducer, applyMiddleware(logger));
+   const logger = createLogger();
+   return createStore(rootReducer, applyMiddleware(logger));
 }
 
 export default makeStore;
