@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Link, Router, Route, browserHistory } from 'react-router';
 import App from './components/App.jsx'
-import Landing from './components/Landing.jsx'
-import City from './components/City.jsx'
+import Landing from './containers/Landing.jsx'
+import City from './containers/City.jsx'
 import Neighborhood from './components/Neighborhood.jsx'
 import Rate from './components/Rate.jsx'
 import User from './components/User.jsx'

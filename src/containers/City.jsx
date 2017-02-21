@@ -1,15 +1,33 @@
 import React from 'react';
+import { Component } from 'react'
+import { connect } from 'react-redux';
+import { selectNeighborhood } from '../actions/action_select_Neighborhood.jsx';
+import { bindActionCreators } from 'redux';
 
-const City = (props) => {
-  return <div>
-    <ul className="list-group">
-  <li className="list-group-item">Downtown Austin</li>
-  <li className="list-group-item">South Congress</li>
-  <li className="list-group-item">East Austin</li>
-  <li className="list-group-item">Hyde Park</li>
-  <li className="list-group-item">Mueller Community</li>
-</ul>
-  </div>
+export class City extends Component {
+  renderList() {
+    return this.props.neighborhoods.map((neighborhood) => {
+      return (
+        <li key={neighborhood.name}
+        className="list-group-item">{neighborhood.name}</li>
+        );
+    });
+  }
+
+  render() {
+    return (
+      <ul className="list-group col-sm-4">
+        {this.renderList()}
+      </ul>
+      );
+  }
 }
 
-module.exports = City;
+function mapStateToProps(state) {
+
+  return {
+    neighborhoods: state.neighborhoods
+  };
+}
+
+export default connect(mapStateToProps)(City);
