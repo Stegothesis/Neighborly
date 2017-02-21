@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 
-export default class Auth exntends React.Component {
+export default class Auth extends React.Component {
   constructor(props) {
     super(props);
   }
