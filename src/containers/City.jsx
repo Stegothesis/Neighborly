@@ -28,7 +28,7 @@ export class City extends Component {
         <li key={neighborhood.name}
         onClick={ () => this.props.selectNeighborhood(neighborhood) }
         className="list-group-item">{neighborhood.name}</li>
-        <form>
+        <form onSubmit = >
           Overall Rating: <input type="text" id="stars_overall" name="rating"/>
           <button className = "btn btn-default"> Submit Review</button>
         </form>
