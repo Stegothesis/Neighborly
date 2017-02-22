@@ -8,23 +8,42 @@ import User from './User.jsx'
 import SearchBar from '../containers/SearchBar.jsx'
 import NeighborhoodDetail from '../containers/neighborhood-detail.jsx'
 import NavbarContainer from '../containers/NavbarContainer.jsx'
+import Footer from './Footer.jsx';
+import Header from './Header.jsx';
 
 export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-      <div>
-        <NavbarContainer />
-      </div>
-      <div>
-        <SearchBar />
-      </div>
-      <div>
-        <City />
-      </div>
-      <div>
-        <NeighborhoodDetail />
-      </div>
+
+        <div>
+          <Header />
+        </div>
+
+        <div>
+          <NavbarContainer />
+        </div>
+
+        <div>
+          <Neighborhood />
+        </div>
+
+        <div>
+          <Landing />
+        </div>
+
+        <div>
+          <City />
+        </div>
+
+        <div>
+          <NeighborhoodDetail />
+        </div>
+
+        <div>
+          <Footer />
+        </div>
+
       </div>
     );
   }
