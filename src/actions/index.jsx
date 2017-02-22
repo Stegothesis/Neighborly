@@ -6,7 +6,11 @@ export const postReview = review => (dispatch) =>
       type: "POST",
       url: '/api/neighborhoods/reviews',
       data: JSON.stringify({
-        stars_overall: review
+        hash: "1", //auth0 hash for an existing user
+        name: "hydepark", //name of the neighborhood
+        city: "austin", //name of the city
+        state: "texas", //lower case, 2 letter state abbreviation (e.g. tx)
+        stars_overall: review//... a bunch of categories for ratings
       }),
       success: function(data) {
         console.log("Post review to user successful");
