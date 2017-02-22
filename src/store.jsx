@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 import React from 'react'
 import rootReducer from './reducers/index.jsx'
 import { addReview } from './actions/index.jsx'
+import thunk from 'redux-thunk';
 
 //redux-logger creates a logger in the console
 //applyMiddleware function from redux that applies npm modules
@@ -23,7 +24,7 @@ Returns an object that holds complete state of app
 
 const makeStore = () => {
    const logger = createLogger();
-   return createStore(rootReducer, applyMiddleware(logger));
+   return createStore(rootReducer, applyMiddleware(thunk));
 }
 
 export default makeStore;
