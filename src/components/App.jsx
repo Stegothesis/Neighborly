@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Review from '../containers/reviews.jsx'
+import ReviewSubmit from '../containers/ReviewSubmit.jsx'
+import ReviewMap from '../containers/ReviewMap.jsx'
 import Neighborhood from './Neighborhood.jsx'
 import City from '../containers/City.jsx'
 import Rate from './Rate.jsx'
@@ -15,7 +16,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-
         <div>
           <Header />
         </div>
@@ -33,7 +33,15 @@ export default class App extends React.Component {
         </div>
 
         <div>
+          <ReviewSubmit/>
+        </div>
+
+        <div>
           <City />
+        </div>
+
+        <div>
+          <ReviewMap />
         </div>
 
         <div>
@@ -43,7 +51,6 @@ export default class App extends React.Component {
         <div>
           <Footer />
         </div>
-
       </div>
     );
   }
