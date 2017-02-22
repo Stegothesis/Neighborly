@@ -17,9 +17,11 @@ export class City extends Component {
 
   render() {
     return (
+      <div>
       <ul className="list-group col-sm-4">
         {this.renderList()}
       </ul>
+      </div>
       );
   }
 }

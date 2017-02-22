@@ -5,7 +5,7 @@ import Neighborhood from './Neighborhood.jsx'
 import City from '../containers/City.jsx'
 import Rate from './Rate.jsx'
 import User from './User.jsx'
-import Landing from '../containers/Landing.jsx'
+import SearchBar from '../containers/SearchBar.jsx'
 import NeighborhoodDetail from '../containers/neighborhood-detail.jsx'
 import NavbarContainer from '../containers/NavbarContainer.jsx'
 
@@ -17,7 +17,7 @@ export default class App extends React.Component {
         <NavbarContainer />
       </div>
       <div>
-        <Landing />
+        <SearchBar />
       </div>
       <div>
         <City />
