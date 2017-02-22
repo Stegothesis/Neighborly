@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Link, Router, Route, browserHistory } from 'react-router';
 import App from './components/App.jsx'
-import Landing from './containers/Landing.jsx'
+import SearchBar from './containers/SearchBar.jsx'
 import City from './containers/City.jsx'
 import Neighborhood from './components/Neighborhood.jsx'
 import Rate from './components/Rate.jsx'
