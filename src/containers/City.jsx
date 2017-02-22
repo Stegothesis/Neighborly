@@ -5,12 +5,34 @@ import { selectNeighborhood } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
 
 export class City extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeReview: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      activeReview: e.target.value
+    })
+  }
+
   renderList() {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
+        <div>
         <li key={neighborhood.name}
         onClick={ () => this.props.selectNeighborhood(neighborhood) }
         className="list-group-item">{neighborhood.name}</li>
+        <form>
+          Overall Rating: <input type="text" id="stars_overall" name="rating"/>
+          <button className = "btn btn-default"> Submit Review</button>
+        </form>
+        </div>
         );
     });
   }
