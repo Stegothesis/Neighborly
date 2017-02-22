@@ -85,6 +85,17 @@ app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, r
   dbHelpers.getReviews(query, function(data) {
     res.json(data);
   })
+});
+
+app.get('/api/neighborhoods/data/:neighborhood/:city/:state', function(req, res) {
+  var query = {
+    city: req.params.city,
+    state: req.params.state,
+    neighborhood_name: req.params.neighborhood
+  }
+  dbHelpers.getNeighborhoodData(query, function(data) {
+    res.json(data);
+  })
 })
 
 module.exports = app;

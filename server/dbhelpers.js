@@ -1,5 +1,6 @@
 var db = require('../database/schemas.js');
 
+//adds a new user
 exports.createUser = function(user, callback) {
   db.User.findOrCreate({where: {username: user.username}, defaults: {hash: user.hash}})
   .spread(function(user, created) {
@@ -7,6 +8,7 @@ exports.createUser = function(user, callback) {
   })
 }
 
+//adds a review of a neighborhood, adding the neighborhood to the DB if it doesn't exist
 exports.addReview = function(review, callback) {
 
   var findNewAverage = function(oldNumRatings, oldAverage, newRating) {
@@ -82,6 +84,7 @@ exports.addReview = function(review, callback) {
     });
 };
 
+//gets all reviews for a given neighborhood
 exports.getReviews = function(query, callback) {
   db.Neighborhood.findOne({where: query})
   .then(function(hood) {
@@ -90,8 +93,16 @@ exports.getReviews = function(query, callback) {
     } else {
       hood.getReviews().then(function(reviews) {
         callback(reviews);
-      })
+      });
     }
-  })
-}
+  });
+};
+
+//gets all the information in the neighborhood table
+exports.getNeighborhoodData = function(query, callback) {
+  db.Neighborhood.findOne({where: query})
+  .then(function(hood) {
+    callback(hood);
+  });
+};
 
