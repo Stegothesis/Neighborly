@@ -1,4 +1,5 @@
 import { ADD_REVIEW } from '../constants/actionTypes.jsx'
+import { GET_REVIEWS } from '../constants/actionTypes.jsx'
 import $ from 'jquery'
 
 export const postReview = review => (dispatch) =>
@@ -22,6 +23,7 @@ export const postReview = review => (dispatch) =>
       dataType: 'json'
     });
 
+/*
 export const getReview = review => (dispatch) =>
   $.ajax({
     type: 'GET',
@@ -35,6 +37,13 @@ export const getReview = review => (dispatch) =>
     contentType: 'application/json',
     dataType: 'json'
   });
+*/
 
+export function getReview(response) {
+  return {
+    type: GET_REVIEWS,
+    payload: response
+  }
+}
 
 
