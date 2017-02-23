@@ -38,7 +38,6 @@ export default class App extends React.Component {
         </div>
 
         <div>
-          <ReviewMap />
         </div>
 
         <div>
