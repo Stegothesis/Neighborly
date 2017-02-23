@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { postReview } from '../actions/index.jsx';
 import { addReview } from '../actions/index.jsx';
 
+
 class ReviewSubmit extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class ReviewSubmit extends Component {
       <div>
       <form onSubmit={this.onFormSubmit} className="input-group">
         <input
-        placeholder="Choose a city: "
+        placeholder="What do you think? "
         className="form-control"
         value={this.state.rating}
         onChange={this.onInputChange}
