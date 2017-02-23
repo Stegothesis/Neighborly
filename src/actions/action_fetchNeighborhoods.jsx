@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 export function fetchNeighborhoodData(response) {
   return {
     type: GET_NEIGHBORHOOD_DATA,
-    payload: response.data
+    payload: response
   }
 }
 
