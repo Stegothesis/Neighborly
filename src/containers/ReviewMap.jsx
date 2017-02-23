@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 /* Container component handling states, event handlers, and passing down props */
 
-export class Review extends Component {
+export class ReviewMap extends Component {
   renderList() {
     return this.props.reviews.map((review) => {
       return (
@@ -38,4 +38,4 @@ and instead specify hwo to get props based on Redux store state
 Given redux state, return props.
 Given redux dispatch, return callback props
 */
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps)(ReviewMap);

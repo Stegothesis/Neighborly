@@ -1,16 +1,18 @@
 import React from 'react';
 import { Component } from 'react'
 import { connect } from 'react-redux';
-import { selectNeighborhood } from '../actions/action_select_Neighborhood.jsx';
+import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
-
+//
 export class City extends Component {
   renderList() {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
+        <div>
         <li key={neighborhood.name}
         onClick={ () => this.props.selectNeighborhood(neighborhood) }
         className="list-group-item">{neighborhood.name}</li>
+        </div>
         );
     });
   }
