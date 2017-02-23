@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchNeighborhoods } from '../actions/action_fetchNeighborhoods.jsx';
+import { getNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import axios from 'axios';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.fetchNeighborhoods(this.state.term);
+    this.props.getNeighborhoodData(this.state.term);
     this.setState({ term: ''});
 }
 
@@ -45,8 +46,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchNeighborhoods }, dispatch);
+  return bindActionCreators({ getNeighborhoodData }, dispatch);
 }
-
 
 export default connect(null, mapDispatchToProps)(SearchBar);
