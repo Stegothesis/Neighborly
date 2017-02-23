@@ -5,6 +5,22 @@ import { connect } from 'react-redux'
 /* Container component handling states, event handlers, and passing down props */
 
 export class ReviewMap extends Component {
+  /*
+  constructor(props) {
+    super(props);
+
+  }
+
+  loadReviewsFromServer() {
+    this.props.getReview();
+  }
+
+  componentDidMount() {
+    console.log('ReviewMap component mounted');
+    this.loadReviewsFromServer();
+  }
+  */
+
   renderList() {
     return this.props.reviews.map((review) => {
       return (
