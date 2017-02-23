@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 class NeighborhoodDetail extends Component {
   render() {
+    console.log("this.props.neighborhood skjflskjflskjf", this.props.neighborhood)
     if (!this.props.neighborhood) {
       return <div>Select a neighborhood</div>;
     }

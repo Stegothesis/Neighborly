@@ -24,7 +24,7 @@ Returns an object that holds complete state of app
 
 const makeStore = () => {
    const logger = createLogger();
-   return createStore(rootReducer, applyMiddleware(thunk));
+   return createStore(rootReducer, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
 export default makeStore;
