@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import axios from 'axios';
 export const GET_NEIGHBORHOOD_DATA = 'GET_NEIGHBORHOOD_DATA';
-import thunk from 'redux-thunk';
 
 export function fetchNeighborhoodData(response) {
   return {
