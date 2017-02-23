@@ -21,6 +21,7 @@ class SearchBar extends Component {
   }
 
   onFormSubmit(event) {
+    console.log("THIS.PROPS INSIDE SERACHBAR", this.props)
     event.preventDefault();
     const url = '/api/neighborhoods/searchbycity/austin/tx';
     var that = this;

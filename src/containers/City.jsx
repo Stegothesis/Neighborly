@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 //
 export class City extends Component {
   renderList() {
-    console.log('Props City', this.props);
     return this.props.neighborhoods.map((neighborhood) => {
       return (
         <div>
