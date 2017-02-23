@@ -16,8 +16,8 @@ export default function (state = [], action){
   console.log('This is action:', action);
   switch(action.type) {
   case GET_NEIGHBORHOOD_DATA:
-    console.log('action.payload.data', action.payload.data);
-    return state.concat([action.payload.data]);
+    console.log('action.payload.data', action.payload);
+    return action.payload;
   }
   return state;
 }

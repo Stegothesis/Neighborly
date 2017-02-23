@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import axios from 'axios';
 
 class SearchBar extends Component {
@@ -22,9 +22,21 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.getNeighborhoodData(this.state.term);
+    const url = '/api/neighborhoods/searchbycity/austin/tx';
+    var that = this;
+    const request = axios.get(url).then(function(response) {
+      console.log('whats response', response);
+      var mappedData = response.data.map(function(hood) {
+        console.log(hood.name);
+        return {
+          name: hood.name[0]
+        }
+      })
+      console.log(mappedData);
+      that.props.fetchNeighborhoodData(mappedData);
+    });
     this.setState({ term: ''});
-}
+  }
 
   render() {
     return (
@@ -46,7 +58,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getNeighborhoodData }, dispatch);
+  return bindActionCreators({ fetchNeighborhoodData }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
