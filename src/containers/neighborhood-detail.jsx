@@ -12,9 +12,6 @@ class NeighborhoodDetail extends Component {
         <div>
           Name: {this.props.neighborhood.name}
         </div>
-        <div>
-          Population: {this.props.neighborhood.population}
-        </div>
       </div>
       );
   }

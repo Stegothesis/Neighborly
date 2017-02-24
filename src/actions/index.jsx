@@ -7,14 +7,14 @@ export const postReview = review => (dispatch) =>
       type: "POST",
       url: '/api/neighborhoods/reviews',
       data: JSON.stringify({
-        hash: "1", //auth0 hash for an existing user
-        name: "hydepark", //name of the neighborhood
+        hash: "5", //auth0 hash for an existing user
+        name: "South Congress", //name of the neighborhood
         city: "austin", //name of the city
         state: "texas", //lower case, 2 letter state abbreviation (e.g. tx)
-        stars_overall: review//... a bunch of categories for ratings
+        text: review//... a bunch of categories for ratings
       }),
       success: function(data) {
-        console.log("Post review to user successful");
+        console.log("Post review to user successful", data);
       },
       error: function (error) {
         console.log("Error: Post review failed", error);
@@ -40,8 +40,9 @@ export const getReview = review => (dispatch) =>
 */
 
 export function getReview(response) {
+  console.log('getReview Response:', response);
   return {
-    type: GET_REVIEWS,
+    type: 'GET_REVIEWS',
     payload: response
   }
 }
