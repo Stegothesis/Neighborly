@@ -7,6 +7,7 @@ import Review from './Review.jsx';
 const Neighborhood = (props) => {
   return <div>
     <div className="text-center">
+      <Maps />
     </div>
     <Data />
     <Dropdown />
