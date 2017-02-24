@@ -57,10 +57,8 @@ export class ReviewMap extends Component {
   renderList() {
     return this.props.reviews.map((review) => {
       return (
-        <div>
-        <div className="review-list-item"> {review.text} </div>
-        <div className="time-list-item"> {review.createdAt} </div>
-        <div className="id-list-item"> {review.vote_count} </div>
+        <div className="panel panel-default">
+        <div className="panel-body"> {review.text} {review.createdAt} {review.vote_count} </div>
         </div>
       );
     });

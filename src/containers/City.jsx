@@ -3,7 +3,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux';
 import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
-//
+
 export class City extends Component {
   renderList() {
     return this.props.neighborhoods.map((neighborhood) => {
