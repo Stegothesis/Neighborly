@@ -83,6 +83,7 @@ app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, r
     neighborhood_name: req.params.neighborhood
   }
   dbHelpers.getReviews(query, function(data) {
+    console.log(query);
     res.json(data);
   })
 });
