@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header.jsx'
+import Auth from './Auth.jsx'
 
 export const Navbar = () => {
   return (
@@ -12,10 +13,9 @@ export const Navbar = () => {
       <ul className="nav navbar-nav">
         <li><a href="/landing">Home</a></li>
         <li><a href="/neighborhood">Neighborhoods</a></li>
-
       </ul>
       <ul className="text-right">
-        <li><a href="/auth">Signup/Signin</a></li>
+        <li><Auth /></li>
       </ul>
     </nav>
   )
