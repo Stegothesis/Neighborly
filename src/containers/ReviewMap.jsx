@@ -57,7 +57,9 @@ export class ReviewMap extends Component {
   renderList() {
     return this.props.reviews.map((review) => {
       return (
-        <li key={review.text} className="review-list-item"> {review.text} </li>
+        <div className="panel panel-default">
+        <div className="panel-body"> {review.text} {review.createdAt} {review.vote_count} </div>
+        </div>
       );
     });
   }

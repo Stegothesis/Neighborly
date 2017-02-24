@@ -29,7 +29,11 @@ export default class App extends React.Component {
         <hr />
 
         <div>
+<<<<<<< 11c23d8d240b867b4b31e2b6c027c0bfda34ed86
           <Neighborhood />
+=======
+          <NeighborhoodDetail />
+>>>>>>> Add vote count and timestamp to reviews
         </div>
 
         <div>
