@@ -28,9 +28,11 @@ class SearchBar extends Component {
     const request = axios.get(url).then(function(response) {
       console.log('whats response', response);
       var mappedData = response.data.map(function(hood) {
-        console.log(hood.name);
+        console.log('HOOD', hood);
         return {
-          name: hood.name[0]
+          name: hood.name[0],
+          latitude: hood.latitude[0],
+          longitude: hood.longitude[0]
         }
       })
       console.log(mappedData);

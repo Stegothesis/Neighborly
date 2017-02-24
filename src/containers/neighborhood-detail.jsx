@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class NeighborhoodDetail extends Component {
   render() {
-    console.log("this.props.neighborhood skjflskjflskjf", this.props.neighborhood)
+    console.log("this.props.neighborhood skjflskjflskjf", this.props.activeNeighborhood)
     if (!this.props.neighborhood) {
       return <div>Select a neighborhood</div>;
     }
@@ -12,6 +12,7 @@ class NeighborhoodDetail extends Component {
         <h3>Details for: </h3>
         <div>
           Name: {this.props.neighborhood.name}
+
         </div>
       </div>
       );
