@@ -29,7 +29,7 @@ export default class App extends React.Component {
         <hr />
 
         <div>
-          <NeighborhoodDetail />
+          <Neighborhood />
         </div>
 
         <div>
