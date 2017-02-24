@@ -2,8 +2,9 @@ import React from 'react';
 
 const Footer = (props) => {
   return  <div>
+    <hr />
     <footer className="footer">
-      <p>Community 2017</p>
+      <p>&copy; 2017 Community</p>
     </footer>
   </div>
 }
