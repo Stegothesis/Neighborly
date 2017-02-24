@@ -16,6 +16,6 @@ class GoogleMap extends Component {
   }
 }
 
-export deafult GoogleMap;
+export default GoogleMap;
 
 //ref system in react allows us to get a direct refernce to an html element that has been rendered to the page

@@ -1,16 +1,32 @@
 import React from 'react';
+import SearchBar from '../containers/SearchBar.jsx';
+import ReviewSubmit from '../containers/ReviewSubmit.jsx';
+import NeighborhoodDetail from '../containers/neighborhood-detail.jsx';
+import ReviewMap from '../containers/ReviewMap.jsx';
+import City from '../containers/City.jsx';
 
 const Landing = (props) => {
-  return <div>
-    <form className="form-inline">
-      <div className="form-group">
-        <label htmlFor="exampleInputCity">Type in city: </label>
-        <input type="city" className="form-control" />
+  return  <div>
+    <div className="container">
+      <h2>Austin</h2>
+      <img src="http://www.laketravisproperties.com/images/downtown_1024.jpg" className="img-responsive center-block img-rounded" />
+      <div>
+        <SearchBar />
       </div>
       <div>
-        <button type="submit" className="btn btn-primary">Go!</button>
+        <ReviewSubmit />
       </div>
-    </form>
+      <div>
+        <NeighborhoodDetail />
+      </div>
+      <div>
+        <ReviewMap />
+      </div>
+      <div>
+        <City />
+      </div>
+
+    </div>
   </div>
 }
 
