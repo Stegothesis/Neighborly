@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Maps = (props) => {
-  return <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  return <div id="myCarousel" className="carousel slide" data-ride="carousel">
     <div className="carousel-inner" role="listbox">
       <div className="item active">
         <img className="first-slide" src="https://cmgstatesmanaustin.files.wordpress.com/2015/09/austin.png" />
