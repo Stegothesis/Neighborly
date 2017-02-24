@@ -25,7 +25,7 @@ public/bundle.js
 .floo
 .flooignore
 
-## Compiled files ##
+# Compiled files
 compiled/
 
 # Dependency directorys
