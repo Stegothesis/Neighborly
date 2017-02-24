@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import $ from 'jquery'
 
+
 /* Container component handling states, event handlers, and passing down props */
 
 export class ReviewMap extends Component {
