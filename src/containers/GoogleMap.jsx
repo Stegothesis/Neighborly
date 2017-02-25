@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-//this.props.defaultCoordinates is an object containing default coordinates
-//so that GoogleMap is not null on default
-
 export class GoogleMap extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +24,12 @@ export class GoogleMap extends Component {
 
   updateSetCoordinates() {
     var context = this;
-    if (this.props.activeNeighborhood.latitude !== this.state.setCoordinates.lat && this.props.activeNeighborhood.longitude !== this.state.setCoordinates.lng) {
+    console.log('New Coordinates', parseFloat(this.props.activeNeighborhood.latitude));
+    console.log('Current Coordinates', this.state.setCoordinates.lat);
+    if (parseFloat(this.props.activeNeighborhood.latitude) !== this.state.setCoordinates.lat && parseFloat(this.props.activeNeighborhood.longitude) !== this.state.setCoordinates.lng) {
       context.setState( { setCoordinates : {
-        lat: context.props.activeNeighborhood.latitude,
-        lng: context.props.activeNeighborhood.longitude
+        lat: parseFloat(context.props.activeNeighborhood.latitude),
+        lng: parseFloat(context.props.activeNeighborhood.longitude)
         }
       });
       context.componentDidMount();
