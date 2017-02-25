@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
 import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
+import Neighborhood from '../components/Neighborhood.jsx';
 
 export class City extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export class City extends Component {
       <ul className="list-group col-sm-4">
         {this.renderList()}
       </ul>
+      <Neighborhood />
       </div>
       );
   }

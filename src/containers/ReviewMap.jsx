@@ -84,7 +84,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getReview }, dispatch);
 }
 
-
 /*
 connect() is a function that injecst Redux-related props into your component
 Inject data and callbacks that change that data by dispatching actions

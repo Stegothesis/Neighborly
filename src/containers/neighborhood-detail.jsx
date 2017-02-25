@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReviewSubmit from './ReviewSubmit.jsx';
 
 class NeighborhoodDetail extends Component {
   render() {
@@ -14,6 +15,7 @@ class NeighborhoodDetail extends Component {
           Name: {this.props.neighborhood.name}
 
         </div>
+        <ReviewSubmit />
       </div>
       );
   }
