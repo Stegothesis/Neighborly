@@ -5,6 +5,7 @@ import Dropdown from './Dropdown.jsx';
 import Review from './Review.jsx';
 import ReviewMap from '../containers/ReviewMap.jsx';
 import GoogleMap from '../containers/GoogleMap.jsx';
+import NeighborhoodDetail from '../containers/neighborhood-detail.jsx';
 
 const Neighborhood = (props) => {
   return <div>
@@ -15,6 +16,7 @@ const Neighborhood = (props) => {
     <Data />
     <Dropdown />
     <ReviewMap />
+    <NeighborhoodDetail />
   </div>
 }
 
