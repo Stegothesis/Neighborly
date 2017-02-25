@@ -25,7 +25,7 @@ exports.addReview = function(review, userId, callback) {
     }
   })
   .spread(function(neighborhood, created) {
-    // neighborhoodId = neighborhood.id;
+    neighborhoodId = neighborhood.id;
     // db.User.findOne({where: {hash: userHash}})
       // .then(function(user) {
         //find if user has already reviewed the neighborhood; don't let them review twice

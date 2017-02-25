@@ -71,7 +71,7 @@ app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
   user.username = req.user.name;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
-    dbHelpers.addReview(req.body, req.user.user_id, function(created) {
+    dbHelpers.addReview(req.body, user.id, function(created) {
       if (created) {
         res.send('Review added');
       } else {
