@@ -1,10 +1,22 @@
 import React from 'react';
-import { Component } from 'react'
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
+import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 
 export class City extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  componentDidMount() {
+    let defaultCoordinates = {lat: "30.0", lng: "-97.0"};
+    console.log('City Component Mounted', defaultCoordinates);
+    this.props.sendDefaultCoordinates(defaultCoordinates);
+  }
+
   renderList() {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
@@ -36,7 +48,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectNeighborhood: selectNeighborhood }, dispatch);
+  return bindActionCreators({ selectNeighborhood: selectNeighborhood, sendDefaultCoordinates: sendDefaultCoordinates }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);
