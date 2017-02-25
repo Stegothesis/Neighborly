@@ -9,6 +9,7 @@ var request = require('request');
 var apiHelpers = require('./apihelpers.js');
 var db = require('../database/schemas.js');
 var dbHelpers = require('./dbHelpers.js');
+var jwt = require('express-jwt');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,24 +33,23 @@ app.listen(port, function() {
     console.log('Listening on port:' + port);
 });
 
-// app.get('/', function(req,res){
-//   console.log("get happened")
-// })
+var authenticate = jwt({
+  secret:'XUQKqoN2X1eI-RDHb86YWz0s9phWphG53SU2iFQInDq-DmVqQBpZ-792ze66gpez'
+});
 
 //create a new user
-app.post('/api/users', function(req, res) {
+app.post('/api/users', authenticate, function(req, res) {
   var user = {};
-  user.username = req.body.username;
-  user.hash = req.body.hash;
-
-  dbHelpers.createUser(user, function(created) {
+  user.username = req.user.name;
+  user.hash = req.user.user_id;
+  dbHelpers.createUser(user, function(user, created) {
     if(created) {
       res.send('User created');
     } else {
       res.send('User already exists');
     }
-  })
-})
+  });
+});
 
 //get neighorhoods for a given city
 app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
@@ -66,15 +66,20 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
 });
 
 
-app.post('/api/neighborhoods/reviews', function(req, res) {
-  dbHelpers.addReview(req.body, function(created) {
-    if (created) {
-      res.send('Review added');
-    } else {
-      res.send('You have already reviewed this neighborhood');
-    }
+app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
+  var user = {};
+  user.username = req.user.name;
+  user.hash = req.user.user_id;
+  dbHelpers.createUser(user, function(user, created) {
+    dbHelpers.addReview(req.body, req.user.user_id, function(created) {
+      if (created) {
+        res.send('Review added');
+      } else {
+        res.send('You have already reviewed this neighborhood');
+      }
+    })
   })
-})
+});
 
 app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, res) {
   var query = {
@@ -97,6 +102,6 @@ app.get('/api/neighborhoods/data/:neighborhood/:city/:state', function(req, res)
   dbHelpers.getNeighborhoodData(query, function(data) {
     res.json(data);
   })
-})
+});
 
 module.exports = app;
