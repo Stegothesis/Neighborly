@@ -18,7 +18,7 @@ export class GoogleMap extends Component {
       zoom: 12,
       center: this.state.setCoordinates
     });
-    console.log(this.state.setCoordinates);
+    console.log('Set Coordinates', this.state.setCoordinates);
   }
 
   componentDidUpdate() {
@@ -27,13 +27,13 @@ export class GoogleMap extends Component {
 
   updateSetCoordinates() {
     var context = this;
-    console.log(this.props.activeNeighborhood.latitude);
-    console.log(this.state.setCoordinates.lat);
     if (this.props.activeNeighborhood.latitude !== this.state.setCoordinates.lat && this.props.activeNeighborhood.longitude !== this.state.setCoordinates.lng) {
-      this.setState( this.state.setCoordinates : {
+      context.setState( { setCoordinates : {
         lat: context.props.activeNeighborhood.latitude,
         lng: context.props.activeNeighborhood.longitude
+        }
       });
+      context.componentDidMount();
     }
   }
 
