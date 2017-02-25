@@ -4,12 +4,12 @@ var db = require('../database/schemas.js');
 exports.createUser = function(user, callback) {
   db.User.findOrCreate({where: {username: user.username}, defaults: {hash: user.hash}})
   .spread(function(user, created) {
-    callback(created);
+    callback(user, created);
   })
 }
 
 //adds a review of a neighborhood, adding the neighborhood to the DB if it doesn't exist
-exports.addReview = function(review, callback) {
+exports.addReview = function(review, userId, callback) {
 
   var findNewAverage = function(oldNumRatings, oldAverage, newRating) {
     return (oldAverage * oldNumRatings + newRating) / (oldNumRatings + 1);
@@ -25,13 +25,13 @@ exports.addReview = function(review, callback) {
     }
   })
   .spread(function(neighborhood, created) {
-    neighborhoodId = neighborhood.id;
-    db.User.findOne({where: {hash: review.hash}})
-      .then(function(user) {
+    // neighborhoodId = neighborhood.id;
+    // db.User.findOne({where: {hash: userHash}})
+      // .then(function(user) {
         //find if user has already reviewed the neighborhood; don't let them review twice
         db.Review.findOrCreate({
           where: {
-            userId: user.id,
+            userId: userId,
             neighborhoodId: neighborhoodId
           },
           defaults: {
@@ -81,7 +81,6 @@ exports.addReview = function(review, callback) {
           }
         });
       });
-    });
 };
 
 //gets all reviews for a given neighborhood

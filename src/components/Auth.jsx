@@ -14,7 +14,7 @@ export default class Auth extends React.Component {
         //redirectUrl: HOST_URL,
         responseType: 'token',
         params: {
-          scope: 'openid name email'
+          scope: 'openid name email user_id'
         }
       }
     });
@@ -26,13 +26,13 @@ export default class Auth extends React.Component {
 
 authenticateUser(result) {
   this.setToken(result.idToken);
-  this.lock.getUserInfo(result.accessToken, (error, profile) => {
-    if (error) {
-      console.log('Error', error);
-    } else {
-      this.setProfile(profile);
-    }
-  });
+  // this.lock.getUserInfo(result.accessToken, (error, profile) => {
+  //   if (error) {
+  //     console.log('Error', error);
+  //   } else {
+  //     this.setProfile(profile);
+  //   }
+  // });
   // browserHistory.replace({pathname: '/#/dashboard'});
 }
 
