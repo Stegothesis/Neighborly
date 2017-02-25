@@ -9,7 +9,7 @@ export default class Auth extends React.Component {
     //Auth0
     super()
     //let HOST_URL = process.env.NODE_ENV | 'http://localhost:8080';
-    this.lock = new Auth0Lock(process.env.CLIENT_ID, process.env.CLIENT_DOMAIN, {
+    this.lock = new Auth0Lock('oLxR3LLElIwpotfRYXAv49iLkRwL1q1y', 'stegothesis.auth0.com', {
       auth: {
         //redirectUrl: HOST_URL,
         responseType: 'token',

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import axios from 'axios';
+import City from './City.jsx';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class SearchBar extends Component {
           <button type="submit" className="btn btn-secondary">Submit</button>
         </span>
       </form>
+      <City />
       </div>
       );
   }
