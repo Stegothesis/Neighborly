@@ -3,6 +3,5 @@ export default function (state = null, action){
   case 'NEIGHBORHOOD_SELECTED':
     return action.payload;
   }
-
   return state;
 }

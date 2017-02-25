@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import Auth0Lock from 'auth0-lock'
 // import { EventEmitter } from 'events'
-// import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 
 export default class Auth extends React.Component {
   constructor() {
