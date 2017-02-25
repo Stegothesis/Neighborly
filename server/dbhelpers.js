@@ -9,7 +9,7 @@ exports.createUser = function(user, callback) {
 }
 
 //adds a review of a neighborhood, adding the neighborhood to the DB if it doesn't exist
-exports.addReview = function(review, callback) {
+exports.addReview = function(review, userHash, callback) {
 
   var findNewAverage = function(oldNumRatings, oldAverage, newRating) {
     return (oldAverage * oldNumRatings + newRating) / (oldNumRatings + 1);
@@ -26,7 +26,7 @@ exports.addReview = function(review, callback) {
   })
   .spread(function(neighborhood, created) {
     neighborhoodId = neighborhood.id;
-    db.User.findOne({where: {hash: review.hash}})
+    db.User.findOne({where: {hash: userHash}})
       .then(function(user) {
         //find if user has already reviewed the neighborhood; don't let them review twice
         db.Review.findOrCreate({

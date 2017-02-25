@@ -9,12 +9,14 @@ export default class Auth extends React.Component {
     //Auth0
     super()
     //let HOST_URL = process.env.NODE_ENV | 'http://localhost:8080';
-    this.lock = new Auth0Lock(process.env.CLIENT_ID, process.env.CLIENT_DOMAIN, {
+    // this.lock = new Auth0Lock( 'oLxR3LLElIwpotfRYXAv49iLkRwL1q1y', 'stegothesis.auth0.com',
+    this.lock = new Auth0Lock(process.env.CLIENT_ID, process.env.CLIENT_DOMAIN {
+    {
       auth: {
         //redirectUrl: HOST_URL,
         responseType: 'token',
         params: {
-          scope: 'openid name email'
+          scope: 'openid name email user_id'
         }
       }
     });
@@ -26,13 +28,13 @@ export default class Auth extends React.Component {
 
 authenticateUser(result) {
   this.setToken(result.idToken);
-  this.lock.getUserInfo(result.accessToken, (error, profile) => {
-    if (error) {
-      console.log('Error', error);
-    } else {
-      this.setProfile(profile);
-    }
-  });
+  // this.lock.getUserInfo(result.accessToken, (error, profile) => {
+  //   if (error) {
+  //     console.log('Error', error);
+  //   } else {
+  //     this.setProfile(profile);
+  //   }
+  // });
   // browserHistory.replace({pathname: '/#/dashboard'});
 }
 
