@@ -17,20 +17,6 @@ export class ReviewMap extends Component {
   }
 
   loadReviewsFromServer() {
-    // const url = '/api/neighborhoods/reviews/South Congress/austin/tx';
-    // var that = this;
-    // const request = axios.get(url).then(function(response) {
-    //   console.log('whats response', response);
-    //   var mappedData = response.data.map(function(hood) {
-    //     console.log(hood.name);
-    //     return {
-    //       name: hood.name[0]
-    //     }
-    //   })
-    //   console.log(mappedData);
-    //   that.props.getReview(mappedData);
-    // });
-
     var that = this;
     $.ajax({
       type: "GET",
