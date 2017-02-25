@@ -23,22 +23,6 @@ export const postReview = review => (dispatch) =>
       dataType: 'json'
     });
 
-/*
-export const getReview = review => (dispatch) =>
-  $.ajax({
-    type: 'GET',
-    url: '/api/neighborhoods/reviews',
-    success: function(data) {
-      console.log('Get Reviews Success!', data);
-    },
-    error: function(error) {
-      console.log('Error: Get Review Failed', error);
-    },
-    contentType: 'application/json',
-    dataType: 'json'
-  });
-*/
-
 export function getReview(response) {
   console.log('getReview Response:', response);
   return {
