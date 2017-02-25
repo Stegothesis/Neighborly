@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header.jsx'
 import Auth from './Auth.jsx'
 
 export const Navbar = () => {

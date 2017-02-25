@@ -5,8 +5,6 @@ import City from '../containers/City.jsx';
 const Landing = (props) => {
   return(
       <div>
-        <SearchBar />
-        <City />
       </div>
       );
 }
