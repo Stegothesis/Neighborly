@@ -21,15 +21,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 //Get app id from static html page
 const app = document.getElementById('app');
 
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <Router history = {history}>
-//       <Route path="/" component={ App } />
-//     </Router>
-//   </Provider>
-//   , document.getElementById('app'));
-
-// Provider sends props to all components in the app
  ReactDOM.render(
    <Provider store={store}>
     <Router history={history}>
