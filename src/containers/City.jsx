@@ -43,7 +43,6 @@ export class City extends Component {
 }
 
 function mapStateToProps(state) {
-
   return {
     neighborhoods: state.neighborhoods
   };

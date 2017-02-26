@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from '../containers/SearchBar.jsx';
+//;fsdog
 
 export default class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ export default class App extends React.Component {
           <h1 className="text-muted">Community</h1>
         </div>
         <SearchBar />
+        {this.props.children}
         <footer className="navbar-default navbar-fixed-bottom">
   <div className="container-fluid">
     <span>&copy; 2017 Community</span>
