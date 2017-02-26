@@ -17,4 +17,5 @@ exports.getZillowHoods = function(city, state, callback) {
       });
     }
   });
+  console.log('request', request);
 }
