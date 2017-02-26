@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import Auth0Lock from 'auth0-lock'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // import { EventEmitter } from 'events'
 import { browserHistory } from 'react-router'
+import { updateLoggedInStatus } from '../actions/authactions.jsx';
 
-export default class Auth extends React.Component {
+export class Auth extends React.Component {
   constructor() {
     //Auth0
     super()
@@ -24,15 +27,25 @@ export default class Auth extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    if (this.loggedIn()) {
+      var user = {}
+      user.name = this.getProfile().name;
+      user.token = this.getToken();
+      this.props.updateLoggedInStatus(user);
+    }
+  }
+
 authenticateUser(result) {
+  console.log('authenticatingggg')
   this.setToken(result.idToken);
-  // this.lock.getUserInfo(result.accessToken, (error, profile) => {
-  //   if (error) {
-  //     console.log('Error', error);
-  //   } else {
-  //     this.setProfile(profile);
-  //   }
-  // });
+  this.lock.getUserInfo(result.accessToken, (error, profile) => {
+    if (error) {
+      console.log('Error', error);
+    } else {
+      this.setProfile(profile);
+    }
+  });
   // browserHistory.replace({pathname: '/#/dashboard'});
 }
 
@@ -78,3 +91,9 @@ logout () {
       );
     }
   }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ updateLoggedInStatus }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
