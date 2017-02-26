@@ -24,7 +24,6 @@ class SearchBar extends Component {
   }
 
   onStateInputChange(event) {
-    console.log('state input change', event);
     this.setState({state: event.target.value})
   }
 
@@ -38,12 +37,23 @@ class SearchBar extends Component {
       console.log('whats response', response);
       var mappedData = response.data.map(function(hood) {
         console.log('HOOD', hood);
-        return {
-          name: hood.name[0],
-          latitude: hood.latitude[0],
-          longitude: hood.longitude[0]
+        let homePrice;
+        if (hood.zindex === undefined) {
+          return {
+            name: hood.name[0],
+            latitude: hood.latitude[0],
+            longitude: hood.longitude[0],
+            homePrice: "Housing Price Not Available"
+          }
+        } else {
+          return {
+            name: hood.name[0],
+            latitude: hood.latitude[0],
+            longitude: hood.longitude[0],
+            homePrice: hood.zindex[0]._ + " " + hood.zindex[0].$.currency
+          }
         }
-      })
+      });
       console.log(mappedData);
       that.props.fetchNeighborhoodData(mappedData);
     });
