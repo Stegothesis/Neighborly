@@ -73,7 +73,7 @@ app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
   dbHelpers.createUser(user, function(user, created) {
     dbHelpers.addReview(req.body, user.id, function(created) {
       if (created) {
-        res.send('Review added');
+        res.status(204).send('Review added');
       } else {
         res.send('You have already reviewed this neighborhood');
       }

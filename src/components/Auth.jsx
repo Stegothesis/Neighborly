@@ -44,6 +44,10 @@ authenticateUser(result) {
       console.log('Error', error);
     } else {
       this.setProfile(profile);
+      var user = {};
+      user.name = profile.name;
+      user.token = result.idToken;
+      this.props.updateLoggedInStatus(user);
     }
   });
   // browserHistory.replace({pathname: '/#/dashboard'});
