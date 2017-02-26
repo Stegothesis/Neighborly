@@ -54,7 +54,9 @@ app.post('/api/users', authenticate, function(req, res) {
 //get neighorhoods for a given city
 app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
   var city = req.params.city;
+  console.log('Zillow City', city);
   var state = req.params.state;
+  console.log('Zillow State', state);
   apiHelpers.getZillowHoods(city, state, function(err, hoods) {
     if(err) {
       res.sendStatus(404);

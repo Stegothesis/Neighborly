@@ -12,7 +12,8 @@ class NeighborhoodDetail extends Component {
       <div>
         <h3>Details for: </h3>
         <div>
-          Name: {this.props.neighborhood.name}
+          Name: {this.props.neighborhood.name} <br/>
+          Average Home Price: {this.props.neighborhood.homePrice}
         </div>
         <ReviewSubmit />
       </div>
