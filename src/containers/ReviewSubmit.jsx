@@ -23,7 +23,8 @@ class ReviewSubmit extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.postReview(this.state.rating);
+    console.log(this.props.user);
+    this.props.postReview(this.state.rating, this.props.user.token);
     this.setState({ rating: ''});
 }
 
@@ -50,5 +51,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ postReview }, dispatch);
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
 
-export default connect(null, mapDispatchToProps)(ReviewSubmit);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewSubmit);

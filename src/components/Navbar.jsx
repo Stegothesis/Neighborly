@@ -19,3 +19,5 @@ export const Navbar = () => {
     </nav>
   )
 };
+
+module.exports = Navbar;
