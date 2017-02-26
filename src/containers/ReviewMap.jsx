@@ -34,7 +34,7 @@ export class ReviewMap extends Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     console.log('ReviewMap component mounted');
     this.loadReviewsFromServer();
   }

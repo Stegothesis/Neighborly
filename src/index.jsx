@@ -21,25 +21,26 @@ const history = syncHistoryWithStore(browserHistory, store);
 //Get app id from static html page
 const app = document.getElementById('app');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history = {history}>
-      <Route path="/" component={ App } />
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <Router history = {history}>
+//       <Route path="/" component={ App } />
+//     </Router>
+//   </Provider>
+//   , document.getElementById('app'));
+
+// Provider sends props to all components in the app
+ ReactDOM.render(
+   <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={ App }>
+        <Route path="/city" component={ City }/>
+        <Route path="/neighborhood" component={ Neighborhood }/>
+        <Route path="/rate" component={ Rate  }/>
+        <Route path="/user" component={ User }/>
+      </Route>
     </Router>
   </Provider>
   , document.getElementById('app'));
-
-//Provider sends props to all components in the app
-//  ReactDOM.render(
-//    <Provider store={store}>
-// //     <Router history={history}>
-// //     <Route path="/" component={ App } />
-// //       <Route path="/city" component={ City }/>
-// //       <Route path="/neighborhood" component={ Neighborhood }/>
-// //       <Route path="/rate" component={ Rate  }/>
-// //       <Route path="/user" component={ User }/>
-// //     </Router>
-// //   </Provider>
-// //   , document.getElementById('app'));
 
 
