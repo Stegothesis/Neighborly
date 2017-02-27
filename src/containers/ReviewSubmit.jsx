@@ -23,7 +23,6 @@ class ReviewSubmit extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.props.user);
     this.props.postReview(this.state.rating, this.props.user.token);
     this.setState({ rating: ''});
 }
