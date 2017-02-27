@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import Auth0Lock from 'auth0-lock'
+import ReactDOM from 'react-dom';
+import Auth0Lock from 'auth0-lock';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import { EventEmitter } from 'events'
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import { updateLoggedInStatus } from '../actions/authactions.jsx';
 
 export class Auth extends React.Component {
@@ -29,7 +29,7 @@ export class Auth extends React.Component {
 
   componentDidMount() {
     if (this.loggedIn()) {
-      var user = {}
+      var user = {};
       user.name = this.getProfile().name;
       user.token = this.getToken();
       this.props.updateLoggedInStatus(user);
@@ -37,7 +37,6 @@ export class Auth extends React.Component {
   }
 
 authenticateUser(result) {
-  console.log('authenticatingggg')
   this.setToken(result.idToken);
   this.lock.getUserInfo(result.accessToken, (error, profile) => {
     if (error) {
@@ -83,21 +82,35 @@ loggedIn() {
 logout () {
   localStorage.removeItem('token');
   localStorage.removeItem('profile');
-  browserHistory.replace('/');
+  this.props.updateLoggedInStatus({});
 }
 
   render() {
+    if (this.props.user.name) {
     return (
       <div className="login-auth">
-        <a onClick = {this.login.bind(this)}>Sign In </a>
+        Welcome, {this.props.user.name}!
         <a onClick = {this.logout.bind(this)}> Sign Out</a>
+        </div>
+      );
+    } else {
+    return (
+      <div className="login-auth">
+        <a onClick = {this.login.bind(this)}>Sign In or Sign Up</a>
         </div>
       );
     }
   }
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateLoggedInStatus }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
