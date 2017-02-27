@@ -84,20 +84,35 @@ logout () {
   localStorage.removeItem('token');
   localStorage.removeItem('profile');
   browserHistory.replace('/');
+  this.props.updateLoggedInStatus({});
 }
 
   render() {
+    if (this.props.user.name) {
     return (
       <div className="login-auth">
-        <a onClick = {this.login.bind(this)}>Sign In </a>
+        Welcome, {this.props.user.name}!
         <a onClick = {this.logout.bind(this)}> Sign Out</a>
+        </div>
+      );
+    } else {
+    return (
+      <div className="login-auth">
+        <a onClick = {this.login.bind(this)}>Sign In or Sign Up</a>
         </div>
       );
     }
   }
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateLoggedInStatus }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
