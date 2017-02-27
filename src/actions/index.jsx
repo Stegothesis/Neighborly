@@ -3,19 +3,17 @@ import { GET_REVIEWS } from '../constants/actionTypes.jsx'
 import $ from 'jquery'
 
 export const postReview = (review, token) => (dispatch) =>
+
     $.ajax({
       type: "POST",
       url: '/api/neighborhoods/reviews',
       headers: {
         Authorization: "Bearer " + token
       },
-      data: JSON.stringify({
-        hash: "5", //auth0 hash for an existing user
-        name: "downtown", //name of the neighborhood
-        city: "austin", //name of the city
-        state: "texas", //lower case, 2 letter state abbreviation (e.g. tx)
-        text: review//... a bunch of categories for ratings
-      }),
+      data: JSON.stringify(Object.assign({
+        name: "east colvin", //name of the neighborhood
+        city: "syracuse", //name of the city
+        state: "ny"}, review)), //lower case, 2 letter state abbreviation (e.g. tx),
       success: function(data) {
         console.log("Post review to user successful", data);
       },

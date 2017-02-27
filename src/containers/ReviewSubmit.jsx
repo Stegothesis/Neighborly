@@ -10,21 +10,21 @@ class ReviewSubmit extends Component {
     super(props);
 
     this.state = {
-        rating: '',
-        stars_overall: null,
-        kid_friendly: null,
-        singles_friendly: null,
-        retirees: null,
-        sense_of_community: null,
-        nightlife: null,
-        entertainment: null,
-        affordability: null,
-        ameneties: null,
-        safety: null,
-        culture_arts: null,
-        schools: null,
-        crime: null,
-        hipster_rating: null
+      text: '',
+      // stars_overall: null,
+      // kid_friendly: null,
+      // singles_friendly: null,
+      // retirees: null,
+      // sense_of_community: null,
+      // nightlife: null,
+      // entertainment: null,
+      // affordability: null,
+      // ameneties: null,
+      // safety: null,
+      // culture_arts: null,
+      // schools: null,
+      // crime: null,
+      // hipster_rating: null
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -39,7 +39,7 @@ class ReviewSubmit extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.postReview(this.state.rating, this.props.user.token);
+    this.props.postReview(this.state, this.props.user.token);
     this.setState({ rating: ''});
 }
 
@@ -69,7 +69,7 @@ class ReviewSubmit extends Component {
         placeholder="What do you think? "
         className="form-control"
         value={this.state.rating}
-        name='rating'
+        name='text'
         onChange={this.onInputChange}
         required
         />
@@ -77,7 +77,7 @@ class ReviewSubmit extends Component {
           //map each category and
           return (<label>
             {category[1]}
-            <select name={category[0]} onChange={this.onInputChange} required>
+            <select name={category[0]} onChange={this.onInputChange}>
               <option value="" disabled selected>Rate</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
