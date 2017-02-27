@@ -44,7 +44,7 @@ class ReviewSubmit extends Component {
 }
 
   render() {
-    //list of categories and their descriptions
+    //list of state values and their descriptions
     var categories = [
       ['stars_overall', 'Overall'],
       ['singles_friendly', 'Singles Friendly'],
@@ -74,10 +74,11 @@ class ReviewSubmit extends Component {
         required
         />
         {categories.map((category) => {
+          //map each category and
           return (<label>
             {category[1]}
             <select name={category[0]} onChange={this.onInputChange} required>
-              <option value="" disabled selected>Rating</option>
+              <option value="" disabled selected>Rate</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
