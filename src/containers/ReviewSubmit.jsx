@@ -10,7 +10,21 @@ class ReviewSubmit extends Component {
     super(props);
 
     this.state = {
-      rating: ''
+        rating: '',
+        stars_overall: null,
+        kid_friendly: null,
+        singles_friendly: null,
+        retirees: null,
+        sense_of_community: null,
+        nightlife: null,
+        entertainment: null,
+        affordability: null,
+        ameneties: null,
+        safety: null,
+        culture_arts: null,
+        schools: null,
+        crime: null,
+        hipster_rating: null
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -18,7 +32,9 @@ class ReviewSubmit extends Component {
   }
 
   onInputChange(event) {
-    this.setState({rating: event.target.value})
+    var state = {};
+    state[event.target.name] = event.target.value;
+    this.setState(state)
   }
 
   onFormSubmit(event) {
@@ -28,6 +44,24 @@ class ReviewSubmit extends Component {
 }
 
   render() {
+
+    var categories = [
+      ['stars_overall', 'Overall'],
+      ['singles_friendly', 'Singles Friendly'],
+      ['kid_friendly', 'Kid Friendly'],
+      ['singles_friendly', 'Singles Friendly'],
+      ['retirees', 'Retiree Friendly'],
+      ['sense_of_community', 'Sense of Community'],
+      ['nightlife', 'Nightlife'],
+      ['entertainment', 'Entertainment'],
+      ['affordability', 'Affordability'],
+      ['ameneties', 'Ameneties'],
+      ['safety', 'Safety'],
+      ['culture_arts', 'Culture and Arts'],
+      ['schools', 'School Quality'],
+      ['crime', 'Crime'],
+      ['hipster_rating', 'Hipster Rating']
+    ];
     return (
       <div>
       <form onSubmit={this.onFormSubmit} className="input-group">
@@ -35,8 +69,21 @@ class ReviewSubmit extends Component {
         placeholder="What do you think? "
         className="form-control"
         value={this.state.rating}
+        name='rating'
         onChange={this.onInputChange}
         />
+        {categories.map((category) => {
+          return (<label>
+            {category[1]}
+            <select name={category[0]} onChange={this.onInputChange}>
+              <option value={1} selected>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </label>)
+        })}
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Submit Review</button>
         </span>
