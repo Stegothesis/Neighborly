@@ -22,16 +22,16 @@ const history = syncHistoryWithStore(browserHistory, store);
 const app = document.getElementById('app');
 
  ReactDOM.render(
-   <Provider store={store}>
+  <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={ App }>
-        <Route path="/city" component={ City }/>
-        <Route path="/neighborhood" component={ Neighborhood }/>
-        <Route path="/rate" component={ Rate  }/>
-        <Route path="/user" component={ User }/>
+      <Route path="/" component={App}>
+        <Route path="/city" component={City}>
+          <Route path="/neighborhood" component={Neighborhood} />
+        </Route>
       </Route>
     </Router>
   </Provider>
+
   , document.getElementById('app'));
 
 
