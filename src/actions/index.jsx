@@ -11,9 +11,10 @@ export const postReview = (review, token) => (dispatch) =>
         Authorization: "Bearer " + token
       },
       data: JSON.stringify(Object.assign({
-        name: "east colvin", //name of the neighborhood
-        city: "syracuse", //name of the city
-        state: "ny"}, review)), //lower case, 2 letter state abbreviation (e.g. tx),
+        //combining the review object with the location -- ultimately the review object should hold the neighborhood data
+        name: "compton", //name of the neighborhood
+        city: "los angeles", //name of the city
+        state: "ca"}, review)), //lower case, 2 letter state abbreviation (e.g. tx),
       success: function(data) {
         console.log("Post review to user successful", data);
       },

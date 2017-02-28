@@ -10,21 +10,7 @@ class ReviewSubmit extends Component {
     super(props);
 
     this.state = {
-      text: '',
-      // stars_overall: null,
-      // kid_friendly: null,
-      // singles_friendly: null,
-      // retirees: null,
-      // sense_of_community: null,
-      // nightlife: null,
-      // entertainment: null,
-      // affordability: null,
-      // ameneties: null,
-      // safety: null,
-      // culture_arts: null,
-      // schools: null,
-      // crime: null,
-      // hipster_rating: null
+      text: ''
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -44,7 +30,7 @@ class ReviewSubmit extends Component {
 }
 
   render() {
-    //list of state values and their descriptions
+    //list of review values and their descriptions
     var categories = [
       ['stars_overall', 'Overall'],
       ['singles_friendly', 'Singles Friendly'],
@@ -68,17 +54,18 @@ class ReviewSubmit extends Component {
         <input
         placeholder="What do you think? "
         className="form-control"
-        value={this.state.rating}
+        value={this.state.text}
         name='text'
         onChange={this.onInputChange}
         required
         />
         {categories.map((category) => {
-          //map each category and
+          //map each category to jsx
+          //can add "required" to the select tag if we want to validate the forms
           return (<label>
             {category[1]}
             <select name={category[0]} onChange={this.onInputChange}>
-              <option value="" disabled selected>Rate</option>
+              <option value="" disabled selected>Stars</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
