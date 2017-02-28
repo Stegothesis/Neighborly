@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
-import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 import Neighborhood from '../components/Neighborhood.jsx';
 import GoogleMap from './GoogleMap.jsx';
 
@@ -11,12 +10,6 @@ export class City extends Component {
   constructor(props) {
     super(props);
 
-  }
-
-  componentDidMount() {
-    let defaultCoordinates = {lat: "30.0", lng: "-97.0"};
-    console.log('City Component Mounted', defaultCoordinates);
-    this.props.sendDefaultCoordinates(defaultCoordinates);
   }
 
   renderList() {
@@ -36,6 +29,7 @@ export class City extends Component {
           <h2>After entering the city and state, click on a neighborhood below to see its information below.</h2>
           {this.renderList()}
         </ul>
+      <GoogleMap lat={30.0} lng={-97.0} />
       <Neighborhood />
       </div>
       );
@@ -44,12 +38,12 @@ export class City extends Component {
 
 function mapStateToProps(state) {
   return {
-    neighborhoods: state.neighborhoods
+    neighborhoods: state.neighborhoods,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectNeighborhood: selectNeighborhood, sendDefaultCoordinates: sendDefaultCoordinates }, dispatch);
+  return bindActionCreators({ selectNeighborhood: selectNeighborhood }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);

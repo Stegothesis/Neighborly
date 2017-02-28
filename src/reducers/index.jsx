@@ -4,6 +4,7 @@ import NeighborhoodsReducer from './reducer_neighborhoods.jsx';
 import ActiveNeighborhood from './reducer_active_neighborhood.jsx';
 import { routerReducer } from 'react-router-redux';
 import userReducer from './reducer_auth.jsx';
+import defaultCoordinatesReducer from './reducer_defaultCoordinates.jsx';
 
 //Mapping of state
 const rootReducer = combineReducers ({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers ({
   neighborhoods : NeighborhoodsReducer,
   activeNeighborhood: ActiveNeighborhood,
   routing: routerReducer,
-  user: userReducer
+  user: userReducer,
+  defaultCoordinate: defaultCoordinatesReducer
 });
 
 export default rootReducer;
