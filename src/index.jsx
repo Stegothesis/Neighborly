@@ -16,8 +16,6 @@ import { createStore, applyMiddleware } from 'redux';
 const store = makeStore(reducers);
 const history = syncHistoryWithStore(browserHistory, store);
 
-//console.log(store.getState());
-
 //Get app id from static html page
 const app = document.getElementById('app');
 
