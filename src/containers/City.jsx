@@ -21,21 +21,20 @@ export class City extends Component {
   renderList() {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
-        <div>
-        <li key={neighborhood.name}
+        <li className="btn btn-xs btn-primary" key={neighborhood.name}
         onClick={ () => this.props.selectNeighborhood(neighborhood) }
-        className="list-group-item">{neighborhood.name}</li>
-        </div>
+        >{neighborhood.name}</li>
         );
     });
   }
 
   render() {
     return (
-      <div>
-      <ul className="list-group col-sm-4">
-        {this.renderList()}
-      </ul>
+      <div className="widget tags">
+        <ul className="tag-cloud">
+          <h2>After entering the city and state, click on a neighborhood below to see its information below.</h2>
+          {this.renderList()}
+        </ul>
       <Neighborhood />
       </div>
       );
