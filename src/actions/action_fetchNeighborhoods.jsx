@@ -20,32 +20,6 @@ export function getNeighborhoodData(neighborhoods) {
 }
 
 
-/*
-export const getNeighborhoodData = neighborhood => (dispatch) =>
-  $.ajax({
-    type: 'GET',
-    url: '/api/neighborhoods/searchbycity/austin/tx',
-    success: function(data) {
-      var nameData = data.map(function(neighborhoods) {
-          return {"name": neighborhoods.name[0]};
-        })
-      console.log('Get Neighborhood Data Success!', nameData);
-      return {
-        type: 'GET_NEIGHBORHOOD_DATA',
-        payload: data.map(function(neighborhoods) {
-          return {"name": neighborhoods.name[0]};
-        })
-      }
-    },
-    error: function(error) {
-      console.log('Error: Get Neighborhood Data Failed', error);
-    },
-    contentType: 'application/json',
-    dataType: 'json'
-  });
-*/
-
-
 
 
 
