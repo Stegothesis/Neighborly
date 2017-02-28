@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import axios from 'axios';
 import City from './City.jsx';
+import{ Link }from 'react-router';
+import { push } from 'react-router-redux'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -64,7 +66,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-      <form onSubmit={this.onFormSubmit} className="input-group">
+      <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
         <input
         placeholder="Choose a city: "
         className="form-control"
@@ -79,6 +81,10 @@ class SearchBar extends Component {
         />
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Submit</button>
+          />
+        }
+        }
+        }
         </span>
       </form>
       <City />
