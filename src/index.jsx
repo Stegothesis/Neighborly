@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexRoute, Link, Router, Route, browserHistory } from 'react-router';
+import { IndexRoute, Link, Router, Route, hashHistory, Redirect } from 'react-router';
 import App from './components/App.jsx'
 import SearchBar from './containers/SearchBar.jsx'
 import City from './containers/City.jsx'
@@ -14,18 +14,18 @@ import reducers from './reducers/index.jsx'
 import { createStore, applyMiddleware } from 'redux';
 
 const store = makeStore(reducers);
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 //Get app id from static html page
 const app = document.getElementById('app');
 
  ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <Route path="/city" component={City}>
-          <Route path="/neighborhood" component={Neighborhood} />
-        </Route>
+        <IndexRoute component={SearchBar} />
+        <Route path="city/:city/:state" component={City} />
+        <Route path="neighborhood/:hood/:city/:state" component={Neighborhood} />
       </Route>
     </Router>
   </Provider>

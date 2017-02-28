@@ -1,14 +1,63 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { selectNeighborhood, postReview } from '../actions/action_select_Neighborhood.jsx';
 import { bindActionCreators } from 'redux';
 import Neighborhood from '../components/Neighborhood.jsx';
 import GoogleMap from './GoogleMap.jsx';
+import axios from 'axios';
+import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 
 export class City extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const url = '/api/neighborhoods/searchbycity/' + this.props.params.city + '/' + this.props.params.state;
+    var that = this;
+    axios.get(url).then(function(response) {
+      console.log('whats response', response);
+      function parseUrlState(url) {
+        return url.substring(33,35);
+      }
+      function parseUrlCity(url) {
+        return url.substring(36).split('/')[0];
+      }
+      var mappedData = response.data.map(function(hood) {
+        console.log('HOOD', hood);
+        let homePrice;
+        if (hood.zindex === undefined) {
+          return {
+            name: hood.name[0],
+            city: parseUrlCity(hood.url[0]),
+            state: parseUrlState(hood.url[0]),
+            latitude: hood.latitude[0],
+            longitude: hood.longitude[0],
+            homePrice: "Housing Price Not Available"
+          }
+        } else {
+          return {
+            name: hood.name[0],
+            city: parseUrlCity(hood.url[0]),
+            state: parseUrlState(hood.url[0]),
+            latitude: hood.latitude[0],
+            longitude: hood.longitude[0],
+            homePrice: hood.zindex[0]._ + " " + hood.zindex[0].$.currency
+          }
+        }
+      });
+        let defaultCoordinates = {
+          lat: response.data[0].latitude[0],
+          lng: response.data[0].longitude[0]
+        }
+      console.log(mappedData);
+      that.props.fetchNeighborhoodData(mappedData);
+      console.log('City Component Mounted', defaultCoordinates);
+      that.props.sendDefaultCoordinates(defaultCoordinates);
+    });
 
   }
 
@@ -16,7 +65,10 @@ export class City extends Component {
     return this.props.neighborhoods.map((neighborhood) => {
       return (
         <li className="btn btn-xs btn-primary" key={neighborhood.name}
-        onClick={ () => this.props.selectNeighborhood(neighborhood) }
+        onClick={ () => {
+          this.props.selectNeighborhood(neighborhood);
+          hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
+        }}
         >{neighborhood.name}</li>
         );
     });
@@ -30,7 +82,6 @@ export class City extends Component {
           {this.renderList()}
         </ul>
       <GoogleMap lat={30.0} lng={-97.0} />
-      <Neighborhood />
       </div>
       );
   }
@@ -43,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectNeighborhood: selectNeighborhood }, dispatch);
-}
+  return bindActionCreators({ selectNeighborhood, sendDefaultCoordinates, fetchNeighborhoodData }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);

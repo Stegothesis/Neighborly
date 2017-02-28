@@ -20,7 +20,6 @@ export default class App extends React.Component {
         </section>
 
         <div className="container">
-          <SearchBar />
           {this.props.children}
         </div>
 
