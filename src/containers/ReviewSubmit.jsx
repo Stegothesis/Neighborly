@@ -25,7 +25,8 @@ class ReviewSubmit extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.postReview(this.state, this.props.user.token);
+    console.log('reviewing -----------', this.state, this.props.neighborhood);
+    this.props.postReview(this.state, this.props.neighborhood, this.props.user.token);
     this.setState({ rating: ''});
 }
 
@@ -89,7 +90,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    neighborhood: state.activeNeighborhood
   };
 }
 

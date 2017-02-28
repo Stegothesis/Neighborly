@@ -2,7 +2,7 @@ import { ADD_REVIEW } from '../constants/actionTypes.jsx'
 import { GET_REVIEWS } from '../constants/actionTypes.jsx'
 import $ from 'jquery'
 
-export const postReview = (review, token) => (dispatch) =>
+export const postReview = (review, neighborhood, token) => (dispatch) =>
 
     $.ajax({
       type: "POST",
@@ -10,11 +10,9 @@ export const postReview = (review, token) => (dispatch) =>
       headers: {
         Authorization: "Bearer " + token
       },
-      data: JSON.stringify(Object.assign({
+      data: JSON.stringify(Object.assign(
         //combining the review object with the location -- ultimately the review object should hold the neighborhood data
-        name: "compton", //name of the neighborhood
-        city: "los angeles", //name of the city
-        state: "ca"}, review)), //lower case, 2 letter state abbreviation (e.g. tx),
+        neighborhood, review)), //lower case, 2 letter state abbreviation (e.g. tx),
       success: function(data) {
         console.log("Post review to user successful", data);
       },
