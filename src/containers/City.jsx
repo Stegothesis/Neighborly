@@ -5,6 +5,7 @@ import { selectNeighborhood, postReview } from '../actions/action_select_Neighbo
 import { bindActionCreators } from 'redux';
 import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 import Neighborhood from '../components/Neighborhood.jsx';
+import GoogleMap from './GoogleMap.jsx';
 
 export class City extends Component {
   constructor(props) {

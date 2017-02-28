@@ -5,7 +5,7 @@ export class GoogleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      setCoordinates: {lat: 30.0, lng: -97.0}
+      setCoordinates: {lat: "", lng: ""}
     }
   }
 
