@@ -88,16 +88,16 @@ logout () {
   render() {
     if (this.props.user.name) {
     return (
-      <div className="login-auth">
-        Welcome, {this.props.user.name}!
+      <li className="login-auth active">
         <a onClick = {this.logout.bind(this)}> Sign Out</a>
-        </div>
+        Welcome, {this.props.user.name}!
+      </li>
       );
     } else {
     return (
-      <div className="login-auth">
+      <li className="login-auth active">
         <a onClick = {this.login.bind(this)}>Sign In or Sign Up</a>
-        </div>
+      </li>
       );
     }
   }
