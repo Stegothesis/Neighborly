@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 export class GoogleMap extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       setCoordinates: {lat: 30, lng: -97}
     }
 
+  }
+
+  componentWillMount() {
+    this.componentDidUpdate();
   }
 
   componentDidMount() {
@@ -20,7 +23,7 @@ export class GoogleMap extends Component {
         lng: this.state.setCoordinates.lng
       }
     });
-    console.log('Set Coordinates', this.state.setCoordinates);
+    console. log('Set Coordinates', this.state.setCoordinates);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,6 +49,7 @@ export class GoogleMap extends Component {
   updateSetCoordinates() {
     var context = this;
     if (this.props.activeNeighborhood) {
+      console.log(this.props.activeNeighborhood);
     if (parseFloat(this.props.activeNeighborhood.latitude) !== this.state.setCoordinates.lat && parseFloat(this.props.activeNeighborhood.longitude) !== this.state.setCoordinates.lng) {
       context.setState( { setCoordinates : {
         lat: parseFloat(context.props.activeNeighborhood.latitude),

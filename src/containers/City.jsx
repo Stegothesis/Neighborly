@@ -9,6 +9,7 @@ import GoogleMap from './GoogleMap.jsx';
 import axios from 'axios';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
+import NeighborhoodDetail from './neighborhood-detail.jsx'
 
 export class City extends Component {
   constructor(props) {
@@ -81,7 +82,8 @@ export class City extends Component {
           <h2>After entering the city and state, click on a neighborhood below to see its information below.</h2>
           {this.renderList()}
         </ul>
-      <GoogleMap lat={30.0} lng={-97.0} />
+      <GoogleMap  />
+
       </div>
       );
   }
@@ -89,7 +91,7 @@ export class City extends Component {
 
 function mapStateToProps(state) {
   return {
-    neighborhoods: state.neighborhoods,
+    neighborhoods: state.neighborhoods
   };
 }
 
