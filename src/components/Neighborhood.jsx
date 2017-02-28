@@ -14,7 +14,6 @@ export class Neighborhood extends Component {
   }
 
   componentDidMount() {
-    console.log('neighborhood componentDidMount')
     if (!this.props.neighborhood) {
       var that = this;
       const url = '/api/neighborhoods/searchbycity/' + that.props.params.city + '/' + that.props.params.state;
@@ -28,7 +27,6 @@ export class Neighborhood extends Component {
         var mappedData = response.data.filter(function(hood) {
           return hood.name[0] === that.props.params.hood;
         }).map(function(hood) {
-          console.log('HOOD', hood);
           let homePrice;
           if (hood.zindex === undefined) {
             return {
@@ -50,8 +48,6 @@ export class Neighborhood extends Component {
               }
             }
           });
-          console.log('setting neighborhood-----', mappedData[0]);
-          console.log(that.props);
           that.props.selectNeighborhood(mappedData[0]);
         });
     }
