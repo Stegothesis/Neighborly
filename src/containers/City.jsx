@@ -56,6 +56,7 @@ export class City extends Component {
       console.log(mappedData);
       that.props.fetchNeighborhoodData(mappedData);
       console.log('City Component Mounted', defaultCoordinates);
+      console.log(that.props);
       that.props.sendDefaultCoordinates(defaultCoordinates);
     });
 
