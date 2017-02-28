@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 import axios from 'axios';
 import City from './City.jsx';
 import{ Link }from 'react-router';
 import { push } from 'react-router-redux'
+import GoogleMap from './GoogleMap.jsx';
+
+
 
 class SearchBar extends Component {
   constructor(props) {
@@ -30,7 +34,6 @@ class SearchBar extends Component {
   }
 
   onFormSubmit(event) {
-    console.log(this.state);
     event.preventDefault();
     //grab city and state from this.state.city and this.state.state
     const url = '/api/neighborhoods/searchbycity/' + this.state.city + '/' + this.state.state;
@@ -66,12 +69,33 @@ class SearchBar extends Component {
           }
         }
       });
+      //send the first neighborhood's latitude and longitude to GoogleMap container
+        let defaultCoordinates = {
+          lat: response.data[0].latitude[0],
+          lng: response.data[0].longitude[0]
+        }
+      console.log('DEFAULT COORDINATES SENT FROM SEARCHBAR', defaultCoordinates);
+      that.props.fetchNeighborhoodData(mappedData);
+      that.props.sendDefaultCoordinates(defaultCoordinates);
+    });
+
+  }
+
+/*
+  getAddress(hood) {
+    const geocodeUrl = '/api/neighborhoods/address/' + hood.latitude[0] + '/' + hood.longitude[0]
+    var that = this;
+     const request = axios.get(geocodeUrl).then(function(response) {
+      console.log('**GEOCODE URL**', response);
+      var mappedData = response.data.map(function(geocode) {
+        console.log('geocode', geocode);
+      });
       console.log(mappedData);
       that.props.fetchNeighborhoodData(mappedData);
     });
-    this.setState({ city: ''});
-    this.setState({ state: ''});
   }
+
+*/
 
   render() {
     return (
@@ -104,7 +128,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchNeighborhoodData }, dispatch);
+  return bindActionCreators({ fetchNeighborhoodData, sendDefaultCoordinates }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
