@@ -37,12 +37,20 @@ class SearchBar extends Component {
     var that = this;
     const request = axios.get(url).then(function(response) {
       console.log('whats response', response);
+      function parseUrlState(url) {
+        return url.substring(33,35);
+      }
+      function parseUrlCity(url) {
+        return url.substring(36).split('/')[0];
+      }
       var mappedData = response.data.map(function(hood) {
         console.log('HOOD', hood);
         let homePrice;
         if (hood.zindex === undefined) {
           return {
             name: hood.name[0],
+            city: parseUrlCity(hood.url[0]),
+            state: parseUrlState(hood.url[0]),
             latitude: hood.latitude[0],
             longitude: hood.longitude[0],
             homePrice: "Housing Price Not Available"
@@ -50,6 +58,8 @@ class SearchBar extends Component {
         } else {
           return {
             name: hood.name[0],
+            city: parseUrlCity(hood.url[0]),
+            state: parseUrlState(hood.url[0]),
             latitude: hood.latitude[0],
             longitude: hood.longitude[0],
             homePrice: hood.zindex[0]._ + " " + hood.zindex[0].$.currency

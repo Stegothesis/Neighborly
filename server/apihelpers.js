@@ -13,7 +13,13 @@ exports.getZillowHoods = function(city, state, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        callback(null, obj['RegionChildren:regionchildren'].response[0].list[0].region);
+        console.log('what do we get back from zillow?', obj);
+        var response = obj['RegionChildren:regionchildren'].response;
+        if (response) {
+          callback(null, response[0].list[0].region);
+        } else {
+          callback(null, "no neighborhoods found");
+        }
       });
     }
   });
