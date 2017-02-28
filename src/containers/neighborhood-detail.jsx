@@ -18,6 +18,7 @@ class NeighborhoodDetail extends Component {
           Average Home Price: {this.props.neighborhood.homePrice}
         </div>
         <ReviewSubmit />
+        <GoogleMap lat={"45.0"} lng={"-56.7"}/>
       </div>
       );
   }
