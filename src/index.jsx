@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexRoute, Link, Router, Route, hashHistory } from 'react-router';
+import { IndexRoute, Link, Router, Route, hashHistory, Redirect } from 'react-router';
 import App from './components/App.jsx'
 import SearchBar from './containers/SearchBar.jsx'
 import City from './containers/City.jsx'
@@ -23,8 +23,9 @@ const app = document.getElementById('app');
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <Route path="city/:city/:state" component={City}></Route>
-        <Route path="neighborhood/:hood/:city/:state" component={Neighborhood}></Route>
+        <IndexRoute component={SearchBar} />
+        <Route path="city/:city/:state" component={City} />
+        <Route path="neighborhood/:hood/:city/:state" component={Neighborhood} />
       </Route>
     </Router>
   </Provider>

@@ -8,6 +8,7 @@ import Neighborhood from '../components/Neighborhood.jsx';
 import GoogleMap from './GoogleMap.jsx';
 import axios from 'axios';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 
 export class City extends Component {
   constructor(props) {
@@ -48,13 +49,16 @@ export class City extends Component {
           }
         }
       });
+        let defaultCoordinates = {
+          lat: response.data[0].latitude[0],
+          lng: response.data[0].longitude[0]
+        }
       console.log(mappedData);
       that.props.fetchNeighborhoodData(mappedData);
-      // hashHistory.push('/city');
+      console.log('City Component Mounted', defaultCoordinates);
+      that.props.sendDefaultCoordinates(defaultCoordinates);
     });
-    let defaultCoordinates = {lat: "30.0", lng: "-97.0"};
-    console.log('City Component Mounted', defaultCoordinates);
-    this.props.sendDefaultCoordinates(defaultCoordinates);
+
   }
 
   renderList() {
@@ -90,13 +94,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
-  return bindActionCreators({
-                              selectNeighborhood: selectNeighborhood,
-                              sendDefaultCoordinates: sendDefaultCoordinates,
-                              fetchNeighborhoodData: fetchNeighborhoodData
-                            }, dispatch
-                            );
+  return bindActionCreators({ selectNeighborhood, sendDefaultCoordinates, fetchNeighborhoodData }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);
