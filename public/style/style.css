@@ -1,3 +1,9 @@
+#header-font {
+  font-family: "Brush Script MT", cursive;
+  font-size: 60px;
+  color: #C52D2F;
+}
+
 #partner {
     background-image: url("../images/slider/bg1.jpg");
     background-color: #cccccc;
