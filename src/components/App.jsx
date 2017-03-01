@@ -9,11 +9,10 @@ export default class App extends React.Component {
       <div>
         <Navbar />
 
-
         <section id="partner">
           <div className="container">
             <div className="center wow fadeInDown">
-              <h1>Community</h1>
+              <h1 id="header-font">Neighborly</h1>
               <p className="lead">A fun new way to get neighborhood information.</p>
             </div>
           </div>

@@ -13,13 +13,12 @@ export const Navbar = () => {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"/></a>
+            <a className="navbar-brand" href="/"><img src="images/logo.png" alt="logo"/></a>
           </div>
 
           <div className="collapse navbar-collapse navbar-right">
             <ul className="nav navbar-nav">
-              <li><a href="/landing">Home</a></li>
-              <li><a href="/neighborhood">Neighborhoods</a></li>
+              <li><a href="/">Search</a></li>
               <Auth />
             </ul>
           </div>
