@@ -4,9 +4,13 @@ import ReviewSubmit from './ReviewSubmit.jsx';
 import GoogleMap from './GoogleMap.jsx'
 
 class NeighborhoodDetail extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
 
   render() {
-    console.log("NEIGHBORHOOD DETAILS RENDER", this.props.activeNeighborhood.latitude);
 
     if (!this.props.activeNeighborhood) {
       return <div></div>;
@@ -31,5 +35,6 @@ function mapStateToProps(state) {
     activeNeighborhood: state.activeNeighborhood
   };
 }
+
 
 export default connect(mapStateToProps)(NeighborhoodDetail);
