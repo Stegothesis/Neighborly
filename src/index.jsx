@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexRoute, Link, Router, Route, hashHistory, Redirect } from 'react-router';
+import { IndexRoute, Link, Router, Route, hashHistory, Redirect, IndexRedirect } from 'react-router';
 import App from './components/App.jsx'
 import SearchBar from './containers/SearchBar.jsx'
 import City from './containers/City.jsx'
@@ -26,6 +26,7 @@ const app = document.getElementById('app');
         <IndexRoute component={SearchBar} />
         <Route path="city/:city/:state" component={City} />
         <Route path="neighborhood/:hood/:city/:state" component={Neighborhood} />
+        <Redirect from="*" to="/" />
       </Route>
     </Router>
   </Provider>

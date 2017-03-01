@@ -4,7 +4,7 @@ import Auth0Lock from 'auth0-lock';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import { EventEmitter } from 'events'
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { updateLoggedInStatus } from '../actions/authactions.jsx';
 
 export class Auth extends React.Component {
@@ -18,7 +18,8 @@ export class Auth extends React.Component {
         responseType: 'token',
         params: {
           scope: 'openid name email user_id'
-        }
+        },
+        redirect: false
       }
     });
     // this.event = new EventEmitter();
@@ -49,7 +50,7 @@ authenticateUser(result) {
       this.props.updateLoggedInStatus(user);
     }
   });
-  // browserHistory.replace({pathname: '/#/dashboard'});
+  hashHistory.push('/');
 }
 
 setProfile(profile) {
