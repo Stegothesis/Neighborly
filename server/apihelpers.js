@@ -31,7 +31,7 @@ exports.getZillowHoods = function(city, state, callback) {
 //Need to find reverse geocoding API in order to get the address from currently
 //pulled latitude and longitude from the Zillow API
 exports.getWalkScore = function(latitude, longitude, address, callback) {
-  let walkUrl = 'http://api.walkscore.com/score?format=json&address=' + address + '&lat=' + latitude + '&long=' + longitude + '&wsapikey=' + walkScoreApiKey;
+  let walkUrl = 'http://api.walkscore.com/score?format=json&address=' + address + '&lat=' + latitude + '&lon=' + longitude + '&wsapikey=' + walkScoreApiKey;
   request(walkUrl, function(error, response, body) {
     if (error) {
       console.log('Error for:', walkUrl)

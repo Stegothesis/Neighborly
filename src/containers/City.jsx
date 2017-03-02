@@ -55,20 +55,21 @@ export class City extends Component {
           this.props.selectNeighborhood(neighborhood);
           this.props.params.latitude = neighborhood.latitude;
           this.props.params.longitude = neighborhood.longitude;
+          console.log('PROPS PARAMS', this.props.params);
           var context = this;
           const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.params.latitude + ',' + this.props.params.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
            axios.get(apiUrl).then(function(geocode) {
              console.log('geo response', geocode);
              var addressObj = {};
-             addressObj.address = geocode.data.results[0].formatted_address;
+             addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
              context.props.params.address = addressObj.address;
              console.log(addressObj.address);
              // $.ajax({
              //    method: "GET",
-             //    url: "/../../server/walkscore.php",
+             //    url: "../../server/walkscore.php",
              //    data: {"address": addressObj.address,
-             //           "lat": parseInt(neighborhood.latitude),
-             //           "lon": parseInt(neighborhood.longitude),
+             //           "lat": parseFloat(neighborhood.latitude),
+             //           "lon": parseFloat(neighborhood.longitude),
              //  },
              //  success: function(response) {
              //    console.log(response);

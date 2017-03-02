@@ -91,7 +91,7 @@ app.get('/api/walk/:address/:latitude/:longitude', function (req, res) {
   let longitude = req.params.longitude;
   apiHelpers.getWalkScore(latitude, longitude, address, function(err, score) {
     if(err) {
-      res.sendStatus(404);
+      console.log(err);
     } else {
       res.json(score);
     }
