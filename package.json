@@ -4,9 +4,8 @@
   "description": "Community",
   "main": "server/server.js",
   "scripts": {
-    "compile": "babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,database,public,server --source-maps inline",
     "start": "node server/server.js",
-    "test": "live-server --open=./src/SpecRunner.html --port=8081"
+    "postinstall": "webpack -w"
   },
   "repository": {
     "type": "git",
