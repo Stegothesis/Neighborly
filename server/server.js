@@ -73,7 +73,7 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
           if (data !== null) {
             callback(null, Object.assign(hood, data.dataValues));
           } else {
-            callback(null, hood)
+            callback(null, Object.assign(hood, query));
           }
         });
       }, function(error, hoods) {
@@ -119,6 +119,7 @@ app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, r
     state: req.params.state,
     neighborhood_name: req.params.neighborhood
   }
+  console.log('whats query----------------' , query);
   dbHelpers.getReviews(query, function(data) {
     console.log(query);
     res.json(data);
@@ -133,6 +134,21 @@ app.get('/api/neighborhoods/data/:neighborhood/:city/:state', function(req, res)
   }
   dbHelpers.getNeighborhoodData(query, function(data) {
     res.json(data);
+  })
+});
+
+app.post('/api/votes', authenticate, function(req,res) {
+  var user = {};
+  user.username = req.user.name;
+  user.hash = req.user.user_id;
+  dbHelpers.createUser(user, function(user, created) {
+    dbHelpers.addReview(req.body, user.id, function(created) {
+      if (created) {
+        res.status(204).send('Review added');
+      } else {
+        res.send('You have already reviewed this neighborhood');
+      }
+    })
   })
 });
 
