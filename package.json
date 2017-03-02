@@ -4,8 +4,7 @@
   "description": "Community",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "postinstall": "webpack -w"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
