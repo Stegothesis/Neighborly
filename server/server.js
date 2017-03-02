@@ -10,6 +10,7 @@ var apiHelpers = require('./apihelpers.js');
 var db = require('../database/schemas.js');
 var dbHelpers = require('./dbHelpers.js');
 var jwt = require('express-jwt');
+var asyncMap = require('async').map;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -59,7 +60,25 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
     if(err) {
       res.sendStatus(404);
     } else {
-      res.json(hoods);
+      // function parseUrlState(url) {
+      var parsedState = hoods[0].url[0].substring(33,35);
+      var parsedCity = hoods[0].url[0].substring(36).split('/')[0];
+      asyncMap(hoods, function(hood, callback) {
+        var query = {
+          neighborhood_name: hood.name[0],
+          city: parsedCity,
+          state: parsedState
+        }
+        dbHelpers.getNeighborhoodData(query, function(data) {
+          if (data !== null) {
+            callback(null, Object.assign(hood, data.dataValues));
+          } else {
+            callback(null, hood)
+          }
+        });
+      }, function(error, hoods) {
+        error ? res.sendStatus(404) : res.json(hoods);
+      });
     }
   });
 });

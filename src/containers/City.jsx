@@ -23,44 +23,27 @@ export class City extends Component {
     var that = this;
     axios.get(url).then(function(response) {
       console.log('whats response', response);
-      function parseUrlState(url) {
-        return url.substring(33,35);
-      }
-      function parseUrlCity(url) {
-        return url.substring(36).split('/')[0];
-      }
       var mappedData = response.data.map(function(hood) {
         console.log('HOOD', hood);
-        let homePrice;
-        if (hood.zindex === undefined) {
-          return {
-            name: hood.name[0],
-            city: parseUrlCity(hood.url[0]),
-            state: parseUrlState(hood.url[0]),
-            latitude: hood.latitude[0],
-            longitude: hood.longitude[0],
-            homePrice: "Housing Price Not Available"
-          }
+        hood.name = hood.name[0];
+        hood.latitude = hood.latitude[0];
+        hood.longitude = hood.longitude[0];
+        if(!hood.zindex) {
+          hood.homePrice = "Housing Price Not Available";
         } else {
-          return {
-            name: hood.name[0],
-            city: parseUrlCity(hood.url[0]),
-            state: parseUrlState(hood.url[0]),
-            latitude: hood.latitude[0],
-            longitude: hood.longitude[0],
-            homePrice: hood.zindex[0]._ + " " + hood.zindex[0].$.currency
-          }
+          hood.homePrice = hood.zindex[0]._ + " " + hood.zindex[0].$.currency;
         }
+        console.log('mapped hooood----', hood);
+        return hood;
       });
-        let defaultCoordinates = {
-          lat: response.data[0].latitude[0],
-          lng: response.data[0].longitude[0]
-        }
+      let defaultCoordinates = {
+        lat: mappedData[0].latitude,
+        lng: mappedData[0].longitude
+      }
       that.props.fetchNeighborhoodData(mappedData);
       console.log('City Component Mounted', defaultCoordinates);
       that.props.sendDefaultCoordinates(defaultCoordinates);
     });
-
   }
 
   renderList() {

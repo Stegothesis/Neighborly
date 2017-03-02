@@ -31,7 +31,7 @@ export class Auth extends React.Component {
   componentDidMount() {
     if (this.loggedIn()) {
       var user = {};
-      user.name = this.getProfile().name;
+      user.name = this.getProfile().username;
       user.token = this.getToken();
       this.props.updateLoggedInStatus(user);
     }
@@ -45,7 +45,7 @@ authenticateUser(result) {
     } else {
       this.setProfile(profile);
       var user = {};
-      user.name = profile.name;
+      user.name = profile.username;
       user.token = result.idToken;
       this.props.updateLoggedInStatus(user);
     }
