@@ -16,17 +16,11 @@ export class ReviewMap extends Component {
 
   }
 
-  //TODO: Use activeNeighborhood name, city, state to implement url
-  //in order to get reviews for that specific neighborhood
-  //When we get back the reviews, modify mapping to display categories
-  //that were rated by each user
-
   loadReviewsFromServer() {
     var that = this;
     $.ajax({
       type: "GET",
       url: '/api/neighborhoods/reviews/' + that.props.activeNeighborhood.name + '/' + that.props.activeNeighborhood.city + '/' + that.props.activeNeighborhood.state,
-      //url: '/api/neighborhoods/reviews/downtown/austin/texas',
       success: function(data) {
         console.log("Get review successful", data);
         that.props.getReview(data);

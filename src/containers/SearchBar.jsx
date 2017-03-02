@@ -38,16 +38,16 @@ export default class SearchBar extends Component {
       <div>
       <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
         <input
-        placeholder="Choose a city: "
-        className="form-control"
-        value={this.state.city}
-        onChange={this.onCityInputChange}
+          placeholder="Choose a city: "
+          className="form-control"
+          value={this.state.city}
+          onChange={this.onCityInputChange}
         />
         <input
-        placeholder="Choose a state"
-        className="form-control"
-        value={this.state.state}
-        onChange={this.onStateInputChange}
+          placeholder="Choose a state"
+          className="form-control"
+          value={this.state.state}
+          onChange={this.onStateInputChange}
         />
         <span className="input-group-btn">
             <button type="submit" className="btn btn-secondary">Submit</button>
@@ -55,6 +55,6 @@ export default class SearchBar extends Component {
       </form>
       <GoogleMap />
       </div>
-      );
+    );
   }
 }

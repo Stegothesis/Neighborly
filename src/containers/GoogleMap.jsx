@@ -74,7 +74,7 @@ export class GoogleMap extends Component {
   }
 
   render() {
-    return <div style={{height: "600px", width:"600px"}} ref="map"></div>;
+    return <div style={{height: "900px", width:"900px"}} ref="map"></div>;
   }
 }
 
