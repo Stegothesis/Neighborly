@@ -9,8 +9,9 @@ import GoogleMap from './GoogleMap.jsx';
 import axios from 'axios';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
-import NeighborhoodDetail from './neighborhood-detail.jsx'
+import NeighborhoodDetail from './neighborhood-detail.jsx';
 import { sendZoom } from '../actions/action_zoom.jsx';
+import $ from 'jquery';
 
 export class City extends Component {
   constructor(props) {
@@ -52,6 +53,42 @@ export class City extends Component {
         <li className="btn btn-xs btn-primary" key={neighborhood.name}
         onClick={ () => {
           this.props.selectNeighborhood(neighborhood);
+          this.props.params.latitude = neighborhood.latitude;
+          this.props.params.longitude = neighborhood.longitude;
+          var context = this;
+          const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.params.latitude + ',' + this.props.params.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+           axios.get(apiUrl).then(function(geocode) {
+             console.log('geo response', geocode);
+             var addressObj = {};
+             addressObj.address = geocode.data.results[0].formatted_address;
+             context.props.params.address = addressObj.address;
+             console.log(addressObj.address);
+             // $.ajax({
+             //    method: "GET",
+             //    url: "/../../server/walkscore.php",
+             //    data: {"address": addressObj.address,
+             //           "lat": parseInt(neighborhood.latitude),
+             //           "lon": parseInt(neighborhood.longitude),
+             //  },
+             //  success: function(response) {
+             //    console.log(response);
+             //    var obj = $.jsonParse(response);
+             //    console.log('WALK SCORE', obj.walkscore);
+             //  },
+             //  error: function(error) {
+             //    console.log('WALK SCORE ERROR', error);
+             //  },
+             //  contentType: 'application/json',
+             //  accepts: 'application/json',
+             //  dataType: 'json'
+             // });
+
+             //No calls can be made from client-side because Walk Score does not support CORS
+             const walkScoreUrl = '/api/walk/' + context.props.params.address + '/' + context.props.params.latitude + '/' + context.props.params.longitude;
+              axios.get(walkScoreUrl).then(function(response) {
+                console.log('walk score', response);
+              })
+             })
           hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
         }}
         >{neighborhood.name}</li>
