@@ -21,6 +21,7 @@ class NeighborhoodDetail extends Component {
           Name: {this.props.activeNeighborhood.name} <br/>
           Average Home Price: {this.props.activeNeighborhood.homePrice} <br/>
           User Ratings: <br/>
+          {this.props.activeNeighborhood.total_num_ratings} reviews <br/>
           Overall: {Math.round(this.props.activeNeighborhood.avg_star_rating * 10) / 10} <br/>
           Sense of Community: {Math.round(this.props.activeNeighborhood.avg_sense_of_community * 10) / 10} <br/>
           Good for Singles: {Math.round(this.props.activeNeighborhood.avg_singles_friendly * 10) / 10} <br/>
