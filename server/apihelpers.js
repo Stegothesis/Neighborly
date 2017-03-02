@@ -30,15 +30,16 @@ exports.getZillowHoods = function(city, state, callback) {
 //WalkScore requires an address in order to get back walkability scores for each neighborhood
 //Need to find reverse geocoding API in order to get the address from currently
 //pulled latitude and longitude from the Zillow API
-exports.getWalkScore = function(latitude, longitude, address, callback) {
+exports.getWalkScore = function(lat, lon, address, callback) {
+  address = urlencode(address);
   let walkUrl = 'http://api.walkscore.com/score?format=json&address=' + address + '&lat=' + latitude + '&lon=' + longitude + '&wsapikey=' + walkScoreApiKey;
-  request(walkUrl, function(error, response, body) {
-    if (error) {
-      console.log('Error for:', walkUrl)
-    };
-    if (!error && response.statusCode === 200) {
-      console.log(response.json(body));
-    }
-  })
+    request(walkUrl, function(error, response, body) {
+      if (error) {
+        console.log('Error for:', walkUrl)
+      };
+      if (!error && response.statusCode === 200) {
+        console.log(response.json(body));
+      }
+    })
 
 }
