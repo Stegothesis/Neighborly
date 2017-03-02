@@ -8,7 +8,7 @@ var app = express();
 var request = require('request');
 var apiHelpers = require('./apihelpers.js');
 var db = require('../database/schemas.js');
-var dbHelpers = require('./dbHelpers.js');
+var dbHelpers = require('./dbhelpers.js');
 var jwt = require('express-jwt');
 var asyncMap = require('async').map;
 
