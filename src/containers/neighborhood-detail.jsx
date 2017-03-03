@@ -9,6 +9,10 @@ class NeighborhoodDetail extends Component {
 
   }
 
+  componentDidMount() {
+    console.log('Neighborhood Detail Component Mounted');
+  }
+
   render() {
 
     if (!this.props.activeNeighborhood) {
@@ -37,6 +41,16 @@ class NeighborhoodDetail extends Component {
                     <i className="fa fa-home"></i>
                     <p className="neighborhood-header">Average Home Price</p>
                     <h3 className="neighborhood-font">{this.props.activeNeighborhood.homePrice}</h3>
+                  </div>
+                </div>
+
+                <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                  <div className="feature-wrap">
+                    <i className="fa fa-blind"></i>
+                    <p className="neighborhood-header">Walkability</p>
+                    {this.props.neighborhoods &&
+                    <h3 className="neighborhood-font">{this.props.neighborhoods.walkScore} :  {this.props.neighborhoods.description}</h3>
+                    }
                   </div>
                 </div>
 
@@ -154,32 +168,6 @@ class NeighborhoodDetail extends Component {
         </div>
       </section>
     );
-      <div>
-        <GoogleMap />
-        <h3>Details for: </h3>
-        <div>
-          {this.props.activeNeighborhood.name} <br/>
-          Average Home Price: {this.props.activeNeighborhood.homePrice} <br/>
-          Walkability: <br/>
-          User Ratings: <br/>
-          {this.props.activeNeighborhood.total_num_ratings} reviews <br/>
-          Overall: {Math.round(this.props.activeNeighborhood.avg_star_rating * 10) / 10} <br/>
-          Sense of Community: {Math.round(this.props.activeNeighborhood.avg_sense_of_community * 10) / 10} <br/>
-          Good for Singles: {Math.round(this.props.activeNeighborhood.avg_singles_friendly * 10) / 10} <br/>
-          Kid-Friendly: {Math.round(this.props.activeNeighborhood.avg_kid_friendly * 10) / 10} <br/>
-          Good for Retirees: {Math.round(this.props.activeNeighborhood.avg_retirees * 10) / 10} <br/>
-          Entertainment: {Math.round(this.props.activeNeighborhood.avg_entertainment * 10) / 10} <br/>
-          Nightlife: {Math.round(this.props.activeNeighborhood.avg_nightlife * 10) / 10} <br/>
-          Culture and Arts: {Math.round(this.props.activeNeighborhood.avg_culture_arts * 10) / 10} <br/>
-          Schools: {Math.round(this.props.activeNeighborhood.avg_schools * 10) / 10} <br/>
-          Safety: {Math.round(this.props.activeNeighborhood.avg_safety * 10) / 10} <br/>
-          Amenities: {Math.round(this.props.activeNeighborhood.avg_ameneties * 10) / 10} <br/>
-          Hipster Factor: {Math.round(this.props.activeNeighborhood.avg_hipster_rating * 10) / 10} <br/>
-          Affordability: {Math.round(this.props.activeNeighborhood.avg_affordability * 10) / 10} <br/>
-        </div>
-        <ReviewSubmit />
-      </div>
-      );
   }
 }
 
@@ -187,7 +175,7 @@ function mapStateToProps(state) {
 //Whatever is returned here will show up as props inside of BookList Container
   return {
     activeNeighborhood: state.activeNeighborhood,
-    walkScores: state.walkScores
+    neighborhoods: state.neighborhoods
   };
 }
 
