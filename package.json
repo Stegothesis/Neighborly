@@ -5,8 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
-    "postinstall": "webpack -p"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "repository": {
     "type": "git",
