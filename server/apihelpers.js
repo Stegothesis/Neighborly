@@ -41,8 +41,10 @@ exports.getWalkScore = function(lat, lon, address, callback) {
         parseString(body, function(err, obj) {
           console.log('WALKSCORE', obj);
           var response = {};
-          response.walkscore = obj.result.walkscore[0];
-          response.description = obj.result.description[0];
+          if (obj.result.walkscore) {
+            response.walkscore = obj.result.walkscore[0];
+            response.description = obj.result.description[0];
+          }
           if (response) {
             callback(null, response);
           } else {
