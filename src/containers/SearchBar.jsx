@@ -34,27 +34,70 @@ export default class SearchBar extends Component {
   }
 
   render() {
+    var divStyle = {
+      backgroundImage: 'url(images/slider/bg1.jpg)'
+    }
+
     return (
-      <div>
-      <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-        <input
-          placeholder="Choose a city: "
-          className="form-control"
-          value={this.state.city}
-          onChange={this.onCityInputChange}
-        />
-        <input
-          placeholder="Choose a state"
-          className="form-control"
-          value={this.state.state}
-          onChange={this.onStateInputChange}
-        />
-        <span className="input-group-btn">
-            <button type="submit" className="btn btn-secondary">Submit</button>
-        </span>
-      </form>
-      <GoogleMap />
-      </div>
+
+      <section id="main-slider" className="no-margin">
+        <div className="carousel slide">
+            <ol className="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" className="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div className="carousel-inner">
+
+                <div className="item active" style={divStyle}>
+                    <div className="container">
+                        <div className="row slide-margin">
+
+                          <div className="center wow fadeInDown">
+                            <h1 id="header-font">Neighborly</h1>
+                            <p className="lead">Find your next neighborhood</p>
+                          </div>
+
+                          <div>
+                            <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
+                              <p className="lead">Please enter a city and state to see its neighborhood details.</p>
+                              <input
+                                placeholder="Choose a city: "
+                                className="form-control"
+                                value={this.state.city}
+                                onChange={this.onCityInputChange}
+                              />
+                              <input
+                                placeholder="Choose a state"
+                                className="form-control"
+                                value={this.state.state}
+                                onChange={this.onStateInputChange}
+                              />
+                              <span className="input-group-btn">
+                                  <button type="submit" className="btn btn-primary">Submit</button>
+                              </span>
+                            </form>
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a className="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i className="fa fa-chevron-left"></i>
+        </a>
+        <a className="next hidden-xs" href="#main-slider" data-slide="next">
+            <i className="fa fa-chevron-right"></i>
+        </a>
+    </section>
+
+
+
     );
   }
 }
+
+
+
