@@ -58,8 +58,8 @@ export class Neighborhood extends Component {
   render() {
   return (
     <div>
+      <NeighborhoodDetail  />
       <ReviewMap />
-      <NeighborhoodDetail />
     </div>
     );
   }

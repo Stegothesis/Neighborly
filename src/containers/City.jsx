@@ -11,7 +11,7 @@ import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx'
 import { sendDefaultCoordinates } from '../actions/action_coordinates.jsx';
 import NeighborhoodDetail from './neighborhood-detail.jsx';
 import { sendZoom } from '../actions/action_zoom.jsx';
-import $ from 'jquery';
+import { sendWalkScore } from '../actions/action_walkScore.jsx';
 
 export class City extends Component {
   constructor(props) {
@@ -63,35 +63,20 @@ export class City extends Component {
              var addressObj = {};
              addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
              context.props.params.address = addressObj.address;
-             console.log(addressObj.address);
-             // $.ajax({
-             //    method: "GET",
-             //    url: "../../server/walkscore.php",
-             //    data: {"address": addressObj.address,
-             //           "lat": parseFloat(neighborhood.latitude),
-             //           "lon": parseFloat(neighborhood.longitude),
-             //  },
-             //  success: function(response) {
-             //    console.log(response);
-             //    var obj = $.jsonParse(response);
-             //    console.log('WALK SCORE', obj.walkscore);
-             //  },
-             //  error: function(error) {
-             //    console.log('WALK SCORE ERROR', error);
-             //  },
-             //  contentType: 'application/json',
-             //  accepts: 'application/json',
-             //  dataType: 'json'
-             // });
+             console.log('Formatted Address', addressObj.address);
+           });
 
-             //No calls can be made from client-side because Walk Score does not support CORS
-             const walkScoreUrl = '/api/walk/' + context.props.params.address + '/' + context.props.params.latitude + '/' + context.props.params.longitude;
-              axios.get(walkScoreUrl).then(function(response) {
+            var walkScoreUrl = '/api/neighborhoods/walk/' + context.props.params.address + '/' + context.props.params.latitude + '/' + context.props.params.longitude;
+            axios.get(walkScoreUrl).then(function(response) {
                 console.log('walk score', response);
-              })
-             })
-          hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
-        }}
+                var walkScoreObj = {};
+                walkScoreObj.walkScore = response.data.walkscore;
+                walkScoreObj.description = response.data.description;
+                console.log('WALK SCORE OBJECT', walkScoreObj);
+              });
+            hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
+
+          }}
         >{neighborhood.name}</li>
         );
     });
@@ -118,7 +103,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectNeighborhood, sendDefaultCoordinates, fetchNeighborhoodData, sendZoom }, dispatch);
+  return bindActionCreators({ sendWalkScore, selectNeighborhood, sendDefaultCoordinates, fetchNeighborhoodData, sendZoom }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);
