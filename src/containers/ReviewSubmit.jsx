@@ -49,35 +49,37 @@ class ReviewSubmit extends Component {
       ['hipster_rating', 'Hipster Rating']
     ];
     return (
-      <div>
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-        placeholder="What do you think? "
-        className="form-control"
-        value={this.state.text}
-        name='text'
-        onChange={this.onInputChange}
-        required
-        />
-        {categories.map((category) => {
-          //map each category to jsx
-          //can add "required" to the select tag if we want to validate the forms
-          return (<label>
-            {category[1]}
-            <select name={category[0]} onChange={this.onInputChange}>
-              <option value="" disabled selected>Stars</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-          </label>)
-        })}
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Submit Review</button>
-        </span>
-      </form>
+      <div className="media-body post_reply_comments">
+        <form onSubmit={this.onFormSubmit} className="input-group">
+          <input
+            placeholder="What do you think? "
+            className="form-control"
+            value={this.state.text}
+            name='text'
+            onChange={this.onInputChange}
+            required
+          />
+          {categories.map((category) => {
+            //map each category to jsx
+            //can add "required" to the select tag if we want to validate the forms
+            return (
+              <label>
+                {category[1]}
+                <select name={category[0]} onChange={this.onInputChange}>
+                  <option value="" disabled selected>Stars</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+              </label>
+            )
+          })}
+          <span className="input-group-btn">
+            <button type="submit" className="btn btn-primary btn-lg">Submit Review</button>
+          </span>
+        </form>
       </div>
       );
   }
