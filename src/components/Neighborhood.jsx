@@ -9,6 +9,7 @@ import axios from 'axios';
 import { selectNeighborhood } from '../actions/action_select_Neighborhood.jsx';
 import { sendZoom } from '../actions/action_zoom.jsx';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
+import { sendWalkScore } from '../actions/action_walkScore.jsx';
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -76,7 +77,7 @@ export class Neighborhood extends Component {
                 walkScoreObj.walkScore = response.data.walkscore;
                 walkScoreObj.description = response.data.description;
                 console.log('WALK SCORE OBJECT', walkScoreObj);
-                context.props.fetchNeighborhoodData(walkScoreObj);
+                context.props.sendWalkScore(walkScoreObj);
               });
             }
            });
@@ -100,7 +101,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchNeighborhoodData, selectNeighborhood, sendZoom }, dispatch);
+  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
