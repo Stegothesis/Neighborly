@@ -31,14 +31,24 @@ exports.getZillowHoods = function(city, state, callback) {
 //Need to find reverse geocoding API in order to get the address from currently
 //pulled latitude and longitude from the Zillow API
 exports.getWalkScore = function(lat, lon, address, callback) {
-  address = urlencode(address);
-  let walkUrl = 'http://api.walkscore.com/score?format=json&address=' + address + '&lat=' + latitude + '&lon=' + longitude + '&wsapikey=' + walkScoreApiKey;
-    request(walkUrl, function(error, response, body) {
+  let options = {
+    url: 'http://api.walkscore.com/score?format=xml&address=' + address + '&lat=' + lat + '&lon=' + lon + '&transit=1&bike=1&wsapikey=' + walkScoreApiKey
+    }
+    request(options, function(error, response, body) {
       if (error) {
-        console.log('Error for:', walkUrl)
-      };
-      if (!error && response.statusCode === 200) {
-        console.log(response.json(body));
+        callback(error, null);
+      } else {
+        parseString(body, function(err, obj) {
+          console.log('WALKSCORE', obj);
+          var response = {};
+          response.walkscore = obj.result.walkscore[0];
+          response.description = obj.result.description[0];
+          if (response) {
+            callback(null, response);
+          } else {
+            callback(null, "no walkscore found for this neighborhood");
+          }
+        })
       }
     })
 
