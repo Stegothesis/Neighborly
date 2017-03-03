@@ -64,15 +64,16 @@ export class City extends Component {
 
   render() {
     return (
-      <div className="widget tags">
-        <ul className="tag-cloud">
-          <h2>After entering the city and state, click on a neighborhood below to see its information below.</h2>
-          {this.renderList()}
-        </ul>
-      <GoogleMap  />
-
+      <div className="container">
+        <div className="widget tags">
+          <ul className="tag-cloud">
+            <h2>After entering the city and state, click on a neighborhood to see its information below.</h2>
+            {this.renderList()}
+          </ul>
+        <GoogleMap  />
+        </div>
       </div>
-      );
+    );
   }
 }
 
