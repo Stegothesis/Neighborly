@@ -9,6 +9,10 @@ class NeighborhoodDetail extends Component {
 
   }
 
+  componentDidMount() {
+    console.log('Neighborhood Detail Component Mounted');
+  }
+
   render() {
 
     if (!this.props.activeNeighborhood) {
@@ -37,6 +41,16 @@ class NeighborhoodDetail extends Component {
                     <i className="fa fa-home"></i>
                     <p className="neighborhood-header">Average Home Price</p>
                     <h3 className="neighborhood-font">{this.props.activeNeighborhood.homePrice}</h3>
+                  </div>
+                </div>
+
+                <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                  <div className="feature-wrap">
+                    <i className="fa fa-blind"></i>
+                    <p className="neighborhood-header">Walkability</p>
+                    {this.props.neighborhoods &&
+                    <h3 className="neighborhood-font">{this.props.neighborhoods.walkScore} :  {this.props.neighborhoods.description}</h3>
+                    }
                   </div>
                 </div>
 
@@ -160,7 +174,8 @@ class NeighborhoodDetail extends Component {
 function mapStateToProps(state) {
 //Whatever is returned here will show up as props inside of BookList Container
   return {
-    activeNeighborhood: state.activeNeighborhood
+    activeNeighborhood: state.activeNeighborhood,
+    neighborhoods: state.neighborhoods
   };
 }
 

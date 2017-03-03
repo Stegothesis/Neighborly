@@ -85,14 +85,15 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
 
 // Example usage:
 // curl localhost:3001/api/walk/2025%201st%20Avenue%20Suite%20500,%20Seattle,%20WA%2098121 | json-prettify | less
-app.get('/api/walk/:address/:latitude/:longitude', function (req, res) {
+app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, res) {
   let address = req.params.address;
-  let latitude = req.params.latitude;
-  let longitude = req.params.longitude;
-  apiHelpers.getWalkScore(latitude, longitude, address, function(err, score) {
+  let lat = req.params.latitude;
+  let lon = req.params.longitude;
+  apiHelpers.getWalkScore(lat, lon, address, function(err, score) {
     if(err) {
-      console.log(err);
+      console.log('ERRORED OUT', err);
     } else {
+      console.log(score);
       res.json(score);
     }
   })

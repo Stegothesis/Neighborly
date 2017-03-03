@@ -30,15 +30,28 @@ exports.getZillowHoods = function(city, state, callback) {
 //WalkScore requires an address in order to get back walkability scores for each neighborhood
 //Need to find reverse geocoding API in order to get the address from currently
 //pulled latitude and longitude from the Zillow API
-exports.getWalkScore = function(latitude, longitude, address, callback) {
-  let walkUrl = 'http://api.walkscore.com/score?format=json&address=' + address + '&lat=' + latitude + '&lon=' + longitude + '&wsapikey=' + walkScoreApiKey;
-  request(walkUrl, function(error, response, body) {
-    if (error) {
-      console.log('Error for:', walkUrl)
-    };
-    if (!error && response.statusCode === 200) {
-      console.log(response.json(body));
+exports.getWalkScore = function(lat, lon, address, callback) {
+  let options = {
+    url: 'http://api.walkscore.com/score?format=xml&address=' + address + '&lat=' + lat + '&lon=' + lon + '&transit=1&bike=1&wsapikey=' + walkScoreApiKey
     }
-  })
+    request(options, function(error, response, body) {
+      if (error) {
+        callback(error, null);
+      } else {
+        parseString(body, function(err, obj) {
+          console.log('WALKSCORE', obj);
+          var response = {};
+          if (obj.result.walkscore) {
+            response.walkscore = obj.result.walkscore[0];
+            response.description = obj.result.description[0];
+          }
+          if (response) {
+            callback(null, response);
+          } else {
+            callback(null, "no walkscore found for this neighborhood");
+          }
+        })
+      }
+    })
 
 }

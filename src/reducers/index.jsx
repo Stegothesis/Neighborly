@@ -6,6 +6,7 @@ import { routerReducer } from 'react-router-redux';
 import userReducer from './reducer_auth.jsx';
 import defaultCoordinatesReducer from './reducer_defaultCoordinates.jsx';
 import zoomReducer from './reducer_zoom.jsx';
+import walkScoreReducer from './reducer_walkScore.jsx';
 
 //Mapping of state
 const rootReducer = combineReducers ({
@@ -15,7 +16,8 @@ const rootReducer = combineReducers ({
   routing: routerReducer,
   user: userReducer,
   defaultCoordinate: defaultCoordinatesReducer,
-  zoomSetting: zoomReducer
+  zoomSetting: zoomReducer,
+  walkScores: walkScoreReducer
 });
 
 export default rootReducer;

@@ -6,3 +6,4 @@ export const GET_REVIEWS = 'GET_REVIEWS';
 export const DEFAULT_COORDINATES = 'DEFAULT_COORDINATES';
 export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
 export const ZOOM = 'ZOOM';
+export const WALK_SCORE = 'WALK_SCORE';
