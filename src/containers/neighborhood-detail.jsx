@@ -48,8 +48,8 @@ class NeighborhoodDetail extends Component {
                   <div className="feature-wrap">
                     <i className="fa fa-blind"></i>
                     <p className="neighborhood-header">Walkability</p>
-                    {this.props.neighborhoods &&
-                    <h3 className="neighborhood-font">{this.props.neighborhoods.walkScore} :  {this.props.neighborhoods.description}</h3>
+                    {this.props.walkScores &&
+                    <h3 className="neighborhood-font">{this.props.walkScores.walkScore} :  {this.props.walkScores.description}</h3>
                     }
                   </div>
                 </div>
@@ -175,7 +175,8 @@ function mapStateToProps(state) {
 //Whatever is returned here will show up as props inside of BookList Container
   return {
     activeNeighborhood: state.activeNeighborhood,
-    neighborhoods: state.neighborhoods
+    neighborhoods: state.neighborhoods,
+    walkScores: state.walkScores
   };
 }
 
