@@ -4,7 +4,8 @@
   "description": "Community",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
   },
   "repository": {
     "type": "git",

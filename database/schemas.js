@@ -13,7 +13,7 @@ let DB_URL = "";
 // const db = new Sequelize(DB_URL + '?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory');
 
 // use for local dev
-var db = new Sequelize("postgres://vroyfinw:vAH0MYCLUZppwZIGRi1bGZ1TbxIAsfP-@babar.elephantsql.com:5432/vroyfinw", {
+var db = new Sequelize("postgres://skmmagucfbqhlq:e438af7378349f775519a13e692c6fa52b76d7d55a314626f812009c64a98247@ec2-174-129-41-23.compute-1.amazonaws.com:5432/d1cppdr8vn1427", {
   dialect: "postgres"
 });
 
