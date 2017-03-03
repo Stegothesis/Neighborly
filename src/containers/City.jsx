@@ -42,7 +42,6 @@ export class City extends Component {
         lng: mappedData[0].longitude
       }
       that.props.fetchNeighborhoodData(mappedData);
-      console.log('City Component Mounted', defaultCoordinates);
       that.props.sendDefaultCoordinates(defaultCoordinates);
     });
   }
@@ -52,30 +51,11 @@ export class City extends Component {
       return (
         <li className="btn btn-xs btn-primary" key={neighborhood.name}
         onClick={ () => {
+          console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
           this.props.selectNeighborhood(neighborhood);
-          this.props.params.latitude = neighborhood.latitude;
-          this.props.params.longitude = neighborhood.longitude;
-          console.log('PROPS PARAMS', this.props.params);
-          var context = this;
-          const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.params.latitude + ',' + this.props.params.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
-           axios.get(apiUrl).then(function(geocode) {
-             console.log('geo response', geocode);
-             var addressObj = {};
-             addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
-             context.props.params.address = addressObj.address;
-             console.log('Formatted Address', addressObj.address);
-           });
-
-            var walkScoreUrl = '/api/neighborhoods/walk/' + context.props.params.address + '/' + context.props.params.latitude + '/' + context.props.params.longitude;
-            axios.get(walkScoreUrl).then(function(response) {
-                console.log('walk score', response);
-                var walkScoreObj = {};
-                walkScoreObj.walkScore = response.data.walkscore;
-                walkScoreObj.description = response.data.description;
-                console.log('WALK SCORE OBJECT', walkScoreObj);
-              });
+          global.latitude = neighborhood.latitude;
+          global.longitude = neighborhood.longitude;
             hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
-
           }}
         >{neighborhood.name}</li>
         );
