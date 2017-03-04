@@ -10,6 +10,7 @@ import { selectNeighborhood } from '../actions/action_select_Neighborhood.jsx';
 import { sendZoom } from '../actions/action_zoom.jsx';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import { sendWalkScore } from '../actions/action_walkScore.jsx';
+import { sendZillowDemographics } from '../actions/action_zillowDemographics.jsx';
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -18,8 +19,8 @@ export class Neighborhood extends Component {
   }
 
   componentDidMount() {
-    console.log('PROPS', this.props.params);
     this.callWalkScore();
+    this.callDemographics();
     this.props.sendZoom({zoom: 14});
     if (!this.props.neighborhood) {
       var that = this;
@@ -60,23 +61,35 @@ export class Neighborhood extends Component {
     }
   }
 
+  callDemographics() {
+    const context = this;
+    const demographicsUrl = '/api/neighborhoods/demographics/' + this.props.neighborhood.neighborhood_name + '/' + this.props.neighborhood.city
+    axios.get(demographicsUrl).then(function(demographics) {
+      console.log('callDemographics', demographics);
+      var demographicsObj = {};
+      demographicsObj.income = parseInt(demographics.data[0].values[0].neighborhood[0].value[0]._).toString();
+      demographicsObj.singleMalesPercent = Math.floor(demographics.data[1].values[0].neighborhood[0].value[0]._ * 100) / 100;
+      demographicsObj.singleFemalePercent = Math.floor(demographics.data[2].values[0].neighborhood[0].value[0]._ * 100) / 100;
+      demographicsObj.averageAge = demographics.data[3].values[0].neighborhood[0].value[0];
+      demographicsObj.averageCommuteTime = parseInt(demographics.data[6].values[0].neighborhood[0].value[0]);
+      context.props.sendZillowDemographics(demographicsObj);
+    })
+  }
+
+
   callWalkScore() {
-       console.log('******CALLED WALKSCOREEEE*****', global.latitude);
-        var context = this;
+        const context = this;
         const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + global.latitude + ',' + global.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
         axios.get(apiUrl).then(function(geocode) {
-          console.log('geo response', geocode);
-          var addressObj = {};
+          let addressObj = {};
           if (geocode.data.results[0]) {
           addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
             global.address = addressObj.address;
-            var walkScoreUrl = '/api/neighborhoods/walk/' + global.address + '/' + global.latitude + '/' + global.longitude;
+            let walkScoreUrl = '/api/neighborhoods/walk/' + global.address + '/' + global.latitude + '/' + global.longitude;
               axios.get(walkScoreUrl).then(function(response) {
-                console.log('walk score', response);
-                var walkScoreObj = {};
+                let walkScoreObj = {};
                 walkScoreObj.walkScore = response.data.walkscore;
                 walkScoreObj.description = response.data.description;
-                console.log('WALK SCORE OBJECT', walkScoreObj);
                 context.props.sendWalkScore(walkScoreObj);
               });
             }
@@ -101,7 +114,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom }, dispatch);
+  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
