@@ -19,3 +19,58 @@
     margin-top: 0px;
     margin-bottom: 50px;
 }
+
+/*neighborhood reviews */
+
+.reviews-heading {
+  text-align: center;
+}
+
+.review-container {
+  border: 1px solid grey;
+  margin-bottom: 18px;
+}
+
+.category-review {
+  font-size: 12px;
+}
+
+.review-body {
+  display: flex;
+  padding: 15px;
+}
+
+.review-text {
+  margin-left: 35px;
+}
+
+.vote_count {
+  display: flex;
+  align-items: center;
+}
+
+.review-header {
+  background-color: #C52D2F;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thumbdown-button, .thumbup-button {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.thumbup-button {
+  margin-left: 7px;
+  color: green;
+}
+
+.thumbdown-button {
+  color: #C52D2F;
+}
+
+.review-votes {
+  display: flex;
+}

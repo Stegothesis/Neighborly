@@ -45,27 +45,33 @@ export class ReviewMap extends Component {
         review1.vote_count < review2.vote_count
       ).map((review) => {
         return (
-          <div className="panel panel-default">
-            <div className="panel-heading">User's Review</div>
-            <div className="panel-body">
-              {review.stars_overall ? (<div className="stars_overall"> Overall Rating: {review.stars_overall}</div>) : null}
-              {review.kid_friendly ? (<div className="kid_friendly"> Kid Friendly: {review.kid_friendly}</div>) : null}
-              {review.retirees ? (<div className="retirees"> Retiree Friendly: {review.retirees}</div>) : null}
-              {review.sense_of_community ? (<div className="sense_of_community"> Sense of Community: {review.sense_of_community}</div>
-    ) : null}
-              {review.singles_friendly ? (<div className="singles_friendly"> Single Friendly: {review.singles_friendly}</div>) : null}
-              {review.nightlife ? (<div className="nightlife"> Nightlife: {review.nightlife}</div>) : null}
-              {review.entertainment ? (<div className="entertainment"> Entertainment: {review.entertainment}</div>) : null}
-              {review.affordability ? (<div className="affordability"> Affordability: {review.affordability}</div>) : null}
-              {review.amenities ? (<div className="amenities"> Amenities: {review.amenities}</div>) : null}
-              {review.safety ? (<div className="safety"> Safety: {review.safety}</div>) : null}
-              {review.culture_arts ? (<div className="culture_arts"> Culture & Arts: {review.culture_arts}</div>) : null}
-              {review.schools ? (<div className="schools"> Schools: {review.schools}</div>) : null}
-              {review.crime ? (<div className="crime"> Crime: {review.crime}</div>) : null}
-              {review.hipster_rating ? (<div className="hipster_rating"> Hipster: {review.hipster_rating}</div>) : null}
+          <div className="panel transparent-bg review-container">
+            <div className="panel-heading review-header">
+              <div className="review-username">Username</div>
+              {review.stars_overall ? (<div className="stars_overall"> Overall: {review.stars_overall}/5</div>) : null}
+              <Votes vote_count={review.vote_count} token={this.props.user.token} reviewId={review.id}/>
             </div>
-            <div className="panel-body"> This neighbor said: {review.text}</div>
-          <Votes vote_count={review.vote_count} token={this.props.user.token} reviewId={review.id}/>
+            <div className="panel-body review-body">
+              <div className="review-categories">
+                <div className="category-head">Categories:</div>
+                {review.kid_friendly ? (<div className="kid_friendly category-review"> Kids: {review.kid_friendly}/5</div>) : null}
+                {review.retirees ? (<div className="retirees category-review"> Retirees: {review.retirees}/5</div>) : null}
+                {review.sense_of_community ? (<div className="sense_of_community category-review"> Community: {review.sense_of_community}/5</div>) : null}
+                {review.singles_friendly ? (<div className="singles_friendly category-review"> Singles: {review.singles_friendly}/5</div>) : null}
+                {review.nightlife ? (<div className="nightlife category-review"> Nightlife: {review.nightlife}/5</div>) : null}
+                {review.entertainment ? (<div className="entertainment category-review"> Entertainment: {review.entertainment}/5</div>) : null}
+                {review.affordability ? (<div className="affordability category-review"> Affordability: {review.affordability}/5</div>) : null}
+                {review.amenities ? (<div className="amenities category-review"> Amenities: {review.amenities}/5</div>) : null}
+                {review.safety ? (<div className="safety category-review"> Safety: {review.safety}/5</div>) : null}
+                {review.culture_arts ? (<div className="culture_arts category-review"> Culture & Arts: {review.culture_arts}/5</div>) : null}
+                {review.schools ? (<div className="schools category-review"> Schools: {review.schools}/5</div>) : null}
+                {review.crime ? (<div className="crime category-review"> Crime: {review.crime}/5</div>) : null}
+                {review.hipster_rating ? (<div className="hipster_rating category-review"> Hipster: {review.hipster_rating}/5</div>) : null}
+              </div>
+              <div className="review-text">
+                <div>{review.text}</div>
+              </div>
+            </div>
           </div>
         );
       });
@@ -75,9 +81,19 @@ export class ReviewMap extends Component {
 
   render() {
     return (
-        <ul className="list-item col-sm-4">
-          {this.renderList()}
-        </ul>
+        <section class="features transparent-bg">
+          <div className="container">
+            <div>
+              <h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>
+
+              <div className="row">
+                <div className="features">
+                  {this.renderList()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       );
   }
 }
