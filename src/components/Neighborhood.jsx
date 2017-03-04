@@ -68,8 +68,8 @@ export class Neighborhood extends Component {
       console.log('callDemographics', demographics);
       var demographicsObj = {};
       demographicsObj.income = parseInt(demographics.data[0].values[0].neighborhood[0].value[0]._).toString();
-      demographicsObj.singleMalesPercent = Math.floor(demographics.data[1].values[0].neighborhood[0].value[0]._ * 100) / 100;
-      demographicsObj.singleFemalePercent = Math.floor(demographics.data[2].values[0].neighborhood[0].value[0]._ * 100) / 100;
+      demographicsObj.singleMalesPercent = Math.floor(demographics.data[1].values[0].neighborhood[0].value[0]._ * 100);
+      demographicsObj.singleFemalePercent = Math.floor(demographics.data[2].values[0].neighborhood[0].value[0]._ * 100);
       demographicsObj.averageAge = demographics.data[3].values[0].neighborhood[0].value[0];
       demographicsObj.averageCommuteTime = parseInt(demographics.data[6].values[0].neighborhood[0].value[0]);
       context.props.sendZillowDemographics(demographicsObj);
