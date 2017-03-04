@@ -7,6 +7,7 @@ import userReducer from './reducer_auth.jsx';
 import defaultCoordinatesReducer from './reducer_defaultCoordinates.jsx';
 import zoomReducer from './reducer_zoom.jsx';
 import walkScoreReducer from './reducer_walkScore.jsx';
+import zillowDemographicsReducer from './reducer_zillowDemographics.jsx';
 
 //Mapping of state
 const rootReducer = combineReducers ({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers ({
   user: userReducer,
   defaultCoordinate: defaultCoordinatesReducer,
   zoomSetting: zoomReducer,
-  walkScores: walkScoreReducer
+  zillowDemographics: zillowDemographicsReducer,
+  walkScores: walkScoreReducer,
 });
 
 export default rootReducer;
