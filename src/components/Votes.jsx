@@ -12,7 +12,7 @@ export default class Votes extends Component {
   postVote(positiveVote) {
     if (!this.props.token) {
       this.setState({
-        feedback: "Please log in to vote on reviews"
+        feedback: "Please log in"
       });
     } else {
     var that = this;
@@ -29,13 +29,13 @@ export default class Votes extends Component {
         success: function(data) {
           console.log("Post vote successful", data);
           that.setState({
-            feedback: "Thanks for your feedback"
+            feedback: "Thanks!"
           })
         },
         error: function (error) {
           console.log("Error: Post vote failed", error);
           that.setState({
-            feedback: "You've already voted on this review!"
+            feedback: "Already voted on this review"
           })
         },
         contentType: 'application/json',
@@ -45,12 +45,16 @@ export default class Votes extends Component {
   }
 
   render() {
-    var feedback = this.state.feedback || null
+    var feedback = this.state.feedback ? (<div className="modal-fade">{this.state.feedback}</div>) : null
     return (
-      <div>
-        <div className="vote_count">Vote Count: {this.props.vote_count}</div>
-        <button onClick={()=>this.postVote(true)}>+</button>
-        <button onClick={()=>this.postVote(false)}>-</button>
+      <div className="review-votes">
+        <div className="vote_count">Helpfulness: {this.props.vote_count}</div>
+        <button className="thumbup-button" onClick={()=>this.postVote(true)}>
+          <i className="fa fa-thumbs-up"></i>
+        </button>
+        <button className="thumbdown-button" onClick={()=>this.postVote(false)}>
+          <i className="fa fa-thumbs-down"></i>
+        </button>
         {feedback}
       </div>
       );

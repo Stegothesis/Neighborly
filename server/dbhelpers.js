@@ -113,7 +113,6 @@ exports.addVote = function(positiveVote, reviewId, userId, callback) {
     }
   })
   .spread(function(vote, created) {
-    // if (created) {
       db.Review.findById(reviewId)
       .then(function(review) {
         var voteVal;
@@ -124,9 +123,6 @@ exports.addVote = function(positiveVote, reviewId, userId, callback) {
           callback(created);
         })
       })
-    // } else {
-    //   callback(created);
-    // }
   });
 }
 
