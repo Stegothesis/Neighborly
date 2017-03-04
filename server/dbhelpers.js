@@ -105,3 +105,28 @@ exports.getNeighborhoodData = function(query, callback) {
   });
 };
 
+exports.addVote = function(positiveVote, reviewId, userId, callback) {
+  db.Vote.findOrCreate({
+    where: {
+      reviewId: reviewId,
+      userId: userId
+    }
+  })
+  .spread(function(vote, created) {
+    // if (created) {
+      db.Review.findById(reviewId)
+      .then(function(review) {
+        var voteVal;
+        positiveVote ? voteVal = 1 : voteVal = -1;
+        review.updateAttributes({
+          vote_count: review.vote_count + voteVal
+        }, ['vote_count']).then(function() {
+          callback(created);
+        })
+      })
+    // } else {
+    //   callback(created);
+    // }
+  });
+}
+
