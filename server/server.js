@@ -83,6 +83,19 @@ app.get('/api/neighborhoods/searchbycity/:city/:state', function(req, res) {
   });
 });
 
+app.get('/api/neighborhoods/demographics/:neighborhood/:city', function(req, res) {
+  var neighborhood = req.params.neighborhood;
+  var city = req.params.city;
+  apiHelpers.getZillowDemographics(neighborhood, city, function(err, demographics) {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      console.log('DEMOGRAPHICS RETURNED', demographics);
+      res.json(demographics);
+    }
+  });
+});
+
 // Example usage:
 // curl localhost:3001/api/walk/2025%201st%20Avenue%20Suite%20500,%20Seattle,%20WA%2098121 | json-prettify | less
 app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, res) {
