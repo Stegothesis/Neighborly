@@ -146,11 +146,11 @@ app.post('/api/votes', authenticate, function(req,res) {
   dbHelpers.createUser(user, function(user, created) {
     console.log('what is user???????', user);
     dbHelpers.addVote(req.body.positiveVote, req.body.reviewId, user.dataValues.id, function(created) {
-      // if (created) {
+      if (created) {
         res.status(204).send('Vote added');
-      // } else {
-      //   res.send('You have already voted on this review');
-      // }
+      } else {
+        res.send('You have already voted on this review');
+      }
     })
   })
 });
