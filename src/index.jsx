@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Link, Router, Route, hashHistory, Redirect, IndexRedirect } from 'react-router';
-import App from './components/App.jsx'
-import SearchBar from './containers/SearchBar.jsx'
-import City from './containers/City.jsx'
-import Neighborhood from './components/Neighborhood.jsx'
-import Rate from './components/Rate.jsx'
-import User from './components/User.jsx'
-import makeStore from './store.jsx'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-redux'
-import reducers from './reducers/index.jsx'
+import App from './components/App.jsx';
+import SearchBar from './containers/SearchBar.jsx';
+import City from './containers/City.jsx';
+import Neighborhood from './components/Neighborhood.jsx';
+import makeStore from './store.jsx';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers/index.jsx';
 import { createStore, applyMiddleware } from 'redux';
 
 const store = makeStore(reducers);
@@ -19,7 +17,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 //Get app id from static html page
 const app = document.getElementById('app');
 
- ReactDOM.render(
+ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
@@ -30,7 +28,6 @@ const app = document.getElementById('app');
       </Route>
     </Router>
   </Provider>
-
-  , document.getElementById('app'));
+, document.getElementById('app'));
 
 

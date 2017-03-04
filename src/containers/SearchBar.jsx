@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import City from './City.jsx';
 import { hashHistory } from 'react-router';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
 import GoogleMap from './GoogleMap.jsx';
+import Team from '../components/Team.jsx';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -36,16 +37,16 @@ export default class SearchBar extends Component {
   render() {
     var divStyle1 = {
       backgroundImage: 'url(images/slider/bg1.jpg)'
-    }
+    };
     var divStyle2 = {
       backgroundImage: 'url(images/slider/bg2.jpg)'
-    }
+    };
     var divStyle3 = {
       backgroundImage: 'url(images/slider/bg3.jpg)'
-    }
+    };
 
     return (
-
+    <div>
       <section id="main-slider" className="no-margin">
         <div className="carousel slide">
             <ol className="carousel-indicators">
@@ -167,7 +168,14 @@ export default class SearchBar extends Component {
         </a>
     </section>
 
+          <section id="bottom">
+          <div className="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div className="row"></div>
+          </div>
+        </section>
 
+        <Team />
+  </div>
 
     );
   }
