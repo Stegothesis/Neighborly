@@ -68,7 +68,19 @@ export class City extends Component {
         <div className="widget tags">
           <ul className="tag-cloud">
             <h2>After entering the city and state, click on a neighborhood to see its information below.</h2>
-            {this.renderList()}
+            {this.props.neighborhoods.map((neighborhood) => {
+              return (
+              <li className="btn btn-xs btn-primary" key={neighborhood.name}
+              onClick={ () => {
+              console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
+              this.props.selectNeighborhood(neighborhood);
+              global.latitude = neighborhood.latitude;
+              global.longitude = neighborhood.longitude;
+                hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
+              }}
+            >{neighborhood.name}</li>
+            );
+           })}
           </ul>
         <GoogleMap  />
         </div>

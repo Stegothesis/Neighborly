@@ -24,7 +24,7 @@ class NeighborhoodDetail extends Component {
         <section id="feature" className="transparent-bg">
           <div className="container">
             <div className="center wow fadeInDown">
-              <h1 className="neighborhood-font">Details for: {this.props.activeNeighborhood.name}</h1>
+              <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
 
               <div className="row">
                 <div className="features">
@@ -41,7 +41,7 @@ class NeighborhoodDetail extends Component {
                     <div className="feature-wrap">
                       <i className="fa fa-home"></i>
                       <p className="neighborhood-header">Average Home Price</p>
-                      <h3 className="neighborhood-font">{this.props.activeNeighborhood.homePrice}</h3>
+                      <h3 className="neighborhood-font">${this.props.activeNeighborhood.homePrice}</h3>
                     </div>
                   </div>
 
@@ -50,10 +50,61 @@ class NeighborhoodDetail extends Component {
                       <i className="fa fa-blind"></i>
                       <p className="neighborhood-header">Walkability</p>
                       {this.props.walkScores &&
-                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore} :  {this.props.walkScores.description}</h3>
+                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore}%:  {this.props.walkScores.description}</h3>
                       }
                     </div>
                   </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-credit-card"></i>
+                      <p className="neighborhood-header">Average Income</p>
+                      {this.props.zillowDemographics &&
+                      <h3 className="neighborhood-font">${this.props.zillowDemographics.income}</h3>
+                      }
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-hourglass"></i>
+                      <p className="neighborhood-header">Average Age</p>
+                      {this.props.zillowDemographics &&
+                      <h3 className="neighborhood-font">{this.props.zillowDemographics.averageAge}</h3>
+                      }
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-car"></i>
+                      <p className="neighborhood-header">Average Commute Time</p>
+                      {this.props.zillowDemographics &&
+                      <h3 className="neighborhood-font">{this.props.zillowDemographics.averageCommuteTime} min</h3>
+                      }
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-mars"></i>
+                      <p className="neighborhood-header">Single Males</p>
+                      {this.props.zillowDemographics &&
+                      <h3 className="neighborhood-font">{this.props.zillowDemographics.singleMalesPercent}%</h3>
+                      }
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-venus"></i>
+                      <p className="neighborhood-header">Single Females</p>
+                      {this.props.zillowDemographics &&
+                      <h3 className="neighborhood-font">{this.props.zillowDemographics.singleFemalePercent}%</h3>
+                      }
+                    </div>
+                  </div>
+
 
                   <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                     <div className="feature-wrap">
@@ -172,11 +223,11 @@ class NeighborhoodDetail extends Component {
 }
 
 function mapStateToProps(state) {
-//Whatever is returned here will show up as props inside of BookList Container
   return {
     activeNeighborhood: state.activeNeighborhood,
     neighborhoods: state.neighborhoods,
-    walkScores: state.walkScores
+    walkScores: state.walkScore,
+    zillowDemographics: state.zillowDemographics
   };
 }
 

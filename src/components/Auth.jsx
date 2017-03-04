@@ -84,6 +84,7 @@ logout () {
   localStorage.removeItem('token');
   localStorage.removeItem('profile');
   this.props.updateLoggedInStatus({});
+  $window.location.href = '/#';
 }
 
   render() {
