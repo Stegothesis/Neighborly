@@ -34,8 +34,14 @@ export default class SearchBar extends Component {
   }
 
   render() {
-    var divStyle = {
+    var divStyle1 = {
       backgroundImage: 'url(images/slider/bg1.jpg)'
+    }
+    var divStyle2 = {
+      backgroundImage: 'url(images/slider/bg2.jpg)'
+    }
+    var divStyle3 = {
+      backgroundImage: 'url(images/slider/bg3.jpg)'
     }
 
     return (
@@ -49,18 +55,86 @@ export default class SearchBar extends Component {
             </ol>
             <div className="carousel-inner">
 
-                <div className="item active" style={divStyle}>
+                <div className="item active" style={divStyle1}>
                     <div className="container">
                         <div className="row slide-margin">
 
                           <div className="center wow fadeInDown">
                             <h1 id="header-font">Neighborly</h1>
-                            <p className="lead">Find your next neighborhood</p>
+                            <p className="neighborhood-header">Find your next neighborhood</p>
                           </div>
 
-                          <div>
+                          <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <p className="lead">Please enter a city and state to see its neighborhood details.</p>
+                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
+                              <input
+                                placeholder="Choose a city: "
+                                className="form-control"
+                                value={this.state.city}
+                                onChange={this.onCityInputChange}
+                              />
+                              <input
+                                placeholder="Choose a state"
+                                className="form-control"
+                                value={this.state.state}
+                                onChange={this.onStateInputChange}
+                              />
+                              <span className="input-group-btn">
+                                  <button type="submit" className="btn btn-primary">Submit</button>
+                              </span>
+                            </form>
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div className="item" style={divStyle2}>
+                    <div className="container">
+                        <div className="row slide-margin">
+
+                          <div className="center wow fadeInDown">
+                            <h1 id="header-font">Neighborly</h1>
+                            <p className="neighborhood-header">Find your next neighborhood</p>
+                          </div>
+
+                          <div className="center">
+                            <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
+                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
+                              <input
+                                placeholder="Choose a city: "
+                                className="form-control"
+                                value={this.state.city}
+                                onChange={this.onCityInputChange}
+                              />
+                              <input
+                                placeholder="Choose a state"
+                                className="form-control"
+                                value={this.state.state}
+                                onChange={this.onStateInputChange}
+                              />
+                              <span className="input-group-btn">
+                                  <button type="submit" className="btn btn-primary">Submit</button>
+                              </span>
+                            </form>
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div className="item" style={divStyle3}>
+                    <div className="container">
+                        <div className="row slide-margin">
+
+                          <div className="center wow fadeInDown">
+                            <h1 id="header-font">Neighborly</h1>
+                            <p className="neighborhood-header">Find your next neighborhood</p>
+                          </div>
+
+                          <div className="center">
+                            <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
+                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
                                 placeholder="Choose a city: "
                                 className="form-control"

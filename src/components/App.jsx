@@ -8,14 +8,19 @@ export default class App extends React.Component {
     return (
       <div>
         <Navbar />
+        <section id="bottom">
+          <div className="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div className="row"></div>
+          </div>
+        </section>
 
         <div>
           {this.props.children}
         </div>
 
         <section id="bottom">
-          <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="row"></div>
+          <div className="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div className="row"></div>
           </div>
         </section>
 
