@@ -62,6 +62,10 @@ export class Neighborhood extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.selectNeighborhood(null);
+  }
+
   callDemographics() {
     const context = this;
     const demographicsUrl = '/api/neighborhoods/demographics/' + this.props.neighborhood.neighborhood_name + '/' + this.props.neighborhood.city
