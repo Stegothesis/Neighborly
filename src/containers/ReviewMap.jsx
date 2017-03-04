@@ -38,6 +38,10 @@ export class ReviewMap extends Component {
     this.loadReviewsFromServer();
   }
 
+  componentWillUnmount() {
+    this.props.getReview(null);
+  }
+
   renderList() {
 
     if (this.props.reviews) {
