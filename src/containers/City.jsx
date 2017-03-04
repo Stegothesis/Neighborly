@@ -23,7 +23,6 @@ export class City extends Component {
     const url = '/api/neighborhoods/searchbycity/' + this.props.params.city + '/' + this.props.params.state;
     var that = this;
     axios.get(url).then(function(response) {
-      console.log('whats response', response);
       var mappedData = response.data.map(function(hood) {
         console.log('HOOD', hood);
         hood.name = hood.name[0];
@@ -34,7 +33,6 @@ export class City extends Component {
         } else {
           hood.homePrice = hood.zindex[0]._ + " " + hood.zindex[0].$.currency;
         }
-        console.log('mapped hooood----', hood);
         return hood;
       });
       let defaultCoordinates = {

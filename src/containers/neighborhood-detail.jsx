@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReviewSubmit from './ReviewSubmit.jsx';
-import GoogleMap from './GoogleMap.jsx'
+import GoogleMap from './GoogleMap.jsx';
 
 class NeighborhoodDetail extends Component {
   constructor(props) {
@@ -9,9 +9,6 @@ class NeighborhoodDetail extends Component {
 
   }
 
-  componentDidMount() {
-    console.log('Neighborhood Detail Component Mounted');
-  }
 
   render() {
 
@@ -50,7 +47,7 @@ class NeighborhoodDetail extends Component {
                       <i className="fa fa-blind"></i>
                       <p className="neighborhood-header">Walkability</p>
                       {this.props.walkScores &&
-                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore}%:  {this.props.walkScores.description}</h3>
+                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore}% - {this.props.walkScores.description}</h3>
                       }
                     </div>
                   </div>
@@ -226,10 +223,9 @@ function mapStateToProps(state) {
   return {
     activeNeighborhood: state.activeNeighborhood,
     neighborhoods: state.neighborhoods,
-    walkScores: state.walkScore,
+    walkScores: state.walkScores,
     zillowDemographics: state.zillowDemographics
   };
 }
-
 
 export default connect(mapStateToProps)(NeighborhoodDetail);

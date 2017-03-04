@@ -18,9 +18,10 @@ export class Neighborhood extends Component {
 
   }
 
+
   componentDidMount() {
-    this.callWalkScore();
     this.callDemographics();
+    this.callWalkScore();
     this.props.sendZoom({zoom: 14});
     if (!this.props.neighborhood) {
       var that = this;
@@ -67,33 +68,41 @@ export class Neighborhood extends Component {
     axios.get(demographicsUrl).then(function(demographics) {
       console.log('callDemographics', demographics);
       var demographicsObj = {};
+      if (demographics.data[0].values[0].neighborhood) {
       demographicsObj.income = parseInt(demographics.data[0].values[0].neighborhood[0].value[0]._).toString();
       demographicsObj.singleMalesPercent = Math.floor(demographics.data[1].values[0].neighborhood[0].value[0]._ * 100);
       demographicsObj.singleFemalePercent = Math.floor(demographics.data[2].values[0].neighborhood[0].value[0]._ * 100);
       demographicsObj.averageAge = demographics.data[3].values[0].neighborhood[0].value[0];
       demographicsObj.averageCommuteTime = parseInt(demographics.data[6].values[0].neighborhood[0].value[0]);
+      } else {
+      demographicsObj.income = parseInt(demographics.data[0].values[0].city[0].value[0]._).toString();
+      demographicsObj.singleMalesPercent = Math.floor(demographics.data[1].values[0].city[0].value[0]._ * 100);
+      demographicsObj.singleFemalePercent = Math.floor(demographics.data[2].values[0].city[0].value[0]._ * 100);
+      demographicsObj.averageAge = demographics.data[3].values[0].city[0].value[0];
+      demographicsObj.averageCommuteTime = parseInt(demographics.data[6].values[0].city[0].value[0]);
+      }
       context.props.sendZillowDemographics(demographicsObj);
     })
   }
 
-
   callWalkScore() {
-        const context = this;
-        const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + global.latitude + ',' + global.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
-        axios.get(apiUrl).then(function(geocode) {
-          let addressObj = {};
-          if (geocode.data.results[0]) {
-          addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
-            global.address = addressObj.address;
-            let walkScoreUrl = '/api/neighborhoods/walk/' + global.address + '/' + global.latitude + '/' + global.longitude;
-              axios.get(walkScoreUrl).then(function(response) {
-                let walkScoreObj = {};
-                walkScoreObj.walkScore = response.data.walkscore;
-                walkScoreObj.description = response.data.description;
-                context.props.sendWalkScore(walkScoreObj);
-              });
-            }
-           });
+  console.log('CALL WALKSCORE');
+    const context = this;
+    const apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + global.latitude + ',' + global.longitude + '&key=' + 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+    axios.get(apiUrl).then(function(geocode) {
+    let addressObj = {};
+      if (geocode.data.results[0]) {
+        addressObj.address = geocode.data.results[0].address_components[0].short_name + " " + geocode.data.results[0].address_components[1].long_name + " " + geocode.data.results[0].address_components[3].long_name + " " + geocode.data.results[0].address_components[5].short_name + " " + geocode.data.results[0].address_components[7].long_name;
+          global.address = addressObj.address;
+          let walkScoreUrl = '/api/neighborhoods/walk/' + global.address + '/' + global.latitude + '/' + global.longitude;
+            axios.get(walkScoreUrl).then(function(response) {
+              let walkScoreObj = {};
+              walkScoreObj.walkScore = response.data.walkscore;
+              walkScoreObj.description = response.data.description;
+              context.props.sendWalkScore(walkScoreObj);
+          });
+      }
+    });
   }
 
 render() {

@@ -3,7 +3,6 @@ import { GET_REVIEWS } from '../constants/actionTypes.jsx'
 import $ from 'jquery'
 
 export const postReview = (review, neighborhood, token) => (dispatch) =>
-
     $.ajax({
       type: "POST",
       url: '/api/neighborhoods/reviews',
