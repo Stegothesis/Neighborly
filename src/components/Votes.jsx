@@ -49,8 +49,8 @@ export default class Votes extends Component {
     return (
       <div>
         <div className="vote_count">Vote Count: {this.props.vote_count}</div>
-        <button onClick={()=>this.postVote(true)}>+</button>
-        <button onClick={()=>this.postVote(false)}>-</button>
+        <button className=".btn-warning" onClick={()=>this.postVote(true)}>+</button>
+        <button className=".btn-success" onClick={()=>this.postVote(false)}>-</button>
         {feedback}
       </div>
       );
