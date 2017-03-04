@@ -113,7 +113,7 @@ exports.addVote = function(positiveVote, reviewId, userId, callback) {
     }
   })
   .spread(function(vote, created) {
-    if (created) {
+    // if (created) {
       db.Review.findById(reviewId)
       .then(function(review) {
         var voteVal;
@@ -121,13 +121,12 @@ exports.addVote = function(positiveVote, reviewId, userId, callback) {
         review.updateAttributes({
           vote_count: review.vote_count + voteVal
         }, ['vote_count']).then(function() {
-          console.log('updated count success------');
           callback(created);
         })
       })
-    } else {
-      callback(created);
-    }
+    // } else {
+    //   callback(created);
+    // }
   });
 }
 

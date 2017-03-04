@@ -5,7 +5,7 @@ import { getReview } from '../actions/index.jsx'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import $ from 'jquery'
-
+import Votes from '../components/Votes.jsx'
 
 /* Container component handling states, event handlers, and passing down props */
 
@@ -13,7 +13,6 @@ export class ReviewMap extends Component {
 
   constructor(props) {
     super(props);
-
   }
 
   loadReviewsFromServer() {
@@ -39,34 +38,11 @@ export class ReviewMap extends Component {
     this.loadReviewsFromServer();
   }
 
-  postVote(positiveVote, reviewId) {
-    console.log(positiveVote, reviewId);
-    var that = this;
-    $.ajax({
-      type: "POST",
-      url: '/api/votes',
-      data: JSON.stringify({
-        positiveVote: positiveVote,
-        reviewId: reviewId
-      }),
-      headers: {
-        Authorization: "Bearer " + this.props.user.token
-      },
-      success: function(data) {
-        console.log("Get review successful", data);
-        that.loadReviewsFromServer();
-      },
-      error: function (error) {
-        console.log("Error: Post vote failed", error);
-      },
-      contentType: 'application/json',
-      dataType: 'json'
-    });
-  }
-
   renderList() {
   if (this.props.reviews) {
-    return this.props.reviews.map((review) => {
+    return this.props.reviews.sort((review1, review2) =>
+      review1.vote_count > review2.vote_count
+    ).map((review) => {
       return (
         <div className="panel panel-default">
         <div className="panel-body"> This neighbor said: {review.text}</div>
@@ -84,10 +60,7 @@ export class ReviewMap extends Component {
         <div className="schools"> Schools: {review.schools}</div>
         <div className="crime"> Crime: {review.crime}</div>
         <div className="hipster_rating"> Hipster: {review.hipster_rating}</div>
-        <div className="vote_count"> Vote Count: {review.vote_count}
-          <button onClick={()=>this.postVote(true,review.id)}>Upvote</button>
-          <button onClick={()=>this.postVote(false,review.id)}>Downvote</button>
-        </div>
+        <Votes vote_count={review.vote_count} token={this.props.user.token} reviewId={review.id}/>
         </div>
       );
     });
