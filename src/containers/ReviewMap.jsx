@@ -15,29 +15,6 @@ export class ReviewMap extends Component {
     super(props);
   }
 
-  loadReviewsFromServer() {
-    var that = this;
-    $.ajax({
-      type: "GET",
-      url: '/api/neighborhoods/reviews/' + that.props.activeNeighborhood.name + '/' + that.props.activeNeighborhood.city + '/' + that.props.activeNeighborhood.state,
-      success: function(data) {
-        console.log("Get review successful", data);
-        that.props.getReview(data);
-      },
-      error: function (error) {
-        console.log("Error: Get review failed", error);
-      },
-      contentType: 'application/json',
-      Accept: 'application/json',
-      dataType: 'json'
-    });
-  }
-
-  componentWillMount() {
-    console.log('ReviewMap component mounted');
-    this.loadReviewsFromServer();
-  }
-
   componentWillUnmount() {
     this.props.getReview(null);
   }
@@ -88,8 +65,7 @@ export class ReviewMap extends Component {
         <section class="features transparent-bg">
           <div className="container">
             <div>
-              <h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>
-
+              {this.props.activeNeighborhood ? (<h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>) : null}
               <div className="row">
                 <div className="features">
                   {this.renderList()}
@@ -105,7 +81,6 @@ export class ReviewMap extends Component {
 
 function mapStateToProps(state) {
   return {
-    reviews: state.reviews,
     activeNeighborhood: state.activeNeighborhood,
     user: state.user
   };
