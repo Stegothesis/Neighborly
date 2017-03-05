@@ -11,6 +11,7 @@ import { sendZoom } from '../actions/action_zoom.jsx';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import { sendWalkScore } from '../actions/action_walkScore.jsx';
 import { sendZillowDemographics } from '../actions/action_zillowDemographics.jsx';
+import { getReview } from '../actions/index.jsx'
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -18,11 +19,7 @@ export class Neighborhood extends Component {
 
   }
 
-
   componentDidMount() {
-    this.callDemographics();
-    this.callWalkScore();
-    this.props.sendZoom({zoom: 14});
     if (!this.props.neighborhood) {
       var that = this;
       const url = '/api/neighborhoods/searchbycity/' + that.props.params.city + '/' + that.props.params.state;
@@ -36,34 +33,30 @@ export class Neighborhood extends Component {
         var mappedData = response.data.filter(function(hood) {
           return hood.name[0] === that.props.params.hood;
         }).map(function(hood) {
-          let homePrice;
-          if (hood.zindex === undefined) {
-            return {
-              name: hood.name[0],
-              city: parseUrlCity(hood.url[0]),
-              state: parseUrlState(hood.url[0]),
-              latitude: hood.latitude[0],
-              longitude: hood.longitude[0],
-              homePrice: "Housing Price Not Available"
+            hood.name = hood.name[0];
+            hood.latitude = hood.latitude[0];
+            hood.longitude = hood.longitude[0];
+            if(!hood.zindex) {
+              hood.homePrice = "Housing Price Not Available";
+            } else {
+              hood.homePrice = hood.zindex[0]._ + " " + hood.zindex[0].$.currency;
             }
-          } else {
-              return {
-                name: hood.name[0],
-                city: parseUrlCity(hood.url[0]),
-                state: parseUrlState(hood.url[0]),
-                latitude: hood.latitude[0],
-                longitude: hood.longitude[0],
-                homePrice: hood.zindex[0]._ + " " + hood.zindex[0].$.currency
-              }
-            }
+            return hood;
           });
-          that.props.selectNeighborhood(mappedData[0]);
-        });
+        that.props.selectNeighborhood(mappedData[0]);
+        that.props.sendZoom({zoom: 14});
+        global.latitude = mappedData[0].latitude;
+        global.longitude = mappedData[0].longitude;
+        that.callDemographics();
+        that.callWalkScore();
+        that.loadReviewsFromServer();
+      });
+    } else {
+        this.props.sendZoom({zoom: 14});
+        this.callDemographics();
+        this.callWalkScore();
+        this.loadReviewsFromServer();
     }
-  }
-
-  componentWillUnmount() {
-    this.props.selectNeighborhood(null);
   }
 
   callDemographics() {
@@ -109,11 +102,29 @@ export class Neighborhood extends Component {
     });
   }
 
+  loadReviewsFromServer() {
+    var that = this;
+    $.ajax({
+      type: "GET",
+      url: '/api/neighborhoods/reviews/' + that.props.neighborhood.name + '/' + that.props.neighborhood.city + '/' + that.props.neighborhood.state,
+      success: function(data) {
+        console.log("Get review successful", data);
+        that.props.getReview(data);
+      },
+      error: function (error) {
+        console.log("Error: Get review failed", error);
+      },
+      contentType: 'application/json',
+      Accept: 'application/json',
+      dataType: 'json'
+    });
+  }
+
 render() {
   return (
     <div>
       <NeighborhoodDetail />
-      <ReviewMap />
+      <ReviewMap reviews={this.props.reviews}/>
     </div>
   );
  }
@@ -122,12 +133,13 @@ render() {
 function mapStateToProps(state) {
   return {
     neighborhood: state.activeNeighborhood,
-    neighborhoods: state.neighborhoods
+    neighborhoods: state.neighborhoods,
+    reviews: state.reviews
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics }, dispatch);
+  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
