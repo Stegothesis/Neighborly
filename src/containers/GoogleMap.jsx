@@ -17,13 +17,20 @@ export class GoogleMap extends Component {
 
   componentDidMount() {
     console.log('Google Maps Rendered');
-    new google.maps.Map(this.refs.map, {
+    var map = new google.maps.Map(this.refs.map, {
       zoom: this.state.zoomProperty,
       center: {
         lat: this.state.setCoordinates.lat,
         lng: this.state.setCoordinates.lng
       }
     });
+
+    var marker = new google.maps.Marker({
+      position: this.state.setCoordinates,
+      map: map,
+      title: 'Hello World!'
+    })
+
     console.log('Set Coordinates', this.state.setCoordinates);
     console.log('Set Zoom', this.state.zoomProperty);
   }
