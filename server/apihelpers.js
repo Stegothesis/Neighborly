@@ -15,12 +15,16 @@ exports.getZillowHoods = function(city, state, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        console.log('what do we get back from zillow?', obj);
+        console.log('what do we get back from zillow?', JSON.stringify(obj));
         var response = obj['RegionChildren:regionchildren'].response;
         if (response) {
-          callback(null, response[0].list[0].region);
+          if (response[0].list[0].region) {
+            callback(null, response[0].list[0].region);
+          } else {
+            callback(new Error("No neighborhoods found"), null);
+          }
         } else {
-          callback(null, "no neighborhoods found");
+          callback(new Error("City not found"), null);
         }
       });
     }
@@ -39,9 +43,13 @@ exports.getZillowDemographics = function(neighborhood, city, callback) {
         console.log('***ZILLOW DEMOGRAPHICS***', obj);
         var response = obj['Demographics:demographics'].response;
         if (response) {
-          callback(null, obj['Demographics:demographics'].response[0].pages[0].page[2].tables[0].table[0].data[0].attribute);
+          if (obj['Demographics:demographics'].response[0].pages[0].page[2]) {
+            callback(null, obj['Demographics:demographics'].response[0].pages[0].page[2].tables[0].table[0].data[0].attribute);
+          } else {
+            callback(new Error("Demographics info not found"), null);
+          }
         } else {
-          callback(null, "Call Lmit Exceeded");
+          callback(new Error("Demographics info not found"), null);
         }
       });
     }
@@ -69,7 +77,7 @@ exports.getWalkScore = function(lat, lon, address, callback) {
           if (response) {
             callback(null, response);
           } else {
-            callback(null, "no walkscore found for this neighborhood");
+            callback(new Error("no walkscore found for this neighborhood"), null);
           }
         })
       }
