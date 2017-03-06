@@ -118,6 +118,7 @@ export class Neighborhood extends Component {
       Accept: 'application/json',
       dataType: 'json'
     });
+  }
 
   // callWeather() {
   //   console.log('CALL WEATHER');
@@ -136,6 +137,7 @@ render() {
     </div>
   );
  }
+}
 
 
 function mapStateToProps(state) {
