@@ -118,7 +118,15 @@ export class Neighborhood extends Component {
       Accept: 'application/json',
       dataType: 'json'
     });
-  }
+
+  // callWeather() {
+  //   console.log('CALL WEATHER');
+  //   const context = this;
+  //   const weatherUrl = '/api/neighborhoods/weather/' + this.props.params.city;
+  //   axios.get(weatherUrl).then(function(weather) {
+  //     console.log('WEATHER RETURNED', weather);
+  //   })
+  // }
 
 render() {
   return (
@@ -128,7 +136,7 @@ render() {
     </div>
   );
  }
-}
+
 
 function mapStateToProps(state) {
   return {

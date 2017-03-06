@@ -17,12 +17,11 @@ class NeighborhoodDetail extends Component {
     }
     return (
       <div>
-        <GoogleMap />
         <section id="feature" className="transparent-bg">
           <div className="container">
             <div className="center wow fadeInDown">
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
-
+              <GoogleMap />
               <div className="row">
                 <div className="features">
 
