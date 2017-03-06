@@ -63,9 +63,11 @@ export class City extends Component {
   render() {
     return (
       <div className="container">
+        <h1>Hey There, Neighbor! Welcome to {this.props.params.city}></h1>
         <div className="widget tags">
           <ul className="tag-cloud">
-            <h2>After entering the city and state, click on a neighborhood to see its information below.</h2>
+            <h2>Click on a neighborhood below and check it out!</h2>
+            <GoogleMap  />
             {this.props.neighborhoods.map((neighborhood) => {
               return (
               <li className="btn btn-xs btn-primary" key={neighborhood.name}
@@ -80,7 +82,6 @@ export class City extends Component {
             );
            })}
           </ul>
-        <GoogleMap  />
         </div>
       </div>
     );
