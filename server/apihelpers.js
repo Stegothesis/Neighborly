@@ -15,7 +15,6 @@ exports.getZillowHoods = function(city, state, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        console.log('what do we get back from zillow?', JSON.stringify(obj));
         var response = obj['RegionChildren:regionchildren'].response;
         if (response) {
           if (response[0].list[0].region) {
