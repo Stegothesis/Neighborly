@@ -120,6 +120,15 @@ export class Neighborhood extends Component {
     });
   }
 
+  // callWeather() {
+  //   console.log('CALL WEATHER');
+  //   const context = this;
+  //   const weatherUrl = '/api/neighborhoods/weather/' + this.props.params.city;
+  //   axios.get(weatherUrl).then(function(weather) {
+  //     console.log('WEATHER RETURNED', weather);
+  //   })
+  // }
+
 render() {
   return (
     <div>
@@ -129,6 +138,7 @@ render() {
   );
  }
 }
+
 
 function mapStateToProps(state) {
   return {

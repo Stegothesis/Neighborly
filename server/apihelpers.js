@@ -5,6 +5,7 @@ var request = require('request');
 var zillowApiKey = 'X1-ZWz1fnqmwi7h8r_2qbsp';
 var walkScoreApiKey = 'a00293f0287f26e9b7f3d74b2dfa0a9f';
 var googleMapsApiKey = 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+var openWeatherMapApiKey = 'd096160fdc640cb255f8eb3732177ea8';
 
 exports.getZillowHoods = function(city, state, callback) {
   var options = {
@@ -75,4 +76,19 @@ exports.getWalkScore = function(lat, lon, address, callback) {
       }
     })
 
+}
+
+exports.getWeather = function(city, callback) {
+  let options = {
+    url: 'api.openweathermap.org/data/2.5/weather?q=' + city + '&mode=xml' + '&APPID=' + openWeatherMapApiKey
+  }
+  request(options, function(error, response, body) {
+      if (error) {
+        callback(error, null);
+      } else {
+        parseString(body, function(err, obj) {
+          console.log('WEATHER', obj);
+        })
+      }
+    })
 }
