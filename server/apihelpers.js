@@ -5,6 +5,7 @@ var request = require('request');
 var zillowApiKey = 'X1-ZWz1fnqmwi7h8r_2qbsp';
 var walkScoreApiKey = 'a00293f0287f26e9b7f3d74b2dfa0a9f';
 var googleMapsApiKey = 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+var googlePhotoApiKey = 'AIzaSyDDHE7iN6XLUwF9oLfL3f0cezylS44FgIQ';
 
 exports.getZillowHoods = function(city, state, callback) {
   var options = {
@@ -39,7 +40,7 @@ exports.getZillowDemographics = function(neighborhood, city, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        console.log('***ZILLOW DEMOGRAPHICS***', obj);
+        // console.log('***ZILLOW DEMOGRAPHICS***', obj);
         var response = obj['Demographics:demographics'].response;
         if (response) {
           if (obj['Demographics:demographics'].response[0].pages[0].page[2]) {
@@ -67,7 +68,7 @@ exports.getWalkScore = function(lat, lon, address, callback) {
         callback(error, null);
       } else {
         parseString(body, function(err, obj) {
-          console.log('WALKSCORE', obj);
+          // console.log('WALKSCORE', obj);
           var response = {};
           if (obj.result.walkscore) {
             response.walkscore = obj.result.walkscore[0];
@@ -83,3 +84,34 @@ exports.getWalkScore = function(lat, lon, address, callback) {
     })
 
 }
+
+exports.getGooglePhotos = function (lat, lon, callback) {
+  var options = {
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=500&key=" + googlePhotoApiKey
+    }
+
+    request(options, function(error, response, body) {
+      if (error) {
+        console.log(error);
+        callback(error, null);
+      } else {
+        parseString(body, function(error, obj) {
+          if (error) {
+            console.log(error);
+          } else {
+            var url = [];
+            for (var i = 0; i <= 6; i++) {
+              if (obj.PlaceSearchResponse.result) {
+                url.push("https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[i].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey);
+              }
+            }
+            callback(null, url);
+          }
+        });
+      }
+    });
+};
+
+
+
+
