@@ -96,8 +96,19 @@ app.get('/api/neighborhoods/demographics/:neighborhood/:city', function(req, res
   });
 });
 
-// Example usage:
-// curl localhost:3001/api/walk/2025%201st%20Avenue%20Suite%20500,%20Seattle,%20WA%2098121 | json-prettify | less
+app.get('/api/neighborhoods/amenities/:lat/:lon', function(req, res) {
+  var lat = req.params.lat;
+  var lon = req.params.lon;
+  apiHelpers.getAmenities(lat, lon, function(err, amenities) {
+    if (err) {
+      console.log('ERRORED OUT', err);
+    } else {
+      console.log('AMENITIES', amenities);
+      res.json(amenities);
+    }
+  })
+})
+
 app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, res) {
   let address = req.params.address;
   let lat = req.params.latitude;
@@ -106,7 +117,6 @@ app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, 
     if(err) {
       console.log('ERRORED OUT', err);
     } else {
-      console.log(score);
       res.json(score);
     }
   })
