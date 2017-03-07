@@ -16,7 +16,9 @@ import { getReview } from '../actions/index.jsx'
 export class Neighborhood extends Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      loading: true
+    }
   }
 
   componentDidMount() {
@@ -43,6 +45,7 @@ export class Neighborhood extends Component {
             }
             return hood;
           });
+        that.setState({loading: false});
         that.props.selectNeighborhood(mappedData[0]);
         that.props.sendZoom({zoom: 14});
         global.latitude = mappedData[0].latitude;
@@ -56,6 +59,7 @@ export class Neighborhood extends Component {
         this.callDemographics();
         this.callWalkScore();
         this.loadReviewsFromServer();
+        this.setState({loading: false});
     }
   }
 
@@ -121,13 +125,22 @@ export class Neighborhood extends Component {
   }
 
 render() {
-  return (
-    <div>
-      <NeighborhoodDetail />
-      <ReviewMap reviews={this.props.reviews}/>
-    </div>
-  );
- }
+  if (this.state.loading) {
+    return (
+      <div className="loading-page">
+        <div className="loading-page-text">Finding data on {this.props.params.hood}...</div>
+        <img className="loading-gif" src="images/rolling.gif"></img>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <NeighborhoodDetail />
+        <ReviewMap reviews={this.props.reviews}/>
+      </div>
+    );
+   }
+  }
 }
 
 function mapStateToProps(state) {

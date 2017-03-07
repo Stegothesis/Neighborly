@@ -66,11 +66,12 @@ export class City extends Component {
 
   render() {
     if (this.state.loading) {
-      return(
+      return (
         <div className="loading-page">
           <div className="loading-page-text">Finding neighborhoods in {this.props.params.city}, {this.props.params.state}...</div>
           <img className="loading-gif" src="images/rolling.gif"></img>
-        </div>)
+        </div>
+      );
     } else {
       return (
         <div className="container">
@@ -94,8 +95,9 @@ export class City extends Component {
              })}
             </ul>
           </div>
-        );
-      }
+        </div>
+      );
+    }
   }
 }
 
