@@ -124,7 +124,7 @@ app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, 
 
 app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
   var user = {};
-  user.username = req.user.name;
+  user.username = req.user.username;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
     dbHelpers.addReview(req.body, user.id, function(created) {
@@ -162,12 +162,9 @@ app.get('/api/neighborhoods/data/:neighborhood/:city/:state', function(req, res)
 
 app.post('/api/votes', authenticate, function(req,res) {
   var user = {};
-  console.log(req.body);
-  console.log(req.user);
-  user.username = req.user.name;
+  user.username = req.user.username;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
-    console.log('what is user???????', user);
     dbHelpers.addVote(req.body.positiveVote, req.body.reviewId, user.dataValues.id, function(created) {
       if (created) {
         res.status(204).send('Vote added');
