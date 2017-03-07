@@ -90,7 +90,7 @@ app.get('/api/neighborhoods/demographics/:neighborhood/:city', function(req, res
     if (err) {
       res.sendStatus(404);
     } else {
-      console.log('DEMOGRAPHICS RETURNED', demographics);
+      // console.log('DEMOGRAPHICS RETURNED', demographics);
       res.json(demographics);
     }
   });
@@ -106,8 +106,24 @@ app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, 
     if(err) {
       console.log('ERRORED OUT', err);
     } else {
-      console.log(score);
+      // console.log(score);
       res.json(score);
+    }
+  })
+});
+
+app.get('/api/neighborhoods/googlephoto/:latitude/:longitude', function (req, res) {
+  let lat = req.params.latitude;
+  let lon = req.params.longitude;
+  console.log('lat', lat);
+  console.log('lon', lon);
+
+  apiHelpers.getGooglePhotos(lat, lon, function(err, url) {
+    if(err) {
+      console.log('ERRORED OUT server.js line 121', err);
+    } else {
+      console.log(url, 'this is photo server.jsline 123');
+      res.json(url);
     }
   })
 });
@@ -134,7 +150,7 @@ app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, r
     neighborhood_name: req.params.neighborhood
   }
   dbHelpers.getReviews(query, function(data) {
-    console.log(query);
+    // console.log(query);
     res.json(data);
   })
 });
@@ -152,8 +168,8 @@ app.get('/api/neighborhoods/data/:neighborhood/:city/:state', function(req, res)
 
 app.post('/api/votes', authenticate, function(req,res) {
   var user = {};
-  console.log(req.body);
-  console.log(req.user);
+  // console.log(req.body);
+  // console.log(req.user);
   user.username = req.user.name;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
