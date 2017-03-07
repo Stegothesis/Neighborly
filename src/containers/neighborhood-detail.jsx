@@ -22,6 +22,8 @@ class NeighborhoodDetail extends Component {
             <div className="center wow fadeInDown">
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
               <GoogleMap />
+              <ReviewSubmit />
+
               <div className="row">
                 <div className="features">
 
@@ -209,7 +211,6 @@ class NeighborhoodDetail extends Component {
 
                 </div>
               </div>
-              <ReviewSubmit />
             </div>
           </div>
         </section>
