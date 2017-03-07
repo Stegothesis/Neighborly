@@ -28,7 +28,7 @@ export class ReviewMap extends Component {
         return (
           <div className="panel transparent-bg review-container">
             <div className="panel-heading review-header">
-              <div className="review-username">Username</div>
+              <div className="review-username">{review.user.username}</div>
               {review.stars_overall ? (<div className="stars_overall"> Overall: {review.stars_overall}/5</div>) : null}
               <Votes vote_count={review.vote_count} token={this.props.user.token} reviewId={review.id}/>
             </div>

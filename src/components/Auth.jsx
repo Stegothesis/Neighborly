@@ -17,7 +17,7 @@ export class Auth extends React.Component {
         //redirectUrl: HOST_URL,
         responseType: 'token',
         params: {
-          scope: 'openid name email user_id'
+          scope: 'openid username email user_id'
         },
         redirect: false
       }
