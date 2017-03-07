@@ -16,6 +16,9 @@ import { sendWalkScore } from '../actions/action_walkScore.jsx';
 export class City extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true
+    }
   }
 
   componentDidMount() {
@@ -39,6 +42,7 @@ export class City extends Component {
         lat: mappedData[0].latitude,
         lng: mappedData[0].longitude
       }
+      that.setState({loading: false});
       that.props.fetchNeighborhoodData(mappedData);
       that.props.sendDefaultCoordinates(defaultCoordinates);
     });
@@ -61,30 +65,37 @@ export class City extends Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className="widget tags">
-          <ul className="tag-cloud">
-            <h2>Welcome to {this.props.params.city}!</h2>
-            <h2>Click on a neighborhood below and check it out!</h2>
-            <GoogleMap  />
-            {this.props.neighborhoods.map((neighborhood) => {
-              return (
-              <li className="btn btn-xs btn-primary" key={neighborhood.name}
-              onClick={ () => {
-              console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
-              this.props.selectNeighborhood(neighborhood);
-              global.latitude = neighborhood.latitude;
-              global.longitude = neighborhood.longitude;
-                hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
-              }}
-            >{neighborhood.name}</li>
-            );
-           })}
-          </ul>
-        </div>
-      </div>
-    );
+    if (this.state.loading) {
+      return(
+        <div className="loading-page">
+          <div className="loading-page-text">Finding neighborhoods in {this.props.params.city}, {this.props.params.state}...</div>
+          <img className="loading-gif" src="images/rolling.gif"></img>
+        </div>)
+    } else {
+      return (
+        <div className="container">
+          <div className="widget tags">
+            <ul className="tag-cloud">
+              <h2>Welcome to {this.props.params.city}!</h2>
+              <h2>Click on a neighborhood below and check it out!</h2>
+              <GoogleMap  />
+              {this.props.neighborhoods.map((neighborhood) => {
+                return (
+                <li className="btn btn-xs btn-primary" key={neighborhood.name}
+                onClick={ () => {
+                console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
+                this.props.selectNeighborhood(neighborhood);
+                global.latitude = neighborhood.latitude;
+                global.longitude = neighborhood.longitude;
+                  hashHistory.push(`/neighborhood/${neighborhood.name}/${this.props.params.city}/${this.props.params.state}`);
+                }}
+              >{neighborhood.name}</li>
+              );
+             })}
+            </ul>
+          </div>
+        );
+      }
   }
 }
 
