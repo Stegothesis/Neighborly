@@ -12,6 +12,8 @@ import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx'
 import { sendWalkScore } from '../actions/action_walkScore.jsx';
 import { sendZillowDemographics } from '../actions/action_zillowDemographics.jsx';
 import { getReview } from '../actions/index.jsx'
+import { sendAmenitiesCoordinates } from '../actions/action_amenitiesCoordinates.jsx';
+import { sendAmenitiesNames } from '../actions/action_amenitiesNames.jsx';
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -50,12 +52,14 @@ export class Neighborhood extends Component {
         that.props.selectNeighborhood(mappedData[0]);
         global.latitude = mappedData[0].latitude;
         global.longitude = mappedData[0].longitude;
-        that.callDemographics();
         that.callWalkScore();
+        that.callDemographics();
+        that.callAmenities();
         that.loadReviewsFromServer();
       });
     } else {
         this.callDemographics();
+        this.callAmenities();
         this.callWalkScore();
         this.loadReviewsFromServer();
         this.props.sendZoom({zoom: 14});
@@ -106,6 +110,36 @@ export class Neighborhood extends Component {
     });
   }
 
+  callAmenities() {
+    console.log('CALL AMENITIES');
+    const context = this;
+    const amenitiesUrl = '/api/neighborhoods/amenities/' + global.latitude + '/' + global.longitude;
+    axios.get(amenitiesUrl).then(function(response) {
+      console.log('AMENITIES FRONT-END', response);
+      let amenitiesNames = [];
+      let amenitiesCoordinates = {coordinates: [], names: []};
+      for (let i = 0; i < response.data.amenities.length; i++) {
+        amenitiesCoordinates.coordinates.push([response.data.amenities[i].geometry[0].location[0].lat[0], response.data.amenities[i].geometry[0].location[0].lng[0], response.data.amenities[i].name[0], response.data.amenities[i].type[0]]);
+      }
+      context.props.sendAmenitiesCoordinates(amenitiesCoordinates.coordinates);
+      if (amenitiesCoordinates) {
+        amenitiesCoordinates.coordinates.map(function(coordinates) {
+            var marker = new google.maps.Marker({
+              position: {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])},
+              map: global.map,
+              title: 'Amenities Marker'
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: coordinates[2]
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(map, marker);
+            });
+        });
+      }
+    })
+  }
+
   loadReviewsFromServer() {
     var that = this;
     $.ajax({
@@ -152,7 +186,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
+  return bindActionCreators({ sendAmenitiesNames, sendAmenitiesCoordinates, sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
