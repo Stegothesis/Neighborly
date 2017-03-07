@@ -11,7 +11,8 @@ import { sendZoom } from '../actions/action_zoom.jsx';
 import { fetchNeighborhoodData } from '../actions/action_fetchNeighborhoods.jsx';
 import { sendWalkScore } from '../actions/action_walkScore.jsx';
 import { sendZillowDemographics } from '../actions/action_zillowDemographics.jsx';
-import { getReview } from '../actions/index.jsx'
+import { getReview } from '../actions/index.jsx';
+import { sendGooglePhoto } from '../actions/action_googlePhoto.jsx';
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ export class Neighborhood extends Component {
         this.loadReviewsFromServer();
         this.props.sendZoom({zoom: 14});
         this.setState({loading: false});
+        this.callGooglePhotos();
     }
   }
 
@@ -124,6 +126,16 @@ export class Neighborhood extends Component {
     });
   }
 
+  callGooglePhotos() {
+    const context = this;
+    let localApi = '/api/neighborhoods/googlephoto/' + global.latitude + '/' + global.longitude;
+    console.log('localApi', localApi);
+    axios.get(localApi).then(function(url) {
+      console.log(url, 'this is the url arr ')
+      context.props.sendGooglePhoto(url);
+    })
+  }
+
 render() {
   if (this.state.loading) {
     return (
@@ -152,7 +164,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
+  return bindActionCreators({ sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview, sendGooglePhoto }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
