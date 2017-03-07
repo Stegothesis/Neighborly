@@ -85,16 +85,24 @@ exports.addReview = function(review, userId, callback) {
 
 //gets all reviews for a given neighborhood
 exports.getReviews = function(query, callback) {
-  db.Neighborhood.findOne({where: query})
+  db.Neighborhood.findOne({
+    where: query,
+    include: [{
+      model: db.Review,
+      include: [{
+        model: db.User,
+        attributes: ['username']
+      }]
+    }]
+  })
   .then(function(hood) {
     if(!hood) {
       callback("Not Found");
     } else {
-      hood.getReviews().then(function(reviews) {
-        callback(reviews);
-      });
+      callback(hood.reviews);
     }
   });
+  //catch?
 };
 
 //gets all the information in the neighborhood table
