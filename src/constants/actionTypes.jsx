@@ -8,3 +8,4 @@ export const UPDATE_LOGIN_STATUS = 'UPDATE_LOGIN_STATUS';
 export const ZOOM = 'ZOOM';
 export const WALK_SCORE = 'WALK_SCORE';
 export const ZILLOW_DEMOGRAPHICS = 'ZILLOW_DEMOGRAPHICS';
+export const GOOGLE_PHOTO = 'GOOGLE_PHOTO';
