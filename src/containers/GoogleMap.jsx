@@ -6,7 +6,7 @@ export class GoogleMap extends Component {
     super(props);
     this.state = {
       setCoordinates: {lat: 38.5, lng: -96},
-      zoomProperty: 4
+      zoomProperty: 14
     }
 
   }
