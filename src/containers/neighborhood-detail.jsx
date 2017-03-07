@@ -23,11 +23,16 @@ class NeighborhoodDetail extends Component {
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
               <GoogleMap />
 
-              {this.props.googlePhoto &&
-                <img src={this.props.googlePhoto.data} />
-              }
-
-              <ReviewSubmit />
+              <div className="container">
+                <div className="pull-left">
+                  {this.props.googlePhoto &&
+                    <img src={this.props.googlePhoto.data} />
+                  }
+                </div>
+                <div className="pull-right">
+                  <ReviewSubmit />
+                </div>
+              </div>
 
               <div className="row">
                 <div className="features">
