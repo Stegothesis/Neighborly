@@ -9,7 +9,6 @@ import zoomReducer from './reducer_zoom.jsx';
 import walkScoreReducer from './reducer_walkScore.jsx';
 import zillowDemographicsReducer from './reducer_zillowDemographics.jsx';
 import amenitiesReducer from './reducer_amenitiesCoordinates.jsx';
-import amenitiesNamesReducer from './reducer_amenitiesNames.jsx';
 
 //Mapping of state
 const rootReducer = combineReducers ({
@@ -17,7 +16,6 @@ const rootReducer = combineReducers ({
   neighborhoods : NeighborhoodsReducer,
   activeNeighborhood: ActiveNeighborhood,
   amenitiesCoordinates: amenitiesReducer,
-  amenitiesNames: amenitiesNamesReducer,
   routing: routerReducer,
   user: userReducer,
   defaultCoordinate: defaultCoordinatesReducer,

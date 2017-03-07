@@ -13,7 +13,6 @@ import { sendWalkScore } from '../actions/action_walkScore.jsx';
 import { sendZillowDemographics } from '../actions/action_zillowDemographics.jsx';
 import { getReview } from '../actions/index.jsx'
 import { sendAmenitiesCoordinates } from '../actions/action_amenitiesCoordinates.jsx';
-import { sendAmenitiesNames } from '../actions/action_amenitiesNames.jsx';
 
 export class Neighborhood extends Component {
   constructor(props) {
@@ -186,7 +185,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendAmenitiesNames, sendAmenitiesCoordinates, sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
+  return bindActionCreators({ sendAmenitiesCoordinates, sendWalkScore, fetchNeighborhoodData, selectNeighborhood, sendZoom, sendZillowDemographics, getReview }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Neighborhood);
