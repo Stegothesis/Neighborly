@@ -63,9 +63,9 @@ export class City extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Hey There, Neighbor! Welcome to {this.props.params.city}></h1>
         <div className="widget tags">
           <ul className="tag-cloud">
+            <h2>Welcome to {this.props.params.city}!</h2>
             <h2>Click on a neighborhood below and check it out!</h2>
             <GoogleMap  />
             {this.props.neighborhoods.map((neighborhood) => {
