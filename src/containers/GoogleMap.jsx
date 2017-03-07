@@ -16,8 +16,7 @@ export class GoogleMap extends Component {
   }
 
   componentDidMount() {
-    console.log('Google Maps Rendered');
-    var map = new google.maps.Map(this.refs.map, {
+    global.map = new google.maps.Map(this.refs.map, {
       zoom: this.state.zoomProperty,
       center: {
         lat: this.state.setCoordinates.lat,
@@ -89,9 +88,9 @@ function mapStateToProps(state) {
   return {
     activeNeighborhood: state.activeNeighborhood,
     defaultCoordinate: state.defaultCoordinate,
-    zoomSetting: state.zoomSetting
+    zoomSetting: state.zoomSetting,
+    amenitiesCoordinates: state.amenitiesCoordinates
   };
 }
 
 export default connect(mapStateToProps)(GoogleMap);
-//ref system in react allows us to get a direct refernce to an html element that has been rendered to the page

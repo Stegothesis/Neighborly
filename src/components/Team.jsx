@@ -23,8 +23,8 @@ const Team = () => {
     <div className="featurette featurette2">
       <div className="row">
         <div className="col-sm-10 col-md-7 text-container">
-          <h2 className="featurette-heading">Raw Neighborhood Data<span className="text-muted"> At Your Fingertips.</span></h2>
-          <p className="lead">Neighborly offers objective data and statistics so that you know what's up. If you're looking for hard facts about your next home, you're in the right place.</p>
+          <h2 className="featurette-heading pull-right">Raw Neighborhood Data<span className="text-muted"> At Your Fingertips.</span></h2>
+          <p className="lead pull-right">Neighborly offers objective data and statistics so that you know what's up. If you're looking for hard facts about your next home, you're in the right place.</p>
         </div>
          <div class="col-md-5">
           <img src="/images/neighborhoodData.png" className="data-image" alt="Map Background"></img>

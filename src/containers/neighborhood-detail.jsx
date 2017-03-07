@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReviewSubmit from './ReviewSubmit.jsx';
 import GoogleMap from './GoogleMap.jsx';
+import Amenities from './Amenities.jsx';
 
 class NeighborhoodDetail extends Component {
   constructor(props) {
     super(props);
+
 
   }
 
@@ -20,13 +22,13 @@ class NeighborhoodDetail extends Component {
         <section id="feature" className="transparent-bg">
           <div className="container">
             <div className="center wow fadeInDown">
-              <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
+              <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name} - {this.props.activeNeighborhood.total_num_ratings} Reviews</h1>
+              <p className="neighborhood-font"> {this.props.activeNeighborhood.city}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
               <ReviewSubmit />
 
               <div className="row">
-                <div className="features">
-
+                <div className="features pull-right">
                   <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                     <div className="feature-wrap">
                       <i className="fa fa-star"></i>
@@ -40,16 +42,6 @@ class NeighborhoodDetail extends Component {
                       <i className="fa fa-home"></i>
                       <p className="neighborhood-header">Average Home Price</p>
                       <h3 className="neighborhood-font">${this.props.activeNeighborhood.homePrice}</h3>
-                    </div>
-                  </div>
-
-                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <div className="feature-wrap">
-                      <i className="fa fa-blind"></i>
-                      <p className="neighborhood-header">Walkability</p>
-                      {this.props.walkScores &&
-                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore}% - {this.props.walkScores.description}</h3>
-                      }
                     </div>
                   </div>
 
@@ -69,6 +61,16 @@ class NeighborhoodDetail extends Component {
                       <p className="neighborhood-header">Average Age</p>
                       {this.props.zillowDemographics &&
                       <h3 className="neighborhood-font">{this.props.zillowDemographics.averageAge}</h3>
+                      }
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div className="feature-wrap">
+                      <i className="fa fa-blind"></i>
+                      <p className="neighborhood-header">Walkability</p>
+                      {this.props.walkScores &&
+                      <h3 className="neighborhood-font">{this.props.walkScores.walkScore}% - {this.props.walkScores.description}</h3>
                       }
                     </div>
                   </div>
@@ -100,15 +102,6 @@ class NeighborhoodDetail extends Component {
                       {this.props.zillowDemographics &&
                       <h3 className="neighborhood-font">{this.props.zillowDemographics.singleFemalePercent}%</h3>
                       }
-                    </div>
-                  </div>
-
-
-                  <div className="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <div className="feature-wrap">
-                      <i className="fa fa-star-o"></i>
-                      <p className="neighborhood-header">User Ratings</p>
-                      <h3 className="neighborhood-font">{this.props.activeNeighborhood.total_num_ratings} reviews</h3>
                     </div>
                   </div>
 

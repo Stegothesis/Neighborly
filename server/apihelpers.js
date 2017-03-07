@@ -81,5 +81,37 @@ exports.getWalkScore = function(lat, lon, address, callback) {
         })
       }
     })
+}
 
+
+exports.getAmenities = function(lat, lon, callback) {
+  let amenitiesObj = {};
+  let radius = 1000;
+  let types = 'airport|atm|bank|beauty_salon|book_store|cafe|car_rental|convenience_store|fire_station|food|gas_station|grocery_or_supermarket|gym|hospital|laundry|library|pharmacy|post_office|school|spa|store|subway_station|train_station|veterinary_care|amusement_park|aquarium|art_gallery|bar|bowling_alley|casino|movie_theatre|museum|night_club|park|restaurant|shopping_mall|stadium|university|zoo';
+  const append = function(amenitiesArray) {
+    for (let i = 0; i < amenitiesArray.length; i++) {
+      let amenity = amenitiesArray[i];
+        amenitiesObj[amenity.name] = amenitiesObj[amenity.name] || amenity;
+    }
+  }
+  let options = {
+    url: 'https://maps.googleapis.com/maps/api/place/search/xml?location=' + lat + ',' + lon + '&radius=' + radius + '&types=' + types + '&key=' + googleMapsApiKey
+  }
+  request(options, function(error, response, body) {
+    if (error) {
+      callback(error, null);
+    } else {
+      parseString(body, function(err, obj) {
+        var response = {};
+        if (obj.PlaceSearchResponse) {
+          response.amenities = obj.PlaceSearchResponse.result;
+        }
+        if (response) {
+          callback(null, response);
+        } else {
+          callback(new Error("No amenities found for this neighborhood"), null);
+        }
+      });
+    }
+  })
 }
