@@ -22,6 +22,11 @@ class NeighborhoodDetail extends Component {
             <div className="center wow fadeInDown">
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name}</h1>
               <GoogleMap />
+
+              {this.props.googlePhoto &&
+                <img src={this.props.googlePhoto.data} />
+              }
+
               <ReviewSubmit />
 
               <div className="row">
@@ -224,7 +229,8 @@ function mapStateToProps(state) {
     activeNeighborhood: state.activeNeighborhood,
     neighborhoods: state.neighborhoods,
     walkScores: state.walkScores,
-    zillowDemographics: state.zillowDemographics
+    zillowDemographics: state.zillowDemographics,
+    googlePhoto: state.googlePhoto
   };
 }
 
