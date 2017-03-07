@@ -46,8 +46,8 @@ export class Neighborhood extends Component {
             return hood;
           });
         that.setState({loading: false});
-        that.props.selectNeighborhood(mappedData[0]);
         that.props.sendZoom({zoom: 14});
+        that.props.selectNeighborhood(mappedData[0]);
         global.latitude = mappedData[0].latitude;
         global.longitude = mappedData[0].longitude;
         that.callDemographics();
@@ -55,10 +55,10 @@ export class Neighborhood extends Component {
         that.loadReviewsFromServer();
       });
     } else {
-        this.props.sendZoom({zoom: 14});
         this.callDemographics();
         this.callWalkScore();
         this.loadReviewsFromServer();
+        this.props.sendZoom({zoom: 14});
         this.setState({loading: false});
     }
   }
