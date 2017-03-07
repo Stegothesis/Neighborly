@@ -40,7 +40,7 @@ exports.getZillowDemographics = function(neighborhood, city, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        // console.log('***ZILLOW DEMOGRAPHICS***', obj);
+        console.log('***ZILLOW DEMOGRAPHICS***', obj);
         var response = obj['Demographics:demographics'].response;
         if (response) {
           if (obj['Demographics:demographics'].response[0].pages[0].page[2]) {
@@ -87,7 +87,7 @@ exports.getWalkScore = function(lat, lon, address, callback) {
 
 exports.getGooglePhotos = function (lat, lon, callback) {
   var options = {
-    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=500&key=" + googlePhotoApiKey
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=100&key=" + googlePhotoApiKey
     }
 
     request(options, function(error, response, body) {
@@ -99,12 +99,9 @@ exports.getGooglePhotos = function (lat, lon, callback) {
           if (error) {
             console.log(error);
           } else {
-            var url = [];
-            for (var i = 0; i <= 6; i++) {
-              if (obj.PlaceSearchResponse.result) {
-                url.push("https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[i].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey);
-              }
-            }
+          var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[0].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey;
+
+            console.log(url, 'this is url')
             callback(null, url);
           }
         });
