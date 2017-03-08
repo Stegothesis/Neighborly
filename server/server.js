@@ -122,6 +122,19 @@ app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, 
   })
 });
 
+app.get('/api/neighborhoods/googlephoto/:latitude/:longitude', function (req, res) {
+  let lat = req.params.latitude;
+  let lon = req.params.longitude;
+  apiHelpers.getGooglePhotos(lat, lon, function(err, data) {
+    if(err) {
+      console.log('ERRORED OUT', err);
+    } else {
+      console.log(data, 'this is data')
+      res.json(data);
+    }
+  })
+});
+
 app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
   var user = {};
   user.username = req.user.username;
