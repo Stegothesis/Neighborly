@@ -13,7 +13,7 @@ const Team = () => {
         <h2 className="featurette-heading">Search Any City or Neighborhood<span className="text-muted"> Across The U.S.</span></h2>
         <p className="lead">Looking for perspectives on specific neighborhoods across America? Neighborly reports information from thousands of small communities to allow you to find the best neighborhoods for your lifestyle.</p>
       </div>
-      <div class="col-md-5">
+      <div className="col-md-5">
         <img src="/images/mapbackground.png" className="image2" alt="Map Background"></img>
       </div>
     </div>
@@ -26,7 +26,7 @@ const Team = () => {
           <h2 className="featurette-heading pull-right">Raw Neighborhood Data<span className="text-muted"> At Your Fingertips.</span></h2>
           <p className="lead pull-right">Neighborly offers objective data and statistics so that you know what's up. If you're looking for hard facts about your next home, you're in the right place.</p>
         </div>
-         <div class="col-md-5">
+         <div className="col-md-5">
           <img src="/images/neighborhoodData.png" className="data-image" alt="Map Background"></img>
         </div>
       </div>
@@ -39,7 +39,7 @@ const Team = () => {
         <h2 className="featurette-heading">Leave Your Mark<span className="text-muted"> Have An Opinion?</span></h2>
         <p className="lead">Get in touch with loyal users of Neighborly and see what they have to say. Want to share your perspective? Our detailed and customizable rating system ensures that you get your point across.</p>
       </div>
-      <div class="col-md-5">
+      <div className="col-md-5">
         <img src="/images/reviews.png" className = "reviews-image" alt="Map Background"></img>
       </div>
     </div>
