@@ -12,26 +12,46 @@ export default class SearchBar extends Component {
 
     this.state = {
       city: '',
-      state:''
+      state:'',
+      location: '',
+      autocomplete: ''
     };
 
-    this.onCityInputChange = this.onCityInputChange.bind(this);
-    this.onStateInputChange = this.onStateInputChange.bind(this);
+    this.onLocationInputChange = this.onLocationInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onCityInputChange(event) {
-    this.setState({city: event.target.value})
+  componentDidMount() {
+    let input = document.getElementById('pac-input');
+    const options = {
+      types: ['(cities)'],
+      componentRestrictions: {country: "us"}
+    };
+    let autocomplete = new google.maps.places.Autocomplete(input, options);
+    this.setState({autocomplete: autocomplete});
   }
 
-  onStateInputChange(event) {
-    this.setState({state: event.target.value})
+  onLocationInputChange(event) {
+    this.setState({location: event.target.value})
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    //reroute to city component
-    hashHistory.push(`/city/${this.state.city}/${this.state.state}`);
+    var context = this;
+    google.maps.event.addListener(this.state.autocomplete, 'place_changed', function() {
+      fillInAddress();
+    });
+    function fillInAddress() {
+      let place = context.state.autocomplete.getPlace();
+      let cityAuto = place.address_components[0].long_name;
+      let stateAuto = place.address_components[2].short_name;
+      context.setState({
+        city: cityAuto,
+        state: stateAuto
+      }, () => {
+        hashHistory.push(`/city/${context.state.city}/${context.state.state}`);
+      });
+    }
   }
 
   render() {
@@ -69,17 +89,12 @@ export default class SearchBar extends Component {
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Choose a city: "
+                                placeholder="Enter a location"
                                 className="form-control"
-                                value={this.state.city}
-                                onChange={this.onCityInputChange}
-                                autoFocus={focus}
-                              />
-                              <input
-                                placeholder="Choose a state"
-                                className="form-control"
-                                value={this.state.state}
-                                onChange={this.onStateInputChange}
+                                id="pac-input"
+                                type="text"
+                                value={this.state.location}
+                                onChange={this.onLocationInputChange}
                               />
                               <span className="input-group-btn">
                                   <button type="submit" className="btn btn-primary">Submit</button>
@@ -91,7 +106,7 @@ export default class SearchBar extends Component {
                     </div>
                 </div>
 
-                <div className="item" style={divStyle2}>
+                 <div className="item" style={divStyle2}>
                     <div className="container">
                         <div className="row slide-margin">
 
@@ -104,16 +119,12 @@ export default class SearchBar extends Component {
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Choose a city: "
+                                placeholder="Enter a location"
                                 className="form-control"
-                                value={this.state.city}
-                                onChange={this.onCityInputChange}
-                              />
-                              <input
-                                placeholder="Choose a state"
-                                className="form-control"
-                                value={this.state.state}
-                                onChange={this.onStateInputChange}
+                                id="pac-input"
+                                type="text"
+                                value={this.state.location}
+                                onChange={this.onLocationInputChange}
                               />
                               <span className="input-group-btn">
                                   <button type="submit" className="btn btn-primary">Submit</button>
@@ -138,16 +149,12 @@ export default class SearchBar extends Component {
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Choose a city: "
+                                placeholder="Enter a location"
                                 className="form-control"
-                                value={this.state.city}
-                                onChange={this.onCityInputChange}
-                              />
-                              <input
-                                placeholder="Choose a state"
-                                className="form-control"
-                                value={this.state.state}
-                                onChange={this.onStateInputChange}
+                                id="pac-input"
+                                type="text"
+                                value={this.state.location}
+                                onChange={this.onLocationInputChange}
                               />
                               <span className="input-group-btn">
                                   <button type="submit" className="btn btn-primary">Submit</button>
