@@ -28,7 +28,21 @@ export class GoogleMap extends Component {
       position: this.state.setCoordinates,
       map: map,
       title: 'Hello World!'
+    });
+
+    var radius = 1000;
+    var circle = new google.maps.Circle({
+      strokeColor: '#DDDDDD',
+      strokeOpacity: .4,
+      strokeWeight: 0.5,
+      fillColor: '#5f327',
+      fillOpacity: 0.2,
+      map: map,
+      center: this.state.setCoordinates,
+      radius: radius
     })
+
+
 
     console.log('Set Coordinates', this.state.setCoordinates);
     console.log('Set Zoom', this.state.zoomProperty);
