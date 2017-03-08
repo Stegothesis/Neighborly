@@ -49,7 +49,7 @@ class NeighborhoodDetail extends Component {
                       <h4 className="modal-title">Your Review of {this.props.activeNeighborhood.name}</h4>
                     </div>
                     <div className="modal-body">
-                      <ReviewSubmit />
+                      {this.props.alreadyReviewed() ? (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>) : (<ReviewSubmit />)}
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
