@@ -139,7 +139,7 @@ exports.getGooglePhotos = function (lat, lon, callback) {
               }
             }
             console.log(urlArr, 'this is url')
-            if (urlArr === null) {
+            if (urlArr === null || urlArr === undefined) {
               urlArr = [];
             }
             callback(null, urlArr);
