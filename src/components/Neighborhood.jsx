@@ -56,6 +56,7 @@ export class Neighborhood extends Component {
         that.callDemographics();
         that.callAmenities();
         that.loadReviewsFromServer();
+        that.callGooglePhotos();
       });
     } else {
         this.callDemographics();
@@ -63,8 +64,10 @@ export class Neighborhood extends Component {
         this.callWalkScore();
         this.loadReviewsFromServer();
         this.props.sendZoom({zoom: 14});
-        this.setState({loading: false});
+        console.log('set state loading to false??')
         this.callGooglePhotos();
+        this.setState({loading: false});
+        console.log(this.state);
     }
   }
 
@@ -169,22 +172,36 @@ export class Neighborhood extends Component {
     })
   }
 
-render() {
-  if (this.state.loading) {
-    return (
-      <div className="loading-page">
-        <div className="loading-page-text">Finding data on {this.props.params.hood}...</div>
-        <img className="loading-gif" src="images/rolling.gif"></img>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <NeighborhoodDetail />
-        <ReviewMap reviews={this.props.reviews}/>
-      </div>
-    );
-   }
+  alreadyReviewed() {
+    if (!Array.isArray(this.props.reviews)) {
+      return false;
+    }
+    for(var i = 0; i < this.props.reviews.length; i++) {
+      var reviewer = this.props.reviews[i].user.name;
+      console.log(reviewer, this.props.user.username);
+      if (reviewer === this.props.user.username) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  render() {
+    if (this.state.loading) {
+      return (
+        <div className="loading-page">
+          <div className="loading-page-text">Finding data on {this.props.params.hood}...</div>
+          <img className="loading-gif" src="images/rolling.gif"></img>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <NeighborhoodDetail alreadyReviewed={this.alreadyReviewed.bind(this)}/>
+          <ReviewMap reviews={this.props.reviews}/>
+        </div>
+      );
+     }
   }
 }
 
@@ -192,7 +209,8 @@ function mapStateToProps(state) {
   return {
     neighborhood: state.activeNeighborhood,
     neighborhoods: state.neighborhoods,
-    reviews: state.reviews
+    reviews: state.reviews,
+    user: state.user
   };
 }
 
