@@ -9,6 +9,14 @@ class NeighborhoodDetail extends Component {
     super(props);
   }
 
+  reviewChecker() {
+    if (!this.props.user.name) {
+      return (<div>Please log in to leave a review.</div>)
+    } else if (this.props.alreadyReviewed()) {
+      return (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>)
+    }
+    return (<ReviewSubmit />)
+  }
 
   render() {
 
@@ -49,7 +57,7 @@ class NeighborhoodDetail extends Component {
                       <h4 className="modal-title">Your Review of {this.props.activeNeighborhood.name}</h4>
                     </div>
                     <div className="modal-body">
-                      {this.props.alreadyReviewed() ? (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>) : (<ReviewSubmit />)}
+                      {this.reviewChecker()}
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
@@ -250,7 +258,8 @@ function mapStateToProps(state) {
     neighborhoods: state.neighborhoods,
     walkScores: state.walkScores,
     zillowDemographics: state.zillowDemographics,
-    googlePhoto: state.googlePhoto
+    googlePhoto: state.googlePhoto,
+    user: state.user
   };
 }
 
