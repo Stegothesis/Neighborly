@@ -5,6 +5,7 @@ var request = require('request');
 var zillowApiKey = 'X1-ZWz1fnqmwi7h8r_2qbsp';
 var walkScoreApiKey = 'a00293f0287f26e9b7f3d74b2dfa0a9f';
 var googleMapsApiKey = 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+var googlePhotoApiKey = 'AIzaSyDDHE7iN6XLUwF9oLfL3f0cezylS44FgIQ';
 
 exports.getZillowHoods = function(city, state, callback) {
   var options = {
@@ -115,3 +116,35 @@ exports.getAmenities = function(lat, lon, callback) {
     }
   })
 }
+
+exports.getGooglePhotos = function (lat, lon, callback) {
+  var options = {
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=50000&key=" + googlePhotoApiKey
+    }
+
+    request(options, function(error, response, body) {
+      if (error) {
+        console.log(error);
+        callback(error, null);
+      } else {
+        parseString(body, function(error, obj) {
+          if (error) {
+            console.log(error);
+          } else {
+            var urlArr = [];
+
+            for (var i = 0; i < 3; i++) {
+              if (typeof obj.PlaceSearchResponse.result !== 'undefined') {
+                urlArr.push("https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[i].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey);
+              }
+            }
+            console.log(urlArr, 'this is url')
+            if (urlArr === null || urlArr === undefined) {
+              urlArr = [];
+            }
+            callback(null, urlArr);
+          }
+        });
+      }
+    });
+};

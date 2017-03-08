@@ -25,6 +25,22 @@ class NeighborhoodDetail extends Component {
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name} - {this.props.activeNeighborhood.total_num_ratings} Reviews</h1>
               <p className="neighborhood-font"> {this.props.activeNeighborhood.city}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
+
+              <section id="feature" >
+                  <div className="container">
+                      <div className="row">
+                        {this.props.googlePhoto &&
+                          this.props.googlePhoto.data.map((url) => {
+                            console.log(url, 'this is url in neighborhood detail')
+                            return (
+                              <img src={url} />
+                            )
+                          })
+                        }
+                      </div>
+                  </div>
+              </section>
+
               <ReviewSubmit />
 
               <div className="row">
@@ -217,7 +233,8 @@ function mapStateToProps(state) {
     activeNeighborhood: state.activeNeighborhood,
     neighborhoods: state.neighborhoods,
     walkScores: state.walkScores,
-    zillowDemographics: state.zillowDemographics
+    zillowDemographics: state.zillowDemographics,
+    googlePhoto: state.googlePhoto
   };
 }
 

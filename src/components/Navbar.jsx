@@ -13,7 +13,7 @@ export const Navbar = () => {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/"><img src="images/logo.png" class="image1" alt="logo"/></a>
+            <a className="navbar-brand" href="/"><img src="images/logo.png" className="image1" alt="logo"/></a>
           </div>
 
           <div className="collapse navbar-collapse navbar-right">

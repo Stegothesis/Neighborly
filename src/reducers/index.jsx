@@ -9,6 +9,7 @@ import zoomReducer from './reducer_zoom.jsx';
 import walkScoreReducer from './reducer_walkScore.jsx';
 import zillowDemographicsReducer from './reducer_zillowDemographics.jsx';
 import amenitiesReducer from './reducer_amenitiesCoordinates.jsx';
+import googlePhotoReducer from './reducer_googlePhoto.jsx';
 
 //Mapping of state
 const rootReducer = combineReducers ({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers ({
   zoomSetting: zoomReducer,
   zillowDemographics: zillowDemographicsReducer,
   walkScores: walkScoreReducer,
+  googlePhoto: googlePhotoReducer
 });
 
 export default rootReducer;
