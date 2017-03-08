@@ -23,7 +23,7 @@ class NeighborhoodDetail extends Component {
           <div className="container">
             <div className="center wow fadeInDown">
               <h1 className="neighborhood-font"> {this.props.activeNeighborhood.name} - {this.props.activeNeighborhood.total_num_ratings} Reviews</h1>
-              <p className="neighborhood-font"> {this.props.activeNeighborhood.city}, {this.props.activeNeighborhood.state}</p>
+              <p className="neighborhood-font"> {this.props.activeNeighborhood.city.split('-').join(' ')}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
 
               <section id="feature" >

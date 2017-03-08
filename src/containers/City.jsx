@@ -17,7 +17,8 @@ export class City extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      notFound: false
     }
   }
 
@@ -26,6 +27,7 @@ export class City extends Component {
     const url = '/api/neighborhoods/searchbycity/' + this.props.params.city + '/' + this.props.params.state;
     var that = this;
     axios.get(url).then(function(response) {
+      console.log('response---------', response)
       var mappedData = response.data.map(function(hood) {
         console.log('HOOD', hood);
         hood.name = hood.name[0];
@@ -45,7 +47,14 @@ export class City extends Component {
       that.setState({loading: false});
       that.props.fetchNeighborhoodData(mappedData);
       that.props.sendDefaultCoordinates(defaultCoordinates);
-    });
+    })
+    .catch(function(error) {
+      console.log('not found');
+      that.setState({
+        loading: false,
+        notFound: true
+      });
+    })
   }
 
   renderList() {
@@ -72,6 +81,11 @@ export class City extends Component {
           <img className="loading-gif" src="images/rolling.gif"></img>
         </div>
       );
+    } else if (this.state.notFound) {
+      return (
+        <div className="loading-page">
+          <div className="loading-page-text">Sorry, we couldn't find anything for "{this.props.params.city}, {this.props.params.state}."</div>
+        </div>)
     } else {
       return (
         <div className="container">
