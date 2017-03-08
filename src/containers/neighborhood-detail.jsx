@@ -7,8 +7,6 @@ import Amenities from './Amenities.jsx';
 class NeighborhoodDetail extends Component {
   constructor(props) {
     super(props);
-
-
   }
 
 
@@ -40,8 +38,26 @@ class NeighborhoodDetail extends Component {
                       </div>
                   </div>
               </section>
+              <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Submit A Review!</button>
 
-              <ReviewSubmit />
+              <div id="myModal" className="modal fade" role="dialog">
+                <div className="modal-dialog">
+
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="close" data-dismiss="modal">&times;</button>
+                      <h4 className="modal-title">Your Review of {this.props.activeNeighborhood.name}</h4>
+                    </div>
+                    <div className="modal-body">
+                      <ReviewSubmit />
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
 
               <div className="row">
                 <div className="features pull-right">
