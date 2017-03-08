@@ -64,8 +64,10 @@ export class Neighborhood extends Component {
         this.callWalkScore();
         this.loadReviewsFromServer();
         this.props.sendZoom({zoom: 14});
-        this.setState({loading: false});
+        console.log('set state loading to false??')
         this.callGooglePhotos();
+        this.setState({loading: false});
+        console.log(this.state);
     }
   }
 
@@ -171,6 +173,9 @@ export class Neighborhood extends Component {
   }
 
   alreadyReviewed() {
+    if (!Array.isArray(this.props.reviews)) {
+      return false;
+    }
     for(var i = 0; i < this.props.reviews.length; i++) {
       var reviewer = this.props.reviews[i].user.name;
       console.log(reviewer, this.props.user.username);
