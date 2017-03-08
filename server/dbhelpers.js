@@ -73,10 +73,11 @@ exports.addReview = function(review, userId, callback) {
               var oldSchools = parseFloat(hood.schools_ratings);
               var oldCrime = parseFloat(hood.crime_ratings);
               var oldHipster = parseFloat(hood.hipster_ratings);
+              console.log('review-----------------------', review)
 
               neighborhood.updateAttributes({
-                total_num_ratings: oldNum + 1,
-                avg_star_rating: review.stars_overall ? findNewAverage(oldNum, hood.avg_star_rating, review.stars_overall) : hood.avg_star_rating,
+                total_num_ratings: oldTotal + 1,
+                avg_star_rating: review.stars_overall ? findNewAverage(oldTotal, hood.avg_star_rating, review.stars_overall) : hood.avg_star_rating,
                 avg_kid_friendly: review.kid_friendly ? findNewAverage(oldKid, hood.avg_kid_friendly, review.kid_friendly) : hood.avg_kid_friendly,
                 avg_singles_friendly: review.singles_friendly ? findNewAverage(oldSingle, hood.avg_singles_friendly, review.singles_friendly) : hood.avg_singles_friendly,
                 avg_retirees: review.retirees ? findNewAverage(oldRetirees, hood.avg_retirees, review.retirees) : hood.avg_retirees,
@@ -84,7 +85,7 @@ exports.addReview = function(review, userId, callback) {
                 avg_nightlife: review.nightlife ? findNewAverage(oldNightlife, hood.avg_nightlife, review.nightlife) : hood.avg_nightlife,
                 avg_entertainment: review.entertainment ? findNewAverage(oldEntertainment, hood.avg_entertainment, review.entertainment) : hood.avg_entertainment,
                 avg_affordability: review.affordability ? findNewAverage(oldAffordability, hood.avg_affordability, review.affordability) : hood.avg_affordability,
-                avg_amenities: review.ameneties ? findNewAverage(oldAmenities, hood.avg_ameneties, review.ameneties) : hood.avg_amenities,
+                avg_ameneties: review.ameneties ? findNewAverage(oldAmenities, hood.avg_ameneties, review.ameneties) : hood.avg_ameneties,
                 avg_safety: review.safety ? findNewAverage(oldSafety, hood.avg_safety, review.safety) : hood.avg_safety,
                 avg_culture_arts: review.culture_arts ? findNewAverage(oldCulture, hood.avg_culture_arts, review.culture_arts) : hood.avg_culture_arts,
                 avg_schools: review.schools ? findNewAverage(oldSchools, hood.avg_schools, review.schools) : hood.avg_schools,
@@ -101,7 +102,8 @@ exports.addReview = function(review, userId, callback) {
                 culture_arts_ratings: review.culture_arts ? hood.culture_arts_ratings + 1 : hood.culture_arts_ratings,
                 schools_ratings: review.schools ? hood.schools_ratings + 1 : hood.schools_ratings,
                 crime_ratings: review.crime ? hood.crime_ratings + 1 : hood.crime_ratings,
-                hipster_ratings: review.hipster_rating ? hood.hipster_ratings + 1 : hood.hipster_ratings
+                hipster_ratings: review.hipster_rating ? hood.hipster_ratings + 1 : hood.hipster_ratings,
+                entertainment_ratings: review.entertainment ? hood.entertainment_ratings + 1 : hood.entertainment_ratings
               })
             })
           }

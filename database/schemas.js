@@ -17,6 +17,10 @@ var db = new Sequelize("postgres://localhost:5432/community", {
   dialect: "postgres"
 });
 
+// db.sync({
+//     force: true
+// });
+
 db.authenticate()
   .then((err) => {
     console.log('Database connected');
