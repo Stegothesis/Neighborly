@@ -17,6 +17,10 @@ var db = new Sequelize("postgres://localhost:5432/community", {
   dialect: "postgres"
 });
 
+// db.sync({
+//     force: true
+// });
+
 db.authenticate()
   .then((err) => {
     console.log('Database connected');
@@ -77,52 +81,104 @@ db.authenticate()
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    kid_friendly_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_singles_friendly: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    singles_friendly_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     avg_retirees: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    retirees_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_sense_of_community: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    sense_of_community_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     avg_nightlife: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    nightlife_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_entertainment: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    entertainment_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     avg_affordability: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    affordability_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_ameneties: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    ameneties_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     avg_safety: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    safety_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_culture_arts: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    culture_arts_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     avg_schools: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    schools_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_crime: {
       type: Sequelize.DECIMAL,
       defaultValue: 0
     },
+    crime_ratings: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
     avg_hipster_rating: {
       type: Sequelize.DECIMAL,
+      defaultValue: 0
+    },
+    hipster_ratings: {
+      type: Sequelize.INTEGER,
       defaultValue: 0
     },
     city: Sequelize.STRING,
