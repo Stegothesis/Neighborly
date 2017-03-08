@@ -73,6 +73,7 @@ export default class SearchBar extends Component {
                                 className="form-control"
                                 value={this.state.city}
                                 onChange={this.onCityInputChange}
+                                autoFocus={focus}
                               />
                               <input
                                 placeholder="Choose a state"
