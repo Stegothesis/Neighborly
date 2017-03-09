@@ -77,7 +77,7 @@ export default class SearchBar extends Component {
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <input
-                                placeholder="Please enter a city to see its neighborhood details."
+                                placeholder="Please add a city and press enter see its neighborhoods."
                                 className="form-control"
                                 id="pac-input"
                                 type="text"
@@ -85,8 +85,8 @@ export default class SearchBar extends Component {
                                 onChange={this.onLocationInputChange}
                                 autoFocus={focus}
                               />
-                              <span className="input-group-btn">
-                                  <button type="submit" className="btn btn-primary">Submit</button>
+                              <span id="hide-button" className="input-group-btn">
+                                  <button></button>
                               </span>
                             </form>
                           </div>
