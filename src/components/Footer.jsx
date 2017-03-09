@@ -17,7 +17,7 @@ const Footer = () => {
             </div>
             <div className="col-sm-6">
               <ul className="pull-right">
-                <li><a href="https://github.com/Stegothesis/Community" target="_blank">Check us out on GitHub<i className="fa fa-github"></i></a></li>
+                <li><a href="https://github.com/Stegothesis/Neighborly" target="_blank">Check us out on GitHub<i className="fa fa-github"></i></a></li>
               </ul>
             </div>
           </div>
