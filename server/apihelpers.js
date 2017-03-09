@@ -119,7 +119,7 @@ exports.getAmenities = function(lat, lon, callback) {
 
 exports.getGooglePhotos = function (lat, lon, callback) {
   var options = {
-    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=50000&key=" + googlePhotoApiKey
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=1000&key=" + googlePhotoApiKey
     }
 
     request(options, function(error, response, body) {
@@ -135,7 +135,11 @@ exports.getGooglePhotos = function (lat, lon, callback) {
 
             for (var i = 0; i < 3; i++) {
               if (typeof obj.PlaceSearchResponse.result !== 'undefined') {
-                urlArr.push("https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[i].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey);
+                if (typeof obj.PlaceSearchResponse.result[i].photo !== 'undefined') {
+                  if (typeof obj.PlaceSearchResponse.result[i].photo[0].photo_reference !== 'undefined') {
+                    urlArr.push("https://maps.googleapis.com/maps/api/place/photo?photoreference=" + obj.PlaceSearchResponse.result[i].photo[0].photo_reference[0] + "&maxheight=200&maxwidth=300" + "&key=" + googlePhotoApiKey);
+                  }
+                }
               }
             }
             console.log(urlArr, 'this is url')
