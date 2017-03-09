@@ -52,7 +52,7 @@ class NeighborhoodDetail extends Component {
                       </div>
                   </div>
               </section>
-              <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Submit A Review!</button>
+              <button type="button" className="btn btn-primary btn-lg review-button" data-toggle="modal" data-target="#myModal">Submit A Review!</button>
 
               <div id="myModal" className="modal fade" role="dialog">
                 <div className="modal-dialog">

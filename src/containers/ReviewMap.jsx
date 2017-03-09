@@ -61,6 +61,7 @@ export class ReviewMap extends Component {
 
 
   render() {
+
     return (
         <section className="features transparent-bg">
           <div className="container">
@@ -68,7 +69,7 @@ export class ReviewMap extends Component {
               {this.props.activeNeighborhood ? (<h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>) : null}
               <div className="row">
                 <div className="features">
-                  {this.renderList()}
+                  {this.props.reviews === "Not Found" ? <div className="no-reviews">No reviews yet. Why not be the first?</div> : this.renderList()}
                 </div>
               </div>
             </div>
@@ -82,7 +83,8 @@ export class ReviewMap extends Component {
 function mapStateToProps(state) {
   return {
     activeNeighborhood: state.activeNeighborhood,
-    user: state.user
+    user: state.user,
+    reviews: state.reviews
   };
 }
 

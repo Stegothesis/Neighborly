@@ -102,6 +102,16 @@
   display: flex;
 }
 
+.review-button {
+  margin-bottom: 35px;
+}
+
+.no-reviews {
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
 /* Loading page */
 .loading-gif {
   display: block;
