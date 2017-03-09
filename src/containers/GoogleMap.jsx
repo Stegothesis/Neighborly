@@ -26,6 +26,7 @@ export class GoogleMap extends Component {
 
     var marker = new google.maps.Marker({
       position: this.state.setCoordinates,
+      animation: google.maps.Animation.DROP,
       map: map,
       title: 'Hello World!'
     });
@@ -35,7 +36,7 @@ export class GoogleMap extends Component {
       strokeColor: '#DDDDDD',
       strokeOpacity: .4,
       strokeWeight: 0.5,
-      fillColor: '#5f327',
+      fillColor: '#939393',
       fillOpacity: 0.2,
       map: map,
       center: this.state.setCoordinates,
