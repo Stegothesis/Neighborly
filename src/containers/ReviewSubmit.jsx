@@ -41,42 +41,49 @@ class ReviewSubmit extends Component {
   render() {
     //list of review values and their descriptions
     var categories = [
-      ['stars_overall', 'Overall', true],
-      ['singles_friendly', 'Singles Friendly'],
-      ['kid_friendly', 'Kid Friendly'],
-      ['retirees', 'Retiree Friendly'],
-      ['sense_of_community', 'Sense of Community'],
-      ['nightlife', 'Nightlife'],
-      ['entertainment', 'Entertainment'],
+      ['stars_overall', 'Your overall rating (required)', true],
+      ['singles_friendly', 'Singles scene'],
+      ['kid_friendly', 'Kid-friendly?'],
+      ['retirees', 'Retiree-friendly?'],
+      ['sense_of_community', 'Is there a sense of community?'],
+      ['nightlife', "Nightlife"],
+      ['entertainment', 'Entertainment options'],
       ['affordability', 'Affordability'],
-      ['ameneties', 'Ameneties'],
-      ['safety', 'Safety'],
-      ['culture_arts', 'Culture and Arts'],
-      ['schools', 'School Quality'],
+      ['ameneties', 'Ameneties: is everything you need close by?'],
+      ['safety', 'How safe do you feel?'],
+      ['culture_arts', "Culture and arts"],
+      ['schools', 'Schools'],
       ['crime', 'Crime'],
-      ['hipster_rating', 'Hipster Rating']
+      ['hipster_rating', 'Hipster Factor (you know what we mean)']
     ];
     if (this.state.submitted) {
       return (<div className="neighborhood-header">Thanks for your feedback!</div>)
     }
     return (
       <div className="media-body post_reply_comments">
-        <form onSubmit={this.onFormSubmit} className="input-group">
-          <input
-            placeholder="What do you think? "
-            className="form-control"
-            value={this.state.text}
-            name='text'
-            onChange={this.onInputChange}
-            required
-          />
+        <form onSubmit={this.onFormSubmit} className="form-group">
+          <div className="form-group">
+            <label className="review-submit-category">
+            Your written review (required)
+              <textarea
+                placeholder="What do you think? "
+                className="form-control"
+                value={this.state.text}
+                name='text'
+                onChange={this.onInputChange}
+                rows="5"
+                required
+              ></textarea>
+            </label>
+          </div>
           {categories.map((category) => {
             //map each category to jsx
             //can add "required" to the select tag if we want to validate the forms
             return (
+              <div className="form-group">
               <label className="review-submit-category">
                 {category[1]}
-                <select name={category[0]} onChange={this.onInputChange} required={category[2] ? "true": false}>
+                <select className="form-control" name={category[0]} onChange={this.onInputChange} required={category[2] ? "true": false}>
                   <option value="" disabled selected>Stars</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
@@ -85,6 +92,7 @@ class ReviewSubmit extends Component {
                   <option value={5}>5</option>
                 </select>
               </label>
+              </div>
             )
           })}
           <span className="input-group-btn">
