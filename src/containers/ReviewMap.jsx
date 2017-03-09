@@ -62,7 +62,7 @@ export class ReviewMap extends Component {
 
   render() {
     return (
-        <section class="features transparent-bg">
+        <section className="features transparent-bg">
           <div className="container">
             <div>
               {this.props.activeNeighborhood ? (<h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>) : null}

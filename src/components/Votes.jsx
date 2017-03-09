@@ -10,6 +10,7 @@ export default class Votes extends Component {
   }
 
   postVote(positiveVote) {
+    var increment = positiveVote ? 1 : 0;
     if (!this.props.token) {
       this.setState({
         feedback: "Please log in"
@@ -29,7 +30,7 @@ export default class Votes extends Component {
         success: function(data) {
           console.log("Post vote successful", data);
           that.setState({
-            feedback: "Thanks!"
+            updatedVote: that.props.vote_count + positiveVote
           })
         },
         error: function (error) {
@@ -48,7 +49,7 @@ export default class Votes extends Component {
     var feedback = this.state.feedback ? (<div className="modal-fade">{this.state.feedback}</div>) : null
     return (
       <div className="review-votes">
-        <div className="vote_count">Helpfulness: {this.props.vote_count}</div>
+        <div className="vote_count">Helpfulness: {this.state.updatedVote || this.props.vote_count}</div>
         <button className="thumbup-button" onClick={()=>this.postVote(true)}>
           <i className="fa fa-thumbs-up"></i>
         </button>
