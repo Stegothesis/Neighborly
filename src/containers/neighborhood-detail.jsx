@@ -34,23 +34,21 @@ class NeighborhoodDetail extends Component {
               <p className="neighborhood-font"> {this.props.activeNeighborhood.city.split('-').join(' ')}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
 
-              <section id="feature">
-                  <div className="container">
-                      <div className="row">
-                        {this.props.googlePhoto &&
-                          this.props.googlePhoto.data.map((url, index) => {
-                            console.log(url, 'this is url in neighborhood detail------------')
-                            var picId = "picModal" + index;
-                            return (
-                              <div className="neighborhood-photo">
-                                <a href="javascript:;" data-toggle="modal" data-target={"#" + picId}><img className="img-circle" src={url}/></a>
-                                <PicModal url={url} id={picId}/>
-                              </div>
-                            )
-                          })
-                        }
-                      </div>
-                  </div>
+              <section className="container">
+                <div id="feature">
+                  {this.props.googlePhoto &&
+                    this.props.googlePhoto.data.map((url, index) => {
+                      console.log(url, 'this is url in neighborhood detail------------')
+                      var picId = "picModal" + index;
+                      return (
+                        <div className="neighborhood-photo">
+                          <a href="javascript:;" data-toggle="modal" data-target={"#" + picId}><img className="img-circle" src={url}/></a>
+                          <PicModal url={url} id={picId}/>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
               </section>
               <button type="button" className="btn btn-primary btn-lg review-button" data-toggle="modal" data-target="#myModal">Submit A Review!</button>
 
