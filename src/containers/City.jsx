@@ -79,6 +79,7 @@ export class City extends Component {
         <div className="loading-page">
           <div className="loading-page-text">Finding neighborhoods in {this.props.params.city}, {this.props.params.state}...</div>
           <img className="loading-gif" src="images/rolling.gif"></img>
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
       );
     } else if (this.state.notFound) {
