@@ -39,7 +39,7 @@ class NeighborhoodDetail extends Component {
                           this.props.googlePhoto.data.map((url) => {
                             console.log(url, 'this is url in neighborhood detail')
                             return (
-                              <img src={url} />
+                              <img key={url} src={url} />
                             )
                           })
                         }
