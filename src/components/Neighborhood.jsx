@@ -48,7 +48,7 @@ export class Neighborhood extends Component {
             return hood;
           });
         that.setState({loading: false});
-        that.props.sendZoom({zoom: 14});
+        that.props.sendZoom({zoom: 15});
         that.props.selectNeighborhood(mappedData[0]);
         global.latitude = mappedData[0].latitude;
         global.longitude = mappedData[0].longitude;
@@ -60,10 +60,10 @@ export class Neighborhood extends Component {
       });
     } else {
         this.callDemographics();
-        this.callAmenities();
         this.callWalkScore();
+        this.callAmenities();
         this.loadReviewsFromServer();
-        this.props.sendZoom({zoom: 14});
+        this.props.sendZoom({zoom: 15});
         console.log('set state loading to false??')
         this.callGooglePhotos();
         this.setState({loading: false});
@@ -123,16 +123,21 @@ export class Neighborhood extends Component {
       let amenitiesNames = [];
       let amenitiesCoordinates = {coordinates: [], names: []};
       for (let i = 0; i < response.data.amenities.length; i++) {
-        amenitiesCoordinates.coordinates.push([response.data.amenities[i].geometry[0].location[0].lat[0], response.data.amenities[i].geometry[0].location[0].lng[0], response.data.amenities[i].name[0], response.data.amenities[i].type[0]]);
-      }
+        amenitiesCoordinates.coordinates.push([response.data.amenities[i].geometry[0].location[0].lat[0], response.data.amenities[i].geometry[0].location[0].lng[0], response.data.amenities[i].name[0], response.data.amenities[i].type[0], response.data.amenities[i].icon[0]]);
+       }
       context.props.sendAmenitiesCoordinates(amenitiesCoordinates.coordinates);
       if (amenitiesCoordinates) {
         amenitiesCoordinates.coordinates.map(function(coordinates) {
+            let image = {url: coordinates[4], scaledSize: new google.maps.Size(50, 50)};
             var marker = new google.maps.Marker({
               position: {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])},
+              animation: google.maps.Animation.DROP,
+              icon: image,
               map: global.map,
               title: 'Amenities Marker'
             });
+
+            var size = new google.maps.Size(10, 10);
             var infowindow = new google.maps.InfoWindow({
               content: coordinates[2]
             });
