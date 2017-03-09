@@ -34,7 +34,7 @@ class NeighborhoodDetail extends Component {
               <p className="neighborhood-font"> {this.props.activeNeighborhood.city.split('-').join(' ')}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
 
-              <section id="feature" >
+              <section >
                   <div className="container">
                       <div className="row">
                         {this.props.googlePhoto &&
@@ -42,8 +42,8 @@ class NeighborhoodDetail extends Component {
                             console.log(url, 'this is url in neighborhood detail------------')
                             var picId = "picModal" + index;
                             return (
-                              <div>
-                                <a href="javascript:;" data-toggle="modal" data-target={"#" + picId}><img src={url}/></a>
+                              <div className="neighborhood-photo">
+                                <a href="javascript:;" data-toggle="modal" data-target={"#" + picId}><img className="img-circle" src={url}/></a>
                                 <PicModal url={url} id={picId}/>
                               </div>
                             )

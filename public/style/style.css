@@ -116,3 +116,16 @@
   text-align: center;
   color: #C52D2F;
 }
+
+/* review submit */
+
+.review-submit-category {
+  display: block;
+}
+
+/*neighborhood photos */
+
+.neighborhood-photo {
+  display: inline-block;
+  padding: 25px 10px;
+}
