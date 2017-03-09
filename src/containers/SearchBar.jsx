@@ -58,22 +58,11 @@ export default class SearchBar extends Component {
     var divStyle1 = {
       backgroundImage: 'url(images/slider/bg1.jpg)'
     };
-    var divStyle2 = {
-      backgroundImage: 'url(images/slider/bg2.jpg)'
-    };
-    var divStyle3 = {
-      backgroundImage: 'url(images/slider/bg3.jpg)'
-    };
 
     return (
     <div>
       <section id="main-slider" className="no-margin">
         <div className="carousel slide">
-            <ol className="carousel-indicators">
-                <li data-target="#main-slider" data-slide-to="0" className="active"></li>
-                <li data-target="#main-slider" data-slide-to="1"></li>
-                <li data-target="#main-slider" data-slide-to="2"></li>
-            </ol>
             <div className="carousel-inner">
 
                 <div className="item active" style={divStyle1}>
@@ -81,77 +70,20 @@ export default class SearchBar extends Component {
                         <div className="row slide-margin">
 
                           <div className="center wow fadeInDown">
-                            <h1 id="header-font">Neighborly</h1>
+                            <img src="./images/logo_main.png" />
                             <p className="neighborhood-header">Find your next neighborhood</p>
                           </div>
 
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <input
-                                placeholder="Please enter a location to see its neighborhood details."
+                                placeholder="Please enter a city to see its neighborhood details."
                                 className="form-control"
                                 id="pac-input"
                                 type="text"
                                 value={this.state.location}
                                 onChange={this.onLocationInputChange}
-                              />
-                              <span className="input-group-btn">
-                                  <button type="submit" className="btn btn-primary">Submit</button>
-                              </span>
-                            </form>
-                          </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                 <div className="item" style={divStyle2}>
-                    <div className="container">
-                        <div className="row slide-margin">
-
-                          <div className="center wow fadeInDown">
-                            <h1 id="header-font">Neighborly</h1>
-                            <p className="neighborhood-header">Find your next neighborhood</p>
-                          </div>
-
-                          <div className="center">
-                            <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <input
-                                placeholder="Please enter a location to see its neighborhood details."
-                                className="form-control"
-                                id="pac-input"
-                                type="text"
-                                value={this.state.location}
-                                onChange={this.onLocationInputChange}
-                              />
-                              <span className="input-group-btn">
-                                  <button type="submit" className="btn btn-primary">Submit</button>
-                              </span>
-                            </form>
-                          </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div className="item" style={divStyle3}>
-                    <div className="container">
-                        <div className="row slide-margin">
-
-                          <div className="center wow fadeInDown">
-                            <h1 id="header-font">Neighborly</h1>
-                            <p className="neighborhood-header">Find your next neighborhood</p>
-                          </div>
-
-                          <div className="center">
-                            <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <input
-                                placeholder="Please enter a location to see its neighborhood details."
-                                className="form-control"
-                                id="pac-input"
-                                type="text"
-                                value={this.state.location}
-                                onChange={this.onLocationInputChange}
+                                autoFocus={focus}
                               />
                               <span className="input-group-btn">
                                   <button type="submit" className="btn btn-primary">Submit</button>
@@ -165,12 +97,6 @@ export default class SearchBar extends Component {
 
             </div>
         </div>
-        <a className="prev hidden-xs" href="#main-slider" data-slide="prev">
-            <i className="fa fa-chevron-left"></i>
-        </a>
-        <a className="next hidden-xs" href="#main-slider" data-slide="next">
-            <i className="fa fa-chevron-right"></i>
-        </a>
     </section>
 
           <section id="bottom">
