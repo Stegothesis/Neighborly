@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import ReviewSubmit from './ReviewSubmit.jsx';
 import GoogleMap from './GoogleMap.jsx';
 import Amenities from './Amenities.jsx';
+import PicModal from '../components/PicModal.jsx';
+
 
 class NeighborhoodDetail extends Component {
   constructor(props) {
@@ -36,10 +38,14 @@ class NeighborhoodDetail extends Component {
                   <div className="container">
                       <div className="row">
                         {this.props.googlePhoto &&
-                          this.props.googlePhoto.data.map((url) => {
-                            console.log(url, 'this is url in neighborhood detail')
+                          this.props.googlePhoto.data.map((url, index) => {
+                            console.log(url, 'this is url in neighborhood detail------------')
+                            var picId = "picModal" + index;
                             return (
-                              <img key={url} src={url} />
+                              <div>
+                                <a href="javascript:;" data-toggle="modal" data-target={"#" + picId}><img src={url}/></a>
+                                <PicModal url={url} id={picId}/>
+                              </div>
                             )
                           })
                         }
