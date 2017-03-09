@@ -2,7 +2,7 @@ import { ADD_REVIEW } from '../constants/actionTypes.jsx'
 import { GET_REVIEWS } from '../constants/actionTypes.jsx'
 import $ from 'jquery'
 
-export const postReview = (review, neighborhood, token) => (dispatch) =>
+export const postReview = (review, neighborhood, token, callback) => (dispatch) =>
     $.ajax({
       type: "POST",
       url: '/api/neighborhoods/reviews',
@@ -14,6 +14,9 @@ export const postReview = (review, neighborhood, token) => (dispatch) =>
         neighborhood, review)), //lower case, 2 letter state abbreviation (e.g. tx),
       success: function(data) {
         console.log("Post review to user successful", data);
+        if (callback) {
+          callback()
+        }
       },
       error: function (error) {
         console.log("Error: Post review failed", error);

@@ -17,7 +17,7 @@ class NeighborhoodDetail extends Component {
     } else if (this.props.alreadyReviewed()) {
       return (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>)
     }
-    return (<ReviewSubmit />)
+    return (<ReviewSubmit loadReviewsFromServer={this.props.loadReviewsFromServer}/>)
   }
 
   render() {

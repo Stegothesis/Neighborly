@@ -202,7 +202,7 @@ export class Neighborhood extends Component {
     } else {
       return (
         <div>
-          <NeighborhoodDetail alreadyReviewed={this.alreadyReviewed.bind(this)}/>
+          <NeighborhoodDetail alreadyReviewed={this.alreadyReviewed.bind(this)} loadReviewsFromServer={this.loadReviewsFromServer.bind(this)}/>
           <ReviewMap reviews={this.props.reviews}/>
         </div>
       );
