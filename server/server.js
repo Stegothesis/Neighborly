@@ -140,7 +140,7 @@ app.post('/api/neighborhoods/reviews', authenticate, function(req, res) {
   user.username = req.user.username;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
-    dbHelpers.addReview(req.body, user.id, function(created) {
+    dbHelpers.addReview(req.body, user.id, function(err, created) {
       if (created) {
         res.status(204).send('Review added');
       } else {
@@ -178,7 +178,7 @@ app.post('/api/votes', authenticate, function(req,res) {
   user.username = req.user.username;
   user.hash = req.user.user_id;
   dbHelpers.createUser(user, function(user, created) {
-    dbHelpers.addVote(req.body.positiveVote, req.body.reviewId, user.dataValues.id, function(created) {
+    dbHelpers.addVote(req.body.positiveVote, req.body.reviewId, user.dataValues.id, function(err, created) {
       if (created) {
         res.status(204).send('Vote added');
       } else {
