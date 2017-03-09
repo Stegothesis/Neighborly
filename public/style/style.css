@@ -15,6 +15,37 @@
   color: #C52D2F;
 }
 
+#navbar-input {
+  margin-top: 10px;
+  background-color: #fff;
+  font-size: 15px;
+  margin-left: 150px;
+  padding: 0 11px 0 13px;
+  width: 400px;
+  align-items: center;
+  vertical-align: center;
+}
+
+#navbar-nav {
+  margin-top: 0px;
+}
+
+#navbutton {
+  margin-right: 320px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}*/
+
+
+#partner {
+    background-image: url("https://j.gifs.com/nZPDPE.gif");
+    background-color: #cccccc;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
 /*neighborhood reviews */
 
 .reviews-heading {
@@ -84,12 +115,3 @@
   text-align: center;
   color: #C52D2F;
 }
-
-/* review submit */
-
-.review-submit-category {
-  display: block;
-}
-
-
-

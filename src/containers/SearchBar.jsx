@@ -37,7 +37,7 @@ export default class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    var context = this;
+    const context = this;
     google.maps.event.addListener(this.state.autocomplete, 'place_changed', function() {
       fillInAddress();
     });
