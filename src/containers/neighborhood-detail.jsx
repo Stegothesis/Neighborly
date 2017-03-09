@@ -9,15 +9,23 @@ import PicModal from '../components/PicModal.jsx';
 class NeighborhoodDetail extends Component {
   constructor(props) {
     super(props);
+    this.state = {}
   }
 
   reviewChecker() {
+    console.log(this.state.justReviewed);
     if (!this.props.user.name) {
       return (<div>Please log in to leave a review.</div>)
-    } else if (this.props.alreadyReviewed()) {
+    } else if (this.props.alreadyReviewed() && !this.state.justReviewed) {
       return (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>)
     }
-    return (<ReviewSubmit loadReviewsFromServer={this.props.loadReviewsFromServer}/>)
+    return (<ReviewSubmit loadReviewsFromServer={this.props.loadReviewsFromServer} justReviewed={this.justReviewed.bind(this)}/>)
+  }
+
+  justReviewed() {
+    this.setState({
+      justReviewed: true
+    })
   }
 
   render() {

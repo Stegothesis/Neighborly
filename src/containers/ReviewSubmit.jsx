@@ -27,9 +27,10 @@ class ReviewSubmit extends Component {
     event.preventDefault();
     console.log('reviewing -----------', this.state, this.props.neighborhood);
     this.props.postReview(this.state, this.props.neighborhood, this.props.user.token, function() {
+      this.props.justReviewed();
       this.setState({
         rating: '',
-        submitted: true
+        submitted: true,
       });
       console.log('whats the state?----------', this.state)
       this.props.loadReviewsFromServer();
