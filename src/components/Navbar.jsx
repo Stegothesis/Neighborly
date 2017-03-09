@@ -79,9 +79,10 @@ export default class Navbar extends Component {
                 value={this.state.location}
                 onChange={this.onLocationInputChange}
               />
-              <span className="input-group-btn">
-                <button id = "navbutton" type="submit" className="btn btn-primary">Submit</button>
-               </span>
+
+              <span id="hide-button" className="input-group-btn">
+                  <button></button>
+              </span>
               </form>
              </div>
 
