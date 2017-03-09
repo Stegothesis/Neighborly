@@ -34,7 +34,7 @@ class NeighborhoodDetail extends Component {
               <p className="neighborhood-font"> {this.props.activeNeighborhood.city.split('-').join(' ')}, {this.props.activeNeighborhood.state}</p>
               <GoogleMap />
 
-              <section >
+              <section id="feature">
                   <div className="container">
                       <div className="row">
                         {this.props.googlePhoto &&
