@@ -24,9 +24,9 @@ export class ReviewMap extends Component {
     if (this.props.reviews) {
       return this.props.reviews.sort((review1, review2) =>
         review1.vote_count < review2.vote_count
-      ).map((review) => {
+      ).map((review, index) => {
         return (
-          <div className="panel transparent-bg review-container">
+          <div  key={index} className="panel transparent-bg review-container">
             <div className="panel-heading review-header">
               <div className="review-username">{review.user.username}</div>
               {review.stars_overall ? (<div className="stars_overall"> Overall: {review.stars_overall}/5</div>) : null}
