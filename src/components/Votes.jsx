@@ -49,10 +49,10 @@ export default class Votes extends Component {
     return (
       <div className="review-votes">
         <div className="vote_count">Helpfulness: {this.props.vote_count}</div>
-        <button className="thumbup-button" onClick={()=>this.postVote(true)}>
+        <button className="thumbup-button" onClick={()=>this.postVote(true)} data-toggle="modal" data-target="#myModa">
           <i className="fa fa-thumbs-up"></i>
         </button>
-        <button className="thumbdown-button" onClick={()=>this.postVote(false)}>
+        <button className="thumbdown-button" onClick={()=>this.postVote(false)} data-toggle="modal" data-target="#myModa">
           <i className="fa fa-thumbs-down"></i>
         </button>
         {feedback}
