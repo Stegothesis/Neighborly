@@ -87,7 +87,6 @@ export default class Navbar extends Component {
 
           <div className="collapse navbar-collapse navbar-right">
             <ul className="nav navbar-nav">
-              <li className="active"><a href="/">Search</a></li>
               <Auth />
             </ul>
           </div>
