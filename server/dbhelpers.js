@@ -54,7 +54,7 @@ exports.addReview = function(review, userId, callback) {
           }
         })
         .spread(function(review, created) {
-          callback(created);
+          callback(null, created);
           if (created) {
             db.Neighborhood.findById(neighborhoodId)
             .then(function(hood) {
