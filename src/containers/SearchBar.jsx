@@ -87,9 +87,8 @@ export default class SearchBar extends Component {
 
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Enter a location"
+                                placeholder="Please enter a location to see its neighborhood details."
                                 className="form-control"
                                 id="pac-input"
                                 type="text"
@@ -117,9 +116,8 @@ export default class SearchBar extends Component {
 
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Enter a location"
+                                placeholder="Please enter a location to see its neighborhood details."
                                 className="form-control"
                                 id="pac-input"
                                 type="text"
@@ -147,9 +145,8 @@ export default class SearchBar extends Component {
 
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
-                              <p className="neighborhood-header">Please enter a city and state to see its neighborhood details.</p>
                               <input
-                                placeholder="Enter a location"
+                                placeholder="Please enter a location to see its neighborhood details."
                                 className="form-control"
                                 id="pac-input"
                                 type="text"

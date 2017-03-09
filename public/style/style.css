@@ -1,6 +1,5 @@
 .neighborhood-font {
   color: black;
-  text-align: left;
   margin-left: 60px;
 }
 
@@ -12,14 +11,8 @@
 #header-font {
   font-family: "Brush Script MT", cursive;
   font-size: 90px;
+  font-weight: 100;
   color: #C52D2F;
-}
-
-#partner {
-    background-image: url("https://j.gifs.com/nZPDPE.gif");
-    background-color: #cccccc;
-    margin-top: 0px;
-    margin-bottom: 50px;
 }
 
 /*neighborhood reviews */
