@@ -132,7 +132,7 @@ exports.getGooglePhotos = function (lat, lon, callback) {
             console.log(error);
           } else {
             var urlArr = [];
-
+            console.log(JSON.stringify(obj), 'photo object--------')
             for (var i = 0; i < 3; i++) {
               if (typeof obj.PlaceSearchResponse.result !== 'undefined') {
                 if (typeof obj.PlaceSearchResponse.result[i].photo !== 'undefined') {

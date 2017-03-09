@@ -102,6 +102,16 @@
   display: flex;
 }
 
+.review-button {
+  margin: 35px 0;
+}
+
+.no-reviews {
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
 /* Loading page */
 .loading-gif {
   display: block;
@@ -115,4 +125,17 @@
   margin: 50px auto;
   text-align: center;
   color: #C52D2F;
+}
+
+/* review submit */
+
+.review-submit-category {
+  display: block;
+}
+
+/*neighborhood photos */
+
+.neighborhood-photo {
+  display: inline-block;
+  padding: 25px 10px;
 }
