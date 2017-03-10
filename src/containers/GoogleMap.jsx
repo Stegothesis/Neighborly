@@ -41,8 +41,7 @@ export class GoogleMap extends Component {
       map: map,
       center: this.state.setCoordinates,
       radius: radius
-    })
-
+    });
 
 
     console.log('Set Coordinates', this.state.setCoordinates);
@@ -51,6 +50,7 @@ export class GoogleMap extends Component {
 
   componentWillReceiveProps(nextProps) {
     var context = this;
+
     if (nextProps.zoomSetting) {
       if (nextProps.zoomSetting.zoom !== context.state.zoomProperty) {
         context.setState( {zoomProperty: nextProps.zoomSetting.zoom
@@ -68,6 +68,7 @@ export class GoogleMap extends Component {
         lng: parseFloat(nextProps.defaultCoordinate.lng)
       }
     }, () => {
+          console.log('AFTER UPDATE', context.state.setCoordinates);
           context.componentDidMount();
         });
       }
@@ -75,8 +76,11 @@ export class GoogleMap extends Component {
   }
 
   componentDidUpdate() {
+    const context = this;
     console.log('GOOGLE MAP COMPONENT UPDATED');
-    this.updateSetCoordinates();
+    if (!this.props.defaultCoordinate || this.props.defaultCoordinate.load === true) {
+      context.updateSetCoordinates();
+    }
   }
 
   updateSetCoordinates() {
