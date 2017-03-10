@@ -133,7 +133,11 @@
 
 #pac-input:focus {
   border-color: #4d90fe;
-}*/
+}
+
+#navbar-container {
+  display: flex;
+}
 
 
 #partner {
