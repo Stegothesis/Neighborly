@@ -22,50 +22,13 @@ export default class SearchBar extends Component {
   }
 
   componentDidMount() {
-    let input = document.getElementById("pac-input");
+    let input = document.getElementById('pac-input');
     const options = {
       types: ['(cities)'],
       componentRestrictions: {country: "us"}
     };
     let autocomplete = new google.maps.places.Autocomplete(input, options);
     this.setState({autocomplete: autocomplete});
-    this.componentDidUpdate();
-  }
-
-  componentDidUpdate () {
-    google.maps.event.addListener(this.state.autocomplete, 'place_changed', function() {
-      fillInAddress();
-    });
-    const context = this;
-    function fillInAddress() {
-      let place = context.state.autocomplete.getPlace();
-      console.log('place', place);
-      if (!place.address_components) {
-        let placeArray = place.name.split(",");
-        context.setState({
-          city: placeArray[0],
-          state: placeArray[1],
-          location: place.name
-        }, () => {
-          hashHistory.push(`/city/${context.state.city}/${context.state.state}`);
-        });
-      }  else {
-      let cityAuto = place.address_components[0].long_name;
-      let stateAuto;
-      if (place.address_components[2].short_name === "US") {
-        stateAuto = place.address_components[1].short_name;
-      } else {
-        stateAuto = place.address_components[2].short_name;
-      }
-     context.setState({
-        city: cityAuto,
-        state: stateAuto,
-        location: cityAuto + ", " + stateAuto
-      }, () => {
-        hashHistory.push(`/city/${context.state.city}/${context.state.state}`);
-      });
-    }
-  }
   }
 
   onLocationInputChange(event) {
@@ -80,16 +43,6 @@ export default class SearchBar extends Component {
     });
     function fillInAddress() {
       let place = context.state.autocomplete.getPlace();
-      if (!place.address_components) {
-        let placeArray = place.name.split(",");
-        context.setState({
-          city: placeArray[0],
-          state: placeArray[1],
-          location: place.name
-        }, () => {
-          hashHistory.push(`/city/${context.state.city}/${context.state.state}`);
-        });
-      } else {
       let cityAuto = place.address_components[0].long_name;
       let stateAuto;
       if (place.address_components[2].short_name === "US") {
@@ -99,15 +52,12 @@ export default class SearchBar extends Component {
       }
       context.setState({
         city: cityAuto,
-        state: stateAuto,
-        location: cityAuto + ", " + stateAuto
+        state: stateAuto
       }, () => {
         hashHistory.push(`/city/${context.state.city}/${context.state.state}`);
       });
     }
-    }
   }
-
 
   render() {
     var divStyle1 = {
@@ -138,6 +88,7 @@ export default class SearchBar extends Component {
                                 type="text"
                                 value={this.state.location}
                                 onChange={this.onLocationInputChange}
+                                autoFocus={focus}
                               />
                               <span id="hide-button" className="input-group-btn">
                                   <button></button>
