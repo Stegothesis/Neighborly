@@ -65,6 +65,7 @@ export class City extends Component {
     const context = this;
     if (this.props.params.city !== nextProps.params.city) {
       context.props.params.city = nextProps.params.city;
+      context.props.params.state = nextProps.params.state;
       context.setState({loading: true});
       context.componentDidMount();
     }
