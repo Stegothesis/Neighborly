@@ -18,12 +18,14 @@ export class City extends Component {
     super(props);
     this.state = {
       loading: true,
-      notFound: false
+      notFound: false,
+      render: false
     }
   }
 
   componentDidMount() {
     this.props.sendZoom({zoom: 10});
+    console.log(this.props.params.city);
     const url = '/api/neighborhoods/searchbycity/' + this.props.params.city + '/' + this.props.params.state;
     var that = this;
     axios.get(url).then(function(response) {
@@ -55,6 +57,21 @@ export class City extends Component {
         notFound: true
       });
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('CURRENT PROPS', this.props.params);
+    console.log('CITY NEXT PROPS',nextProps);
+    const context = this;
+    if (this.props.params.city !== nextProps.params.city) {
+      context.props.params.city = nextProps.params.city;
+      context.setState({loading: true});
+      context.componentDidMount();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.defaultCoordinate.load = true;
   }
 
   renderList() {
@@ -97,7 +114,7 @@ export class City extends Component {
               <GoogleMap  />
               {this.props.neighborhoods.map((neighborhood) => {
                 return (
-                <li className="btn btn-xs btn-primary" key={neighborhood.name}
+                <li className="btn btn-primary" key={neighborhood.name}
                 onClick={ () => {
                 console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
                 this.props.selectNeighborhood(neighborhood);
@@ -118,7 +135,9 @@ export class City extends Component {
 
 function mapStateToProps(state) {
   return {
-    neighborhoods: state.neighborhoods
+    neighborhoods: state.neighborhoods,
+    activeNeighborhood: state.activeNeighborhood,
+    defaultCoordinate: state.defaultCoordinate
   };
 }
 

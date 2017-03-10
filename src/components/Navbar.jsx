@@ -56,6 +56,7 @@ export default class Navbar extends Component {
 
   render() {
   return (
+    <div>
     <header id="header">
       <nav className="navbar navbar-inverse" role="banner">
         <div className="container">
@@ -94,6 +95,10 @@ export default class Navbar extends Component {
         </div>
       </nav>
     </header>
+    <div>
+      {this.props.children}
+    </div>
+    </div>
   )
 }
 };
