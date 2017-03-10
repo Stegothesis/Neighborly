@@ -118,7 +118,7 @@ exports.getAmenities = function(lat, lon, callback) {
 
 exports.getGooglePhotos = function (lat, lon, callback) {
   var options = {
-    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=1000&key=" + googlePhotoApiKey
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=" + lat + "," + lon + "&radius=1000&key=" + googleMapsApiKey
     }
 
     request(options, function(error, response, body) {
