@@ -4,7 +4,9 @@ var request = require('request');
 
 var zillowApiKey = 'X1-ZWz1fnqmwi7h8r_2qbsp';
 var walkScoreApiKey = 'a00293f0287f26e9b7f3d74b2dfa0a9f';
-var googleMapsApiKey = 'AIzaSyB3MxTDD5TiQstVaEBdEzndHtIlerKbvfM';
+var googleMapsApiKey = 'AIzaSyDh4nd5J3XJwQvcz_Iz88A2hgHcFRJ3K3k';
+var googlePhotoApiKey = 'AIzaSyDDHE7iN6XLUwF9oLfL3f0cezylS44FgIQ';
+
 
 exports.getZillowHoods = function(city, state, callback) {
   var options = {
