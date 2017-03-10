@@ -4,7 +4,7 @@
 }
 
 .neighborhood-header {
-  color: #C52D2F;
+  color: white;
   font-size: 24px;
   font-family: 'Open Sans', sans-serif;
 }
@@ -66,6 +66,10 @@
 
 .review-button {
   margin: 35px 0;
+}
+
+.review-button-2 {
+  margin-top: 25px
 }
 
 .no-reviews {

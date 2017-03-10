@@ -256,6 +256,7 @@ class NeighborhoodDetail extends Component {
 
                 </div>
               </div>
+              <button type="button" className="btn btn-primary btn-lg review-button-2" data-toggle="modal" data-target="#myModal">Submit A Review!</button>
             </div>
           </div>
         </section>

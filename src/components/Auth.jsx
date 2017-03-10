@@ -91,14 +91,14 @@ logout () {
     if (this.props.user.name) {
     return (
       <li className="login-auth active">
-        <a onClick = {this.logout.bind(this)}> Sign Out</a>
+        <button className="btn btn-primary" onClick = {this.logout.bind(this)}> Sign Out</button>
         <h5 className="white-text" >Welcome, {this.props.user.name}!</h5>
       </li>
       );
     } else {
     return (
       <li className="login-auth active">
-        <a onClick = {this.login.bind(this)}>Sign In or Sign Up</a>
+        <button className="btn btn-primary" onClick = {this.login.bind(this)}>Sign In or Sign Up</button>
       </li>
       );
     }
