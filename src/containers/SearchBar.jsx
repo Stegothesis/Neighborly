@@ -44,7 +44,12 @@ export default class SearchBar extends Component {
     function fillInAddress() {
       let place = context.state.autocomplete.getPlace();
       let cityAuto = place.address_components[0].long_name;
-      let stateAuto = place.address_components[2].short_name;
+      let stateAuto;
+      if (place.address_components[2].short_name === "US") {
+        stateAuto = place.address_components[1].short_name;
+      } else {
+        stateAuto = place.address_components[2].short_name;
+      }
       context.setState({
         city: cityAuto,
         state: stateAuto
