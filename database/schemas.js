@@ -17,9 +17,9 @@ var db = new Sequelize('postgres://skmmagucfbqhlq:e438af7378349f775519a13e692c6f
   dialect: "postgres"
 });
 
-db.sync({
-    force: true
-});
+// db.sync({
+//     force: true
+// });
 
 db.authenticate()
   .then((err) => {
