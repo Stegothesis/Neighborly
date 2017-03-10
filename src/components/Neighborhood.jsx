@@ -182,9 +182,9 @@ export class Neighborhood extends Component {
       return false;
     }
     for(var i = 0; i < this.props.reviews.length; i++) {
-      var reviewer = this.props.reviews[i].user.name;
-      console.log(reviewer, this.props.user.username);
-      if (reviewer === this.props.user.username) {
+      var reviewer = this.props.reviews[i].user.username;
+      console.log(reviewer, this.props.user.name);
+      if (reviewer === this.props.user.name) {
         return true;
       }
     }

@@ -16,7 +16,7 @@ class NeighborhoodDetail extends Component {
     console.log(this.state.justReviewed);
     if (!this.props.user.name) {
       return (<div>Please log in to leave a review.</div>)
-    } else if (this.props.alreadyReviewed() && !this.state.justReviewed) {
+    } else if (this.props.alreadyReviewed() && this.state.justReviewed !== "justReviewed") {
       return (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>)
     }
     return (<ReviewSubmit loadReviewsFromServer={this.props.loadReviewsFromServer} justReviewed={this.justReviewed.bind(this)}/>)
@@ -24,7 +24,7 @@ class NeighborhoodDetail extends Component {
 
   justReviewed() {
     this.setState({
-      justReviewed: true
+      justReviewed: "justReviewed"
     })
   }
 
