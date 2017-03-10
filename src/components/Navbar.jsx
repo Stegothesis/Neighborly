@@ -27,7 +27,20 @@ export default class Navbar extends Component {
     };
     let autocompleteNav = new google.maps.places.Autocomplete(input, options);
     this.setState({autocompleteNav: autocompleteNav});
+    // this.componentDidUpdate();
   }
+
+  // componentDidUpdate() {
+  //   const context = this;
+  //   google.maps.event.addListener(this.state.autocompleteNav, 'place_changed', function() {
+  //     fillInAddress();
+  //   })
+  //   function fillInAddress() {
+  //     let placeNav = context.state.autocompleteNav.getPlace();
+  //     let cityAuto = place.address_components[0].long_name;
+  //     let stateAuto;
+  //   }
+  // }
 
   onLocationInputChange(event) {
     this.setState({location: event.target.value})
@@ -41,7 +54,6 @@ export default class Navbar extends Component {
     });
     function fillInAddress() {
       let place = context.state.autocompleteNav.getPlace();
-      console.log('PLACE', place);
       let cityAuto = place.address_components[0].long_name;
       let stateAuto;
       if (place.address_components[2].short_name === "US") {
@@ -64,8 +76,8 @@ export default class Navbar extends Component {
     <div>
     <header id="header">
       <nav className="navbar navbar-inverse" role="banner">
-        <div className="container" id="navbar-container">
-          <div className="navbar-header">
+          <div className="container" id="navbar-container">
+            <div className="navbar-header">
             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
