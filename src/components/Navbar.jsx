@@ -64,7 +64,7 @@ export default class Navbar extends Component {
     <div>
     <header id="header">
       <nav className="navbar navbar-inverse" role="banner">
-        <div className="container">
+        <div className="container" id="navbar-container">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span className="sr-only">Toggle navigation</span>
