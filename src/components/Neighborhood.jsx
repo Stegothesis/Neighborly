@@ -204,6 +204,7 @@ export class Neighborhood extends Component {
         <div>
           <NeighborhoodDetail alreadyReviewed={this.alreadyReviewed.bind(this)} loadReviewsFromServer={this.loadReviewsFromServer.bind(this)}/>
           <ReviewMap reviews={this.props.reviews}/>
+          <ReviewMap reviews={this.props.reviews}/>
         </div>
       );
      }
