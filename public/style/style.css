@@ -4,7 +4,7 @@
 }
 
 .neighborhood-header {
-  color: white;
+  color: black;
   font-size: 24px;
   font-family: 'Open Sans', sans-serif;
 }
@@ -133,11 +133,14 @@
 
 /*#pac-input:focus {
   border-color: #4d90fe;
-}*/
+}
+
+#navbar-container {
+  display: flex;
+}
 
 
 #partner {
-    background-image: url("https://j.gifs.com/nZPDPE.gif");
     background-color: #cccccc;
     margin-top: 0px;
     margin-bottom: 50px;
@@ -168,7 +171,6 @@
 
 
 #partner {
-    background-image: url("https://j.gifs.com/nZPDPE.gif");
     background-color: #cccccc;
     margin-top: 0px;
     margin-bottom: 50px;

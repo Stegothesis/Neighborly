@@ -91,8 +91,7 @@ logout () {
     if (this.props.user.name) {
     return (
       <li className="login-auth active">
-        <button className="btn btn-primary" onClick = {this.logout.bind(this)}> Sign Out</button>
-        <h5 className="white-text" >Welcome, {this.props.user.name}!</h5>
+        <button className="btn btn-primary" onClick = {this.logout.bind(this)}>Not {this.props.user.name}? Sign out</button>
       </li>
       );
     } else {
