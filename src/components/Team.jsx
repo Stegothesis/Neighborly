@@ -89,7 +89,7 @@ const Team = () => {
             <div className="col-md-3 wow fadeInDown">
               <div className="clients-comments text-center">
                 <a href="https://github.com/michiang" target="_blank">
-                  <img src="images/profile/michael.jpg" className="img-circle" alt="" />
+                  <img src="images/profile/michael.png" className="img-circle" alt="" />
                 </a>
                 <h4><span>Michael Chiang </span><br /> Software Engineer</h4>
                 <a href="https://github.com/michiang" target="_blank"><i className="fa fa-github fa-3x"></i></a><br />
