@@ -69,7 +69,7 @@ export class ReviewMap extends Component {
               {this.props.activeNeighborhood ? (<h1 className="neighborhood-font reviews-heading">Reviews for {this.props.activeNeighborhood.name}</h1>) : null}
               <div className="row">
                 <div className="features">
-                  {this.props.reviews === "Not Found" ? <div className="no-reviews">No reviews yet. Why not be the first?</div> : this.renderList()}
+                  {this.props.reviews === "Not Found" ? <div className="no-reviews">No Reviews. Be the first to review this neighborhood!</div> : this.renderList()}
                 </div>
               </div>
             </div>

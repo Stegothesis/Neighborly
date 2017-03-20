@@ -41,7 +41,6 @@ exports.getZillowDemographics = function(neighborhood, city, callback) {
       callback(err, null);
     } else {
       parseString(body, function(err, obj) {
-        console.log('***ZILLOW DEMOGRAPHICS***', obj);
         var response = obj['Demographics:demographics'].response;
         if (response) {
           if (obj['Demographics:demographics'].response[0].pages[0].page[2]) {
@@ -69,7 +68,6 @@ exports.getWalkScore = function(lat, lon, address, callback) {
         callback(error, null);
       } else {
         parseString(body, function(err, obj) {
-          console.log('WALKSCORE', obj);
           var response = {};
           if (obj.result.walkscore) {
             response.walkscore = obj.result.walkscore[0];
@@ -133,7 +131,6 @@ exports.getGooglePhotos = function (lat, lon, callback) {
             console.log(error);
           } else {
             var urlArr = [];
-            console.log(JSON.stringify(obj), 'photo object--------')
             for (var i = 0; i < 3; i++) {
               if (typeof obj.PlaceSearchResponse.result !== 'undefined') {
                 if (typeof obj.PlaceSearchResponse.result[i].photo !== 'undefined') {
@@ -143,7 +140,6 @@ exports.getGooglePhotos = function (lat, lon, callback) {
                 }
               }
             }
-            console.log(urlArr, 'this is url')
             if (urlArr === null || urlArr === undefined) {
               urlArr = [];
             }
