@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReviewSubmit from './ReviewSubmit.jsx';
 import GoogleMap from './GoogleMap.jsx';
-import Amenities from './Amenities.jsx';
 import PicModal from '../components/PicModal.jsx';
 
 
