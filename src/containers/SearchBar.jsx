@@ -131,7 +131,7 @@ export default class SearchBar extends Component {
                           <div className="center">
                             <form onSubmit={(e)=>this.onFormSubmit(e)} className="input-group">
                               <input
-                                placeholder="Please add a city and press enter to see its neighborhoods."
+                                placeholder="Enter a city to view its details"
                                 className="form-control"
                                 id="pac-input"
                                 type="text"
