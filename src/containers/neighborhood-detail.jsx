@@ -13,11 +13,10 @@ class NeighborhoodDetail extends Component {
   }
 
   reviewChecker() {
-    console.log(this.state.justReviewed);
     if (!this.props.user.name) {
-      return (<div>Please log in to leave a review.</div>)
+      return (<div>Please log in to create a review.</div>)
     } else if (this.props.alreadyReviewed() && this.state.justReviewed !== "justReviewed") {
-      return (<div>You've already reviewed this neighborhood. Thanks again for your input!</div>)
+      return (<div>You've already reviewed this neighborhood. Thanks again for your input.</div>)
     }
     return (<ReviewSubmit loadReviewsFromServer={this.props.loadReviewsFromServer} justReviewed={this.justReviewed.bind(this)}/>)
   }
@@ -46,7 +45,6 @@ class NeighborhoodDetail extends Component {
                 <div id="feature">
                   {this.props.googlePhoto &&
                     this.props.googlePhoto.data.map((url, index) => {
-                      console.log(url, 'this is url in neighborhood detail------------')
                       var picId = "picModal" + index;
                       return (
                         <div className="neighborhood-photo">

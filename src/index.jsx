@@ -13,8 +13,6 @@ import { createStore, applyMiddleware } from 'redux';
 
 const store = makeStore(reducers);
 const history = syncHistoryWithStore(hashHistory, store);
-
-//Get app id from static html page
 const app = document.getElementById('app');
 
 ReactDOM.render(

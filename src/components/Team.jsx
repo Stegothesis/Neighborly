@@ -17,7 +17,7 @@ const Team = () => {
                 <div className="row">
                   <div className="center wow fadeInDown">
                       <h2>Search Any City or Neighborhood Across The U.S.</h2>
-                      <p className="lead">Looking for perspectives on specific neighborhoods across America? Neighborly reports information from thousands of small communities to allow you to find the best neighborhoods for your lifestyle.</p>
+                      <p className="lead">Looking for perspectives on specific neighborhoods across America? Neighborly reports information from thousands of small communities to allow you to find the best neighborhood for your lifestyle.</p>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Team = () => {
                 <a href="https://github.com/renatavmaraj" target="_blank">
                   <img src="images/profile/renata.jpg" className="img-circle" alt="" />
                 </a>
-                <h4><span>Renata Maraj </span><br />  Software Engineer</h4>
+                <h4><span>Renata Maraj </span><br />  Product Owner</h4>
                 <a href="https://github.com/renatavmaraj" target="_blank"><i className="fa fa-github fa-3x"></i></a><br />
                 <a href="https://www.linkedin.com/in/renatamaraj/" target="_blank"><i className="fa fa-linkedin fa-3x"></i></a>
               </div>
@@ -91,7 +91,7 @@ const Team = () => {
                 <a href="https://github.com/michiang" target="_blank">
                   <img src="images/profile/michael.png" className="img-circle" alt="" />
                 </a>
-                <h4><span>Michael Chiang </span><br /> Software Engineer</h4>
+                <h4><span>Michael Chiang </span><br /> Scrum Master</h4>
                 <a href="https://github.com/michiang" target="_blank"><i className="fa fa-github fa-3x"></i></a><br />
                 <a href="https://www.linkedin.com/in/michael-chiang-b68603117/" target="_blank"><i className="fa fa-linkedin fa-3x"></i></a>
               </div>
@@ -102,7 +102,7 @@ const Team = () => {
                 <a href="https://github.com/bchasset" target="_blank">
                   <img src="images/profile/brian.jpg" className="img-circle" alt="" />
                 </a>
-                <h4><span>Brian Hassett </span><br />  Software Engineer</h4>
+                <h4><span>Brian Hassett </span><br />  Development</h4>
                 <a href="https://github.com/bchasset" target="_blank"><i className="fa fa-github fa-3x"></i></a><br />
                 <a href="https://www.linkedin.com/in/bhassett/" target="_blank"><i className="fa fa-linkedin fa-3x"></i></a>
               </div>
@@ -113,7 +113,7 @@ const Team = () => {
                 <a href="https://github.com/bruce-graham" target="_blank">
                   <img src="images/profile/bruce.jpg" className="img-circle" alt="" />
                 </a>
-                <h4><span>Bruce Graham </span><br />  Software Engineer</h4>
+                <h4><span>Bruce Graham </span><br />  Development</h4>
                 <a href="https://github.com/bruce-graham" target="_blank"><i className="fa fa-github fa-3x"></i></a><br />
                 <a href="https://www.linkedin.com/in/brucegraham11/" target="_blank"><i className="fa fa-linkedin fa-3x"></i></a>
               </div>

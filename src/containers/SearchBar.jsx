@@ -39,7 +39,6 @@ export default class SearchBar extends Component {
     const context = this;
     function fillInAddress() {
       let place = context.state.autocomplete.getPlace();
-      console.log('place', place);
       if (!place.address_components) {
         let placeArray = place.name.split(",");
         context.setState({

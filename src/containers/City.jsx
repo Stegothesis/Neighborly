@@ -27,11 +27,9 @@ export class City extends Component {
     this.props.sendZoom({zoom: 10});
     console.log(this.props.params.city);
     const url = '/api/neighborhoods/searchbycity/' + this.props.params.city + '/' + this.props.params.state;
-    var that = this;
+    const context = this;
     axios.get(url).then(function(response) {
-      console.log('response---------', response)
       var mappedData = response.data.map(function(hood) {
-        console.log('HOOD', hood);
         hood.name = hood.name[0];
         hood.latitude = hood.latitude[0];
         hood.longitude = hood.longitude[0];
@@ -46,13 +44,12 @@ export class City extends Component {
         lat: mappedData[0].latitude,
         lng: mappedData[0].longitude
       }
-      that.setState({loading: false});
-      that.props.fetchNeighborhoodData(mappedData);
-      that.props.sendDefaultCoordinates(defaultCoordinates);
+      context.setState({loading: false});
+      context.props.fetchNeighborhoodData(mappedData);
+      context.props.sendDefaultCoordinates(defaultCoordinates);
     })
     .catch(function(error) {
-      console.log('not found');
-      that.setState({
+      context.setState({
         loading: false,
         notFound: true
       });
@@ -60,8 +57,6 @@ export class City extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('CURRENT PROPS', this.props.params);
-    console.log('CITY NEXT PROPS',nextProps);
     const context = this;
     if (this.props.params.city !== nextProps.params.city) {
       context.props.params.city = nextProps.params.city;
@@ -80,7 +75,6 @@ export class City extends Component {
       return (
         <li className="btn btn-xs btn-primary" key={neighborhood.name}
         onClick={ () => {
-          console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
           this.props.selectNeighborhood(neighborhood);
           global.latitude = neighborhood.latitude;
           global.longitude = neighborhood.longitude;
@@ -95,7 +89,7 @@ export class City extends Component {
     if (this.state.loading) {
       return (
         <div className="loading-page">
-          <div className="loading-page-text">Finding neighborhoods in {this.props.params.city}, {this.props.params.state}...</div>
+          <div className="loading-page-text">Finding Neighborhoods in {this.props.params.city}, {this.props.params.state}...</div>
           <img className="loading-gif" src="images/rolling.gif"></img>
           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
@@ -103,7 +97,7 @@ export class City extends Component {
     } else if (this.state.notFound) {
       return (
         <div className="loading-page">
-          <div className="loading-page-text">Sorry, we couldn't find anything for "{this.props.params.city}, {this.props.params.state}."</div>
+          <div className="loading-page-text">Sorry! We couldn't find anything for "{this.props.params.city}, {this.props.params.state}."</div>
         </div>)
     } else {
       return (
@@ -111,13 +105,12 @@ export class City extends Component {
           <div className="widget tags">
             <ul className="tag-cloud">
               <h2>Welcome to {this.props.params.city}!</h2>
-              <h2>Click on a neighborhood below and check it out!</h2>
+              <h2>Click on a neighborhood below.</h2>
               <GoogleMap  />
               {this.props.neighborhoods.map((neighborhood) => {
                 return (
                 <li className="btn btn-primary" key={neighborhood.name}
                 onClick={ () => {
-                console.log('NEIGHBORHOOD HAS BEEN CLICKED ON', neighborhood);
                 this.props.selectNeighborhood(neighborhood);
                 global.latitude = neighborhood.latitude;
                 global.longitude = neighborhood.longitude;

@@ -13,13 +13,11 @@ export const postReview = (review, neighborhood, token, callback) => (dispatch) 
         //combining the review object with the location -- ultimately the review object should hold the neighborhood data
         neighborhood, review)), //lower case, 2 letter state abbreviation (e.g. tx),
       success: function(data) {
-        console.log("Post review to user successful", data);
         if (callback) {
           callback()
         }
       },
       error: function (error) {
-        console.log("Error: Post review failed", error);
       },
       contentType: 'application/json',
       accepts: 'application/json',
@@ -27,7 +25,6 @@ export const postReview = (review, neighborhood, token, callback) => (dispatch) 
     });
 
 export function getReview(response) {
-  console.log('getReview Response:', response);
   return {
     type: 'GET_REVIEWS',
     payload: response

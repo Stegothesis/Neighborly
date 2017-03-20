@@ -90,7 +90,6 @@ app.get('/api/neighborhoods/demographics/:neighborhood/:city', function(req, res
     if (err) {
       res.sendStatus(404);
     } else {
-      console.log('DEMOGRAPHICS RETURNED', demographics);
       res.json(demographics);
     }
   });
@@ -101,9 +100,8 @@ app.get('/api/neighborhoods/amenities/:lat/:lon', function(req, res) {
   var lon = req.params.lon;
   apiHelpers.getAmenities(lat, lon, function(err, amenities) {
     if (err) {
-      console.log('ERRORED OUT', err);
+      console.log('Ameneties Google API Call Error', err);
     } else {
-      console.log('AMENITIES', amenities);
       res.json(amenities);
     }
   })
@@ -115,7 +113,7 @@ app.get('/api/neighborhoods/walk/:address/:latitude/:longitude', function (req, 
   let lon = req.params.longitude;
   apiHelpers.getWalkScore(lat, lon, address, function(err, score) {
     if(err) {
-      console.log('ERRORED OUT', err);
+      console.log('Walk Score Error', err);
     } else {
       res.json(score);
     }
@@ -127,9 +125,8 @@ app.get('/api/neighborhoods/googlephoto/:latitude/:longitude', function (req, re
   let lon = req.params.longitude;
   apiHelpers.getGooglePhotos(lat, lon, function(err, data) {
     if(err) {
-      console.log('ERRORED OUT', err);
+      console.log('Google Photo API Error', err);
     } else {
-      console.log(data, 'this is data')
       res.json(data);
     }
   })
@@ -157,7 +154,6 @@ app.get('/api/neighborhoods/reviews/:neighborhood/:city/:state', function(req, r
     neighborhood_name: req.params.neighborhood
   }
   dbHelpers.getReviews(query, function(data) {
-    console.log(query);
     res.json(data);
   })
 });

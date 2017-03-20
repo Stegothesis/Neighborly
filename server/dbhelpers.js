@@ -73,7 +73,6 @@ exports.addReview = function(review, userId, callback) {
               var oldSchools = parseFloat(hood.schools_ratings);
               var oldCrime = parseFloat(hood.crime_ratings);
               var oldHipster = parseFloat(hood.hipster_ratings);
-              console.log('review-----------------------', review)
 
               neighborhood.updateAttributes({
                 total_num_ratings: oldTotal + 1,
@@ -158,7 +157,6 @@ exports.addVote = function(positiveVote, reviewId, userId, callback) {
           vote_count: review.vote_count + voteVal
         }, ['vote_count']).then(function() {
           callback(null, created)
-          console.log(created);
         })
       })
     } else {
